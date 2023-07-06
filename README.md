@@ -5,7 +5,7 @@ Welcome to our platform-based racing game! This project, created with the Godot 
 ## Key Features
 * 2D Side Scroller Racing in a platformer style.
 
-[TO-DO]:
+**TO-DO:**
 
 * Competitive multiplayer: Play against your friends and show off your platforming skills.
 * Character-specific abilities: Use your character's unique abilities to navigate through levels and get an edge over your opponents.
@@ -28,7 +28,7 @@ Welcome to our platform-based racing game! This project, created with the Godot 
 
 ### Controls
 
-[TO-DO]:
+**TO-DO:**
 
 Detailed controls and gameplay instructions are available in-game in the tutorial section.
 
