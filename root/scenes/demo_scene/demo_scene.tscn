@@ -772,15 +772,6 @@ layer_0/tile_data = PackedInt32Array(262093, 0, 0, 262094, 65536, 0, 262095, 655
 [node name="Player" parent="." instance=ExtResource("2_w3iof")]
 position = Vector2(-496, 32)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(4, -42)
-zoom = Vector2(3.2, 3.2)
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
-drag_left_margin = 0.37
-drag_top_margin = 1.0
-drag_right_margin = 0.37
-
 [node name="Raycast" type="Node2D" parent="Player"]
 
 [node name="Raycast01" type="RayCast2D" parent="Player/Raycast"]

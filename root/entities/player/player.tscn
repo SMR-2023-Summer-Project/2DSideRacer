@@ -176,3 +176,8 @@ shape = SubResource("RectangleShape2D_rbe6w")
 sprite_frames = SubResource("SpriteFrames_0n6uc")
 animation = &"idle"
 autoplay = "idle"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3.2, 3.2)
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
