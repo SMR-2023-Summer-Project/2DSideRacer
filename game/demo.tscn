@@ -975,6 +975,7 @@ position = Vector2(25, -18)
 rotation = -2.35619
 target_position = Vector2(0, 500)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+[node name="Animations" type="AnimatedSprite2D" parent="Player"]
 sprite_frames = SubResource("SpriteFrames_2vct8")
 animation = &"run"
+autoplay = "idle"

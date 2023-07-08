@@ -10,6 +10,7 @@ size = Vector2(42, 24)
 script = ExtResource("1_lcpu1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("2_piy4l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

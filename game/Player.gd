@@ -21,6 +21,7 @@ var isClimbing = false
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+@onready var animatedSprite = $Animations
 
 func _ready():
 	current_rope_length = rope_length
@@ -80,6 +81,7 @@ func _physics_process(delta):
 	# Move and slide.
 	#hook()
 	#update()
+	animate_crabby()
 	move_and_slide()
 
 func hook():
@@ -95,6 +97,15 @@ func get_hook_pos():
 		if raycast.is_colliding():
 			return raycast.get_collisionn_point()
 
+func animate_crabby():
+	if  is_on_floor() and velocity.x != 0:
+		animatedSprite.animation = "run"
+	else:
+		animatedSprite.animation = "idle"
+	if velocity.y > 0:
+		animatedSprite.animation = "jump"
+	elif velocity.y < 0:
+		animatedSprite.animation = "fall"
 
 
 
