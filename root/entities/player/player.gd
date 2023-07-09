@@ -22,9 +22,6 @@ var isClimbing = false
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-var facingLeft = false
-
-@onready var animatedSprite = $Animations
 func _ready():
 	if not is_multiplayer_authority(): return
 	current_rope_length = rope_length
@@ -88,7 +85,6 @@ func _physics_process(delta):
 	# Move and slide.
 	#hook()
 	#update()
-	animate_crabby()
 	move_and_slide()
 	respawn()
 func hook():
@@ -103,30 +99,6 @@ func get_hook_pos():
 	for raycast in $Raycast.get_children():
 		if raycast.is_colliding():
 			return raycast.get_collisionn_point()
-#animates the crabby sprite
-func animate_crabby():
-	if velocity.x > 0:
-		facingLeft = false
-	if velocity.x < 0:
-		facingLeft = true
-	if facingLeft:
-		if  is_on_floor() and velocity.x != 0:
-			animatedSprite.animation = "run"
-		else:
-			animatedSprite.animation = "idle"
-		if velocity.y > 0:
-			animatedSprite.animation = "jump"
-		elif velocity.y < 0:
-			animatedSprite.animation = "fall"
-	else:
-		if  is_on_floor() and velocity.x != 0:
-			animatedSprite.animation = "run_right"
-		else:
-			animatedSprite.animation = "idle_right"
-		if velocity.y > 0:
-			animatedSprite.animation = "jump_right"
-		elif velocity.y < 0:
-			animatedSprite.animation = "fall_right"
 
 #sets the player back to the most current spawnpoint
 func respawn():

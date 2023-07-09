@@ -1,14 +1,15 @@
-[gd_scene load_steps=51 format=3 uid="uid://3iwpe0n7knwo"]
+[gd_scene load_steps=52 format=3 uid="uid://3iwpe0n7knwo"]
 
 [ext_resource type="Script" path="res://root/entities/player/player.gd" id="1_wsm0r"]
-[ext_resource type="Texture2D" uid="uid://bxmfh2teaja1k" path="res://root/assets/sprites/entities/crabby/fall.png" id="2_her7o"]
-[ext_resource type="Texture2D" uid="uid://b27ynvlurl1sc" path="res://root/assets/sprites/entities/crabby/idle.png" id="2_piy4l"]
-[ext_resource type="Texture2D" uid="uid://d3f4cici7qo00" path="res://root/assets/sprites/entities/crabby/fall_right.png" id="3_160ia"]
-[ext_resource type="Texture2D" uid="uid://c4dkc3koc4dqa" path="res://root/assets/sprites/entities/crabby/jump.png" id="4_qqd7g"]
-[ext_resource type="Texture2D" uid="uid://de7nem0qqcvxi" path="res://root/assets/sprites/entities/crabby/run.png" id="5_nuy38"]
-[ext_resource type="Texture2D" uid="uid://cik37rjgfbjsu" path="res://root/assets/sprites/entities/crabby/idle_right.png" id="5_yeiy0"]
-[ext_resource type="Texture2D" uid="uid://ds88804kuuy7x" path="res://root/assets/sprites/entities/crabby/jump_right.png" id="7_heg7o"]
-[ext_resource type="Texture2D" uid="uid://bvg8g1jfevv1l" path="res://root/assets/sprites/entities/crabby/run_right.png" id="9_rxhy7"]
+[ext_resource type="Texture2D" uid="uid://cuckfd6inoi3h" path="res://root/assets/sprites/entities/crabby/fall.png" id="2_her7o"]
+[ext_resource type="Texture2D" uid="uid://crjbtx2jkbjab" path="res://root/assets/sprites/entities/crabby/idle.png" id="2_piy4l"]
+[ext_resource type="Texture2D" uid="uid://iwl1pu4wg5nr" path="res://root/assets/sprites/entities/crabby/fall_right.png" id="3_160ia"]
+[ext_resource type="Texture2D" uid="uid://8eyv5ry6vrpb" path="res://root/assets/sprites/entities/crabby/jump.png" id="4_qqd7g"]
+[ext_resource type="Texture2D" uid="uid://c8ett2vxqoife" path="res://root/assets/sprites/entities/crabby/run.png" id="5_nuy38"]
+[ext_resource type="Texture2D" uid="uid://cxepqagpjlnlu" path="res://root/assets/sprites/entities/crabby/idle_right.png" id="5_yeiy0"]
+[ext_resource type="Texture2D" uid="uid://dhyor6r60tdcy" path="res://root/assets/sprites/entities/crabby/jump_right.png" id="7_heg7o"]
+[ext_resource type="Texture2D" uid="uid://bpg1oaw51e77g" path="res://root/assets/sprites/entities/crabby/run_right.png" id="9_rxhy7"]
+[ext_resource type="Script" path="res://root/entities/player/player_animations.gd" id="10_1f6r6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rbe6w"]
 size = Vector2(42, 24)
@@ -351,6 +352,7 @@ shape = SubResource("RectangleShape2D_rbe6w")
 sprite_frames = SubResource("SpriteFrames_0n6uc")
 animation = &"run_right"
 autoplay = "idle"
+script = ExtResource("10_1f6r6")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3.2, 3.2)
