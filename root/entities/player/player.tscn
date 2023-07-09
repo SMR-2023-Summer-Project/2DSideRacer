@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://3iwpe0n7knwo"]
+[gd_scene load_steps=28 format=3 uid="uid://3iwpe0n7knwo"]
 
 [ext_resource type="Script" path="res://root/entities/player/player.gd" id="1_wsm0r"]
 [ext_resource type="Texture2D" uid="uid://bxupci6tjoslo" path="res://root/assets/sprites/entities/crabby/fall.png" id="2_her7o"]
@@ -60,6 +60,10 @@ region = Rect2(0, 32, 72, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_hanaw"]
 atlas = ExtResource("4_qqd7g")
 region = Rect2(72, 0, 72, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7mi1"]
+atlas = ExtResource("2_piy4l")
+region = Rect2(0, 0, 72, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_riita"]
 atlas = ExtResource("5_nuy38")
@@ -143,6 +147,19 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_r7mi1")
+}],
+"loop": true,
+"name": &"neutral",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_riita")
 }, {
 "duration": 1.0,
@@ -166,15 +183,17 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D"]
+position = Vector2(1, 0)
 script = ExtResource("1_wsm0r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(2, 1)
 shape = SubResource("RectangleShape2D_rbe6w")
 
 [node name="Animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_0n6uc")
-animation = &"idle"
+animation = &"neutral"
 autoplay = "idle"
 
 [node name="Camera2D" type="Camera2D" parent="."]

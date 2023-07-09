@@ -23,9 +23,11 @@ var isClimbing = false
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @onready var animatedSprite = $Animations
-
 func _ready():
 	current_rope_length = rope_length
+	respawn()
+	print("Ready")
+
 	
 
 func _physics_process(delta):
@@ -84,7 +86,7 @@ func _physics_process(delta):
 	#update()
 	animate_crabby()
 	move_and_slide()
-
+	respawn()
 func hook():
 	$Raycast.look_at(get_global_mouse_position())
 	if Input.is_action_just_pressed("swing"):
@@ -107,5 +109,15 @@ func animate_crabby():
 		animatedSprite.animation = "jump"
 	elif velocity.y < 0:
 		animatedSprite.animation = "fall"
+
+
+
+func respawn():
+	if position.y >= 200:
+		position = Global.spawn_point
+
+
+
+
 
 
