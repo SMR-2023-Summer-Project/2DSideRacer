@@ -10,4 +10,4 @@ func _on_quit_pressed():
   
 #When player presses "Play" the screen changes to the main screen where the game is
 func _on_play_pressed():
-	get_tree().change_scene_to_file("res://root/scenes/demo_scene/demo_scene.tscn")
+	get_tree().change_scene_to_file("res://root/multiplayer/multiplayer.tscn")

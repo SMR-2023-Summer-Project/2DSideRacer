@@ -26,6 +26,7 @@ var facingLeft = false
 
 @onready var animatedSprite = $Animations
 func _ready():
+	if not is_multiplayer_authority(): return
 	current_rope_length = rope_length
 	respawn()
 	print("Ready")
@@ -33,6 +34,7 @@ func _ready():
 	
 
 func _physics_process(delta):
+	if not is_multiplayer_authority(): return
 	#hook()
 	# Add the gravity.
 	if not is_on_floor():
@@ -130,6 +132,9 @@ func animate_crabby():
 func respawn():
 	if position.y >= 200:
 		position = Global.spawn_point
+		
+func _enter_tree():
+	set_multiplayer_authority(str(name).to_int())
 
 
 
