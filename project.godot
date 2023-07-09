@@ -14,6 +14,10 @@ config/name="2DSideRacer"
 run/main_scene="res://root/ui/title_screen/title_screen.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 
+[autoload]
+
+Global="*res://root/scenes/demo_scene/Global.gd"
+
 [dotnet]
 
 project/assembly_name="2DSideRacer"
