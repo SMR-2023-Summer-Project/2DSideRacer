@@ -11,6 +11,8 @@ func _ready():
 	player = get_parent()
 	
 func _physics_process(delta):
+	if not is_multiplayer_authority():
+		return
 	animate_crabby()
 
 #animates the crabby sprite

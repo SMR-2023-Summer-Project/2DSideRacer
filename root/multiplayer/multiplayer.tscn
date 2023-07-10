@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cdn18fm4gxl0m"]
 
-[ext_resource type="Texture2D" uid="uid://c7gyy0np3b4v" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
+[ext_resource type="Texture2D" uid="uid://bb4itiyoqce2j" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
 
 [sub_resource type="GDScript" id="GDScript_463ds"]
 script/source = "# author Cesar
