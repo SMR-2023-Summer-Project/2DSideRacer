@@ -18,6 +18,7 @@ var rope_length = 500
 var current_rope_length
 var isClimbing = false
 
+@onready var camera = $Camera2D
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -27,6 +28,7 @@ func _ready():
 	current_rope_length = rope_length
 	respawn()
 	print("Ready")
+	camera.make_current()
 
 	
 
