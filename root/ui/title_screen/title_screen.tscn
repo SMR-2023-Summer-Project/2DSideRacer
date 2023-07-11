@@ -1,8 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://bcgkosxjxrybe"]
+[gd_scene load_steps=9 format=3 uid="uid://bcgkosxjxrybe"]
 
 [ext_resource type="Script" path="res://root/ui/title_screen/title_screen.gd" id="1_wv2gi"]
+[ext_resource type="FontFile" uid="uid://co0krb4h4v6qw" path="res://root/assets/fonts/Sniglet-Regular.ttf" id="3_brs51"]
+[ext_resource type="Texture2D" uid="uid://84orplg5nefc" path="res://root/assets/sprites/backgrounds/title_screen_BG.jpeg" id="3_nuk6w"]
+[ext_resource type="FontFile" uid="uid://v1x7c054ip6r" path="res://root/assets/fonts/KiriFont.otf" id="4_s8gf4"]
+[ext_resource type="Texture2D" uid="uid://ctirejgcgckj" path="res://root/assets/sprites/backgrounds/Industrial_background_1.png" id="5_atv4k"]
+[ext_resource type="Texture2D" uid="uid://pdqvj0g6fhc1" path="res://root/ui/title_screen/left-and-right-arrow.png" id="7_47820"]
+[ext_resource type="Texture2D" uid="uid://b5i3bt3p40tn7" path="res://root/ui/title_screen/up-arrow.png" id="7_p8dbp"]
 
-[node name="Control" type="Control"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v10mw"]
+bg_color = Color(0.341176, 0.694118, 0.305882, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0.239216, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="title_screen" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,20 +30,134 @@ grow_vertical = 2
 script = ExtResource("1_wv2gi")
 
 [node name="Play" type="Button" parent="."]
+top_level = true
 layout_mode = 0
-offset_left = 305.0
-offset_top = 277.0
-offset_right = 396.0
-offset_bottom = 325.0
-text = "Play"
+offset_left = 487.0
+offset_top = 233.0
+offset_right = 671.0
+offset_bottom = 308.0
+theme_override_colors/font_color = Color(0.709804, 0.0588235, 0.337255, 1)
+theme_override_colors/font_pressed_color = Color(0.993846, 0.579034, 0.681901, 1)
+theme_override_colors/font_hover_color = Color(0.993846, 0.579034, 0.681901, 1)
+theme_override_constants/outline_size = 14
+theme_override_fonts/font = ExtResource("4_s8gf4")
+theme_override_font_sizes/font_size = 60
+text = "PLAY!"
+flat = true
 
 [node name="Quit" type="Button" parent="."]
+top_level = true
 layout_mode = 0
-offset_left = 690.0
-offset_top = 278.0
-offset_right = 781.0
-offset_bottom = 326.0
+offset_left = 994.0
+offset_top = 543.0
+offset_right = 1129.0
+offset_bottom = 619.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("3_brs51")
+theme_override_font_sizes/font_size = 50
 text = "Quit"
+flat = true
+
+[node name="title_screen_BG" type="Sprite2D" parent="."]
+position = Vector2(576, 323)
+scale = Vector2(1.8254, 1.79722)
+texture = ExtResource("3_nuk6w")
+
+[node name="Game Name" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.035
+offset_left = 292.0
+offset_top = 48.0
+offset_right = 882.68
+offset_bottom = 152.0
+theme_override_colors/font_color = Color(0, 0.447059, 0.788235, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 18
+theme_override_fonts/font = ExtResource("4_s8gf4")
+theme_override_font_sizes/font_size = 80
+text = "Game Name!"
+
+[node name="control_panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.035
+anchor_bottom = 0.062
+offset_left = 21.0
+offset_top = 367.0
+offset_right = 298.68
+offset_bottom = 585.824
+theme_override_styles/panel = SubResource("StyleBoxFlat_v10mw")
+
+[node name="move_label" type="Label" parent="control_panel"]
+layout_mode = 0
+offset_left = 159.0
+offset_top = 153.0
+offset_right = 271.0
+offset_bottom = 201.0
+theme_override_fonts/font = ExtResource("3_brs51")
+theme_override_font_sizes/font_size = 35
+text = "= MOVE"
+
+[node name="control_label" type="Label" parent="control_panel"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 14.0
+offset_right = 219.0
+offset_bottom = 68.0
+theme_override_colors/font_color = Color(0.992157, 0.776471, 0.341176, 1)
+theme_override_fonts/font = ExtResource("3_brs51")
+theme_override_font_sizes/font_size = 40
+text = "CONTROLS:"
+
+[node name="up_arrow" type="TextureRect" parent="control_panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.156
+anchor_top = 0.247
+anchor_right = 0.407
+anchor_bottom = 0.494
+offset_left = 18.392
+offset_top = 2.027
+offset_right = 3.57401
+offset_bottom = -8.94601
+texture = ExtResource("5_atv4k")
+expand_mode = 1
+
+[node name="left_right_arrow" type="TextureRect" parent="control_panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.535
+anchor_top = 1.921
+anchor_right = 0.535
+anchor_bottom = 1.921
+offset_left = -106.13
+offset_top = -354.539
+offset_right = -34.13
+offset_bottom = -298.539
+texture = ExtResource("5_atv4k")
+expand_mode = 1
+
+[node name="Left-and-right-arrow" type="Sprite2D" parent="control_panel"]
+position = Vector2(101, 170)
+scale = Vector2(0.117188, 0.15918)
+texture = ExtResource("7_47820")
+
+[node name="Up-arrow" type="Sprite2D" parent="control_panel"]
+position = Vector2(99.75, 93.25)
+scale = Vector2(0.0517578, 0.0927734)
+texture = ExtResource("7_p8dbp")
+
+[node name="jump_label" type="Label" parent="control_panel"]
+layout_mode = 0
+offset_left = 155.0
+offset_top = 75.0
+offset_right = 261.0
+offset_bottom = 123.0
+theme_override_fonts/font = ExtResource("3_brs51")
+theme_override_font_sizes/font_size = 35
+text = "= JUMP"
 
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
