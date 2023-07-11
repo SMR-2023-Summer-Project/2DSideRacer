@@ -1,4 +1,4 @@
-# Author: Habib
+# Author: Habib, Luc
 
 extends Node2D
 
@@ -7,6 +7,9 @@ const STEP_FREQUENCY = 1.0 / 6.0 # max 6 step sounds in 1 second
 @onready var jump_sfx = $JumpSfx
 @onready var land_sfx = $LandSfx
 @onready var step_sfx = $StepSfx
+@onready var dash_sfx = $DashSfx
+@onready var climb_sfx = $ClimbSfx
+@onready var DJ_Sfx = $DJSfx
 
 var player: CharacterBody2D = null
 
@@ -18,6 +21,8 @@ var last_time_stepped = -INF
 
 # whether or not player was on ground last physics frame
 var previously_on_floor = true
+
+var previously_couldDJ = true
 
 func _ready():
 	# parent of this node will always be assumed
@@ -39,8 +44,21 @@ func _physics_process(delta):
 		# player has just left the ground going up, jumped?
 		print("jump")
 		jump_sfx.play()
+	elif not player.is_on_floor() and not previously_on_floor and Input.is_action_just_pressed("jump") and previously_couldDJ:
+		DJ_Sfx.play()
 	elif player.is_on_floor() and not previously_on_floor:
 		# player has just landed
 		land_sfx.play()
-	
+		
+	if Input.is_action_just_pressed("dash"):
+		#player has just pressed dash key
+		dash_sfx.play()
+		
+	if player.get("isClimbing") and (Input.is_action_pressed("ui_up") or Input.is_action_pressed("ui_down")) and elapsed_since_last_step > STEP_FREQUENCY:
+		# player is in climbing state and moving either up or down
+		climb_sfx.play()
+		last_time_stepped = elapsed_time
+		
 	previously_on_floor = player.is_on_floor()
+	previously_couldDJ = player.get("canDJ")
+	

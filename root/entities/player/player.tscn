@@ -1,18 +1,21 @@
-[gd_scene load_steps=55 format=3 uid="uid://3iwpe0n7knwo"]
+[gd_scene load_steps=58 format=3 uid="uid://3iwpe0n7knwo"]
 
 [ext_resource type="Script" path="res://root/entities/player/player.gd" id="1_wsm0r"]
-[ext_resource type="Texture2D" uid="uid://ce4ipqk8gy60n" path="res://root/assets/sprites/entities/crabby/fall.png" id="2_her7o"]
-[ext_resource type="Texture2D" uid="uid://bgxxaxgp24hew" path="res://root/assets/sprites/entities/crabby/idle.png" id="2_piy4l"]
-[ext_resource type="Texture2D" uid="uid://np8ybqtxygue" path="res://root/assets/sprites/entities/crabby/fall_right.png" id="3_160ia"]
-[ext_resource type="Texture2D" uid="uid://c4mp262lj2fl0" path="res://root/assets/sprites/entities/crabby/jump.png" id="4_qqd7g"]
-[ext_resource type="Texture2D" uid="uid://bfp3jv1ck2jdh" path="res://root/assets/sprites/entities/crabby/run.png" id="5_nuy38"]
-[ext_resource type="Texture2D" uid="uid://be1hs8iuy8tx2" path="res://root/assets/sprites/entities/crabby/idle_right.png" id="5_yeiy0"]
-[ext_resource type="Texture2D" uid="uid://cotu8recyvn4o" path="res://root/assets/sprites/entities/crabby/jump_right.png" id="7_heg7o"]
-[ext_resource type="Texture2D" uid="uid://c2r7aybdqa4jb" path="res://root/assets/sprites/entities/crabby/run_right.png" id="9_rxhy7"]
+[ext_resource type="Texture2D" uid="uid://c0frnjssf5hf6" path="res://root/assets/sprites/entities/crabby/fall.png" id="2_her7o"]
+[ext_resource type="Texture2D" uid="uid://bbld6x067rww6" path="res://root/assets/sprites/entities/crabby/idle.png" id="2_piy4l"]
+[ext_resource type="Texture2D" uid="uid://dyei5ee2hhqfk" path="res://root/assets/sprites/entities/crabby/fall_right.png" id="3_160ia"]
+[ext_resource type="Texture2D" uid="uid://dbrkon2x2eur" path="res://root/assets/sprites/entities/crabby/jump.png" id="4_qqd7g"]
+[ext_resource type="Texture2D" uid="uid://mwpllxiwdwdp" path="res://root/assets/sprites/entities/crabby/run.png" id="5_nuy38"]
+[ext_resource type="Texture2D" uid="uid://4kebot45mjay" path="res://root/assets/sprites/entities/crabby/idle_right.png" id="5_yeiy0"]
+[ext_resource type="Texture2D" uid="uid://bxydqxv286igv" path="res://root/assets/sprites/entities/crabby/jump_right.png" id="7_heg7o"]
+[ext_resource type="Texture2D" uid="uid://cuab1v2mjqclc" path="res://root/assets/sprites/entities/crabby/run_right.png" id="9_rxhy7"]
 [ext_resource type="Script" path="res://root/entities/player/player_animations.gd" id="10_1f6r6"]
 [ext_resource type="Script" path="res://root/entities/player/player_sounds.gd" id="11_wtaoh"]
-[ext_resource type="AudioStream" uid="uid://ndns83snfm7a" path="res://root/assets/audio/sfx/snd_jump.ogg" id="12_agtq3"]
-[ext_resource type="AudioStream" uid="uid://c68f0u0is1l2h" path="res://root/assets/audio/sfx/snd_step.ogg" id="13_i0xb2"]
+[ext_resource type="AudioStream" uid="uid://12sbaslwkuxe" path="res://root/assets/audio/sfx/snd_jump.ogg" id="12_agtq3"]
+[ext_resource type="AudioStream" uid="uid://dvmmdkn6jkj1w" path="res://root/assets/audio/sfx/snd_step.ogg" id="13_i0xb2"]
+[ext_resource type="AudioStream" uid="uid://cvh0nlv36wgt3" path="res://root/assets/audio/sfx/Jump 4.wav" id="14_mf707"]
+[ext_resource type="AudioStream" uid="uid://bjjabqerra024" path="res://root/assets/audio/sfx/climb_1.wav" id="15_202mj"]
+[ext_resource type="AudioStream" uid="uid://dkjta616vg1oa" path="res://root/assets/audio/sfx/Jump 1.wav" id="16_dtg4o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rbe6w"]
 size = Vector2(42, 24)
@@ -378,3 +381,18 @@ pitch_scale = 0.5
 
 [node name="StepSfx" type="AudioStreamPlayer2D" parent="PlayerSounds"]
 stream = ExtResource("13_i0xb2")
+
+[node name="DashSfx" type="AudioStreamPlayer2D" parent="PlayerSounds"]
+stream = ExtResource("14_mf707")
+
+[node name="ClimbSfx" type="AudioStreamPlayer2D" parent="PlayerSounds"]
+stream = ExtResource("15_202mj")
+
+[node name="DJSfx" type="AudioStreamPlayer2D" parent="PlayerSounds"]
+stream = ExtResource("16_dtg4o")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(500, 0)
+collision_mask = 3
+
+[node name="rope" type="DampedSpringJoint2D" parent="."]

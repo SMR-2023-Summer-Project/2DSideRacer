@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cdn18fm4gxl0m"]
+[gd_scene load_steps=7 format=3 uid="uid://cdn18fm4gxl0m"]
 
-[ext_resource type="Texture2D" uid="uid://bb4itiyoqce2j" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
+[ext_resource type="Texture2D" uid="uid://bu6aebld8gx68" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
+[ext_resource type="Texture2D" uid="uid://dn7js4x7xvt1a" path="res://root/assets/sprites/backgrounds/Industrial_background_1.png" id="2_rxy47"]
 
 [sub_resource type="GDScript" id="GDScript_463ds"]
 script/source = "# author Cesar
@@ -804,7 +805,10 @@ texture = ExtResource("1_pod0c")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_spn0y")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0drc7"]
+
 [node name="Multiplayer" type="Node2D"]
+position = Vector2(-5, -3)
 script = SubResource("GDScript_463ds")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -863,6 +867,18 @@ layer_0/tile_data = PackedInt32Array(262093, 0, 0, 262094, 65536, 0, 262095, 655
 
 [node name="Camera2D" type="Camera2D" parent="Lobby"]
 position = Vector2(-142, -200)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Lobby"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lobby/StaticBody2D"]
+position = Vector2(-82, -40)
+shape = SubResource("RectangleShape2D_0drc7")
+
+[node name="Sprite2D" type="Sprite2D" parent="Lobby/StaticBody2D/CollisionShape2D"]
+scale = Vector2(0.0416667, 0.0625)
+texture = ExtResource("2_rxy47")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://root/entities/player/player.tscn")
