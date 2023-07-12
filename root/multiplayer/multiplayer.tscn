@@ -1,9 +1,68 @@
-[gd_scene load_steps=9 format=3 uid="uid://cdn18fm4gxl0m"]
+[gd_scene load_steps=7 format=3 uid="uid://cdn18fm4gxl0m"]
 
-[ext_resource type="Texture2D" uid="uid://bekfk6muxscqh" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
-[ext_resource type="Texture2D" uid="uid://b84hhopl0xjto" path="res://root/assets/sprites/backgrounds/Industrial_background_1.png" id="2_rxy47"]
-[ext_resource type="Script" path="res://root/scenes/demo_scene/Global.gd" id="3_c6tnc"]
-[ext_resource type="Script" path="res://root/scenes/demo_scene/Checkpoint.gd" id="4_so2ev"]
+[ext_resource type="Texture2D" uid="uid://bhw1xco3bihrj" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
+[ext_resource type="Texture2D" uid="uid://2axj50dogn28" path="res://root/assets/sprites/backgrounds/Industrial_background_1.png" id="2_rxy47"]
+
+[sub_resource type="GDScript" id="GDScript_463ds"]
+script/source = "# author Cesar
+
+extends Node2D
+
+const PORT = 4433
+const Player = preload(\"res://root/entities/player/player.tscn\")
+
+var peer = ENetMultiplayerPeer.new()
+
+func _on_join_pressed(): 
+	$CanvasLayer.hide()
+	var txt : String = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HBoxContainer/Address.text
+	if txt == \"\":
+		OS.alert(\"Need a remote to connect to.\")
+		return
+		
+	peer.create_client(txt, PORT)
+	multiplayer.multiplayer_peer = peer
+
+func _on_host_pressed():
+	# Start as server.
+	$CanvasLayer.hide()
+	
+	peer.create_server(PORT)
+	multiplayer.multiplayer_peer = peer
+	
+	multiplayer.peer_connected.connect(add_player)
+	multiplayer.peer_disconnected.connect(remove_player)
+	
+	add_player(multiplayer.get_unique_id())
+	
+	upnp_setup()
+
+func add_player(peer_id):
+	var player = Player.instantiate()
+	player.name = str(peer_id)
+	add_child(player)
+
+func remove_player(peer_id):
+	var player = get_node_or_null(str(peer_id))
+	if player:
+		player.queue_free()
+		
+func upnp_setup():
+	var upnp = UPNP.new()
+	
+	var discover_result = upnp.discover()
+	assert(discover_result == UPNP.UPNP_RESULT_SUCCESS, \\
+		\"UPNP Discover Failed! Error %s\" % discover_result)
+
+	assert(upnp.get_gateway() and upnp.get_gateway().is_valid_gateway(), \\
+		\"UPNP Invalid Gateway!\")
+
+	var map_result = upnp.add_port_mapping(PORT)
+	assert(map_result == UPNP.UPNP_RESULT_SUCCESS, \\
+		\"UPNP Port Mapping Failed! Error %s\" % map_result)
+	
+	print(\"Success! Join Address: %s\" % upnp.query_external_address())
+"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_spn0y"]
 texture = ExtResource("1_pod0c")
@@ -766,11 +825,9 @@ sources/0 = SubResource("TileSetAtlasSource_spn0y")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0drc7"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_s8abx"]
-size = Vector2(94, 130)
-
 [node name="Multiplayer" type="Node2D"]
 position = Vector2(-5, -3)
+script = SubResource("GDScript_463ds")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -845,26 +902,5 @@ texture = ExtResource("2_rxy47")
 _spawnable_scenes = PackedStringArray("res://root/entities/player/player.tscn")
 spawn_path = NodePath("..")
 
-[node name="Global" type="Node" parent="."]
-script = ExtResource("3_c6tnc")
-
-[node name="Checkpoint" type="Area2D" parent="."]
-position = Vector2(-779, 32)
-script = ExtResource("4_so2ev")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint"]
-position = Vector2(3, -38)
-shape = SubResource("RectangleShape2D_s8abx")
-
-[node name="Checkpoint2" type="Area2D" parent="."]
-position = Vector2(546, 19)
-script = ExtResource("4_so2ev")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint2"]
-position = Vector2(10, -36)
-shape = SubResource("RectangleShape2D_s8abx")
-
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HBoxContainer/Connect" to="." method="_on_join_pressed"]
-[connection signal="body_entered" from="Checkpoint" to="Checkpoint" method="_on_body_entered"]
-[connection signal="body_entered" from="Checkpoint2" to="Checkpoint2" method="_on_body_entered"]
