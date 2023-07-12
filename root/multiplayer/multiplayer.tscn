@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cdn18fm4gxl0m"]
 
-[ext_resource type="Texture2D" uid="uid://bu6aebld8gx68" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
-[ext_resource type="Texture2D" uid="uid://dn7js4x7xvt1a" path="res://root/assets/sprites/backgrounds/Industrial_background_1.png" id="2_rxy47"]
+[ext_resource type="Texture2D" uid="uid://bhw1xco3bihrj" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
+[ext_resource type="Texture2D" uid="uid://2axj50dogn28" path="res://root/assets/sprites/backgrounds/Industrial_background_1.png" id="2_rxy47"]
 
 [sub_resource type="GDScript" id="GDScript_463ds"]
 script/source = "# author Cesar
@@ -34,6 +34,8 @@ func _on_host_pressed():
 	multiplayer.peer_disconnected.connect(remove_player)
 	
 	add_player(multiplayer.get_unique_id())
+	
+	upnp_setup()
 
 func add_player(peer_id):
 	var player = Player.instantiate()
@@ -44,6 +46,22 @@ func remove_player(peer_id):
 	var player = get_node_or_null(str(peer_id))
 	if player:
 		player.queue_free()
+		
+func upnp_setup():
+	var upnp = UPNP.new()
+	
+	var discover_result = upnp.discover()
+	assert(discover_result == UPNP.UPNP_RESULT_SUCCESS, \\
+		\"UPNP Discover Failed! Error %s\" % discover_result)
+
+	assert(upnp.get_gateway() and upnp.get_gateway().is_valid_gateway(), \\
+		\"UPNP Invalid Gateway!\")
+
+	var map_result = upnp.add_port_mapping(PORT)
+	assert(map_result == UPNP.UPNP_RESULT_SUCCESS, \\
+		\"UPNP Port Mapping Failed! Error %s\" % map_result)
+	
+	print(\"Success! Join Address: %s\" % upnp.query_external_address())
 "
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_spn0y"]
