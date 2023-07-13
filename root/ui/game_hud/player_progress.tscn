@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2xsysstc4op4"]
+
+[ext_resource type="Script" path="res://root/ui/game_hud/player_progress.gd" id="1_ajj44"]
+[ext_resource type="PackedScene" uid="uid://tlrp4ceisqqd" path="res://root/ui/game_hud/player_marker.tscn" id="1_r38l4"]
+
+[node name="PlayerProgress" type="MarginContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 5.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_right = 100
+script = ExtResource("1_ajj44")
+
+[node name="MarkerContainer" type="ColorRect" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0, 0, 0, 0.521569)
+
+[node name="PlayerMarker" parent="MarkerContainer" instance=ExtResource("1_r38l4")]
