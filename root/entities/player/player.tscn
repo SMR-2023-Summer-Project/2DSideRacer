@@ -344,6 +344,9 @@ properties/0/sync = true
 properties/1/path = NodePath("Animations:animation")
 properties/1/spawn = true
 properties/1/sync = true
+properties/2/path = NodePath("Line2D:points")
+properties/2/spawn = true
+properties/2/sync = true
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(1, 0)
@@ -395,4 +398,7 @@ stream = ExtResource("16_dtg4o")
 target_position = Vector2(500, 0)
 collision_mask = 3
 
-[node name="rope" type="DampedSpringJoint2D" parent="."]
+[node name="Line2D" type="Line2D" parent="."]
+z_index = -1
+width = 4.0
+default_color = Color(0.780392, 0.439216, 0.145098, 1)

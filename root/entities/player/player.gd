@@ -11,10 +11,12 @@ const CLIMB_SPEED = 100  # Adjust climbing speed as needed
 
 var dashTimer = 0.0
 var canDash = true
-var hook_pos = Vector2()
+var hookPos = Vector2()
 var hooked = false
+var ropeLength = 500
 var isClimbing = false
 var canDJ = false
+var currentRopeLength
 
 @onready var camera = $Camera2D
 @onready var rope = $rope
@@ -24,15 +26,17 @@ var canDJ = false
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
+	currentRopeLength = ropeLength
 	if not is_multiplayer_authority(): return
 	respawn()
 	print("Ready")
 	camera.make_current()
 
-	
-
 func _physics_process(delta):
+	#print(velocity)
+#	queue_redraw()
 	if not is_multiplayer_authority(): return
+	$Line2D.clear_points()
 	# Add the gravity & Handle double jump
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -83,36 +87,55 @@ func _physics_process(delta):
 				velocity.y = 0
 	else:
 		# Check for climbable walls
-		if is_on_wall() and Input.is_action_just_pressed("swing"):
+		if is_on_wall() and Input.is_action_just_pressed("climb"):
 			isClimbing = true
 			velocity.y = -CLIMB_SPEED
 			
-#	rope.global_position = self.global_position
-#	ray.look_at(get_global_mouse_position())
-#
-#	if Input.is_action_just_pressed("swing"):
-#		if ray.is_colliding():
-#			hooked = true
-#			print("rope colliding")
-#			var colliderobj = ray.get_collider()
-#			var colldistance = ray.get_collision_point().distance_to(self.global_position)
-#			rope.length = colldistance
-#			rope.global_rotation_degrees = ray.global_rotation_degrees - 90
-#			rope.rest_length = colldistance * 0.75
-#			rope.node_b = colliderobj.get_path()
-#			print(rope.node_a)
-#			print(rope.node_b)
-#
-#	if not Input.is_action_pressed("swing"):
-#		hooked = false
-#		rope.node_b = rope.node_a
+	hook()
 	
-
-	# Move and slide.
-	#update()
+	if not Input.is_action_pressed("swing"):
+		hooked = false
+	if hooked:
+		
+		swing(delta)
+		# Swing speed manipulator
+		self.velocity *= 0.975
+		$Line2D.add_point(Vector2(0, 0))
+		$Line2D.add_point(to_local(hookPos))
 	move_and_slide()
 	respawn()
-
+	
+func hook():
+	$RayCast2D.look_at(get_global_mouse_position())
+	if Input.is_action_just_pressed("swing"):
+		hookPos = get_hook_pos()
+		if hookPos:
+			hooked = true
+			currentRopeLength = global_position.distance_to(hookPos)
+		
+func get_hook_pos():
+	if $RayCast2D.is_colliding():
+		return $RayCast2D.get_collision_point()
+		
+func swing(delta):
+	var radius = global_position - hookPos
+	if velocity.length() < 0.01 or radius.length() < 10: return
+	var angle = acos(radius.dot(velocity) / (radius.length() * velocity.length()))
+	var radVel = cos(angle) * velocity.length()
+	velocity += radius.normalized() * -radVel
+	
+	if global_position.distance_to(hookPos) > currentRopeLength:
+		global_position = hookPos + radius.normalized() * currentRopeLength
+		
+	velocity += (hookPos - global_position).normalized() * 15000 *delta
+	
+#func _draw():
+#	var pos = global_position
+#	if hooked:
+#		draw_line(Vector2(0, 0), to_local(hookPos), Color(1.0, 0.5, 0.0), 3, true)
+#	else:
+#		return
+	
 
 #sets the player back to the most current spawnpoint
 func respawn():
