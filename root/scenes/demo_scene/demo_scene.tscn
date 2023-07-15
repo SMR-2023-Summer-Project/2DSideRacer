@@ -1,6 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://djvgyp2bxrgfb"]
+[gd_scene load_steps=7 format=3 uid="uid://djvgyp2bxrgfb"]
 
-[ext_resource type="Texture2D" uid="uid://ddjevs8mccdeq" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_ligxv"]
+[ext_resource type="Texture2D" uid="uid://bqt4x7qa0lp40" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_ligxv"]
 [ext_resource type="PackedScene" uid="uid://3iwpe0n7knwo" path="res://root/entities/player/player.tscn" id="2_w3iof"]
 [ext_resource type="Script" path="res://root/scenes/demo_scene/Checkpoint.gd" id="3_7hppq"]
 [ext_resource type="Script" path="res://root/scenes/demo_scene/Global.gd" id="4_tikj2"]
@@ -764,12 +764,6 @@ texture = ExtResource("1_ligxv")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_spn0y")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xts56"]
-size = Vector2(94, 130)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7uwyr"]
-size = Vector2(69, 326.5)
-
 [node name="Node2D" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -889,17 +883,9 @@ script = ExtResource("4_tikj2")
 position = Vector2(-779, 32)
 script = ExtResource("3_7hppq")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint"]
-position = Vector2(3, -38)
-shape = SubResource("RectangleShape2D_xts56")
-
 [node name="Checkpoint2" type="Area2D" parent="."]
 position = Vector2(555, 21)
 script = ExtResource("3_7hppq")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Checkpoint2"]
-position = Vector2(13, -121)
-shape = SubResource("RectangleShape2D_7uwyr")
 
 [connection signal="body_entered" from="Checkpoint" to="Checkpoint" method="_on_body_entered"]
 [connection signal="body_entered" from="Checkpoint2" to="Checkpoint2" method="_on_body_entered"]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cdn18fm4gxl0m"]
+[gd_scene load_steps=6 format=3 uid="uid://cdn18fm4gxl0m"]
 
-[ext_resource type="Texture2D" uid="uid://vxg43cp88ana" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
+[ext_resource type="Texture2D" uid="uid://bqt4x7qa0lp40" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
+[ext_resource type="Script" path="res://root/scenes/demo_scene/Checkpoint.gd" id="2_53ldr"]
 
 [sub_resource type="GDScript" id="GDScript_463ds"]
 script/source = "# author Cesar
@@ -868,6 +869,26 @@ position = Vector2(-142, -200)
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://root/entities/player/player.tscn")
 spawn_path = NodePath("..")
+
+[node name="Checkpoint" type="Area2D" parent="."]
+position = Vector2(544, 8)
+script = ExtResource("2_53ldr")
+
+[node name="Checkpoint2" type="Area2D" parent="."]
+position = Vector2(-795, 11)
+script = ExtResource("2_53ldr")
+
+[node name="Checkpoint3" type="Area2D" parent="."]
+position = Vector2(-858, -300)
+script = ExtResource("2_53ldr")
+
+[node name="Checkpoint4" type="Area2D" parent="."]
+position = Vector2(520, -190)
+script = ExtResource("2_53ldr")
+
+[node name="Checkpoint5" type="Area2D" parent="."]
+position = Vector2(558, -543)
+script = ExtResource("2_53ldr")
 
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HBoxContainer/Connect" to="." method="_on_join_pressed"]
