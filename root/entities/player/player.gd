@@ -37,7 +37,7 @@ func _physics_process(delta):
 	#print(velocity)
 #	queue_redraw()
 	if not is_multiplayer_authority(): return
-	$Line2D.clear_points()
+	$Grapple.clear_points()
 	# Add the gravity & Handle double jump
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -105,8 +105,8 @@ func _physics_process(delta):
 		swing(delta)
 		# Swing speed manipulator
 		velocity *= 0.975
-		$Line2D.add_point(Vector2(0, 0))
-		$Line2D.add_point(to_local(hookPos))
+		$Grapple.add_point(Vector2(0, 0))
+		$Grapple.add_point(to_local(hookPos))
 	
 	# Handle Flips
 	if Input.is_action_pressed("flip") and not Input.is_action_pressed("swing") and not is_on_floor():
@@ -146,15 +146,6 @@ func swing(delta):
 		
 	velocity += (hookPos - global_position).normalized() * 15000 *delta
 
-func reset_rotation(delta):
-	if global_rotation_degrees > 0:
-		global_rotation_degrees -= 0.1 * 180 * delta
-		if global_rotation_degrees < 0:
-			global_rotation_degrees = 0
-	elif rotation < 0:
-		rotation += 0.1 * 180 * delta
-		if rotation > 0:
-			rotation = 0
 #sets the player back to the most current spawnpoint
 func respawn():
 	if position.y >= 200:
