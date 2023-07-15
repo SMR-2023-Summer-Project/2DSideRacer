@@ -1,5 +1,6 @@
 # author Luc, Tolib
 extends CharacterBody2D
+class_name Player
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
@@ -18,7 +19,7 @@ var isClimbing = false
 var canDJ = false
 var currentRopeLength
 var rotating = false
-
+var spawn_point  = Global.spawn_point
 @onready var camera = $Camera2D
 @onready var rope = $rope
 @onready var ray = $RayCast2D
@@ -149,11 +150,12 @@ func swing(delta):
 #sets the player back to the most current spawnpoint
 func respawn():
 	if position.y >= 200:
-		position = Global.spawn_point
+		position = spawn_point
 		
 func _enter_tree():
 	set_multiplayer_authority(str(name).to_int())
-
+func update_spawn(new_position):
+	spawn_point = new_position
 
 
 
