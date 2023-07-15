@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 env:
-  EXPORT_NAME: test-project
+  EXPORT_NAME: exports
 
 jobs:
   import-assets:
