@@ -345,10 +345,10 @@ properties/0/sync = true
 properties/1/path = NodePath("Animations:animation")
 properties/1/spawn = true
 properties/1/sync = true
-properties/2/path = NodePath("Line2D:points")
+properties/2/path = NodePath(".:rotation")
 properties/2/spawn = true
 properties/2/sync = true
-properties/3/path = NodePath(".:rotation")
+properties/3/path = NodePath("Grapple:points")
 properties/3/spawn = true
 properties/3/sync = true
 
