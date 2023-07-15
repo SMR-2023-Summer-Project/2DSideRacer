@@ -28,7 +28,7 @@ jobs:
       image: barichello/godot-ci:latest
     strategy:
       matrix:
-        platform: ["Linux/X11", "Windows Desktop", "Mac OSX", "HTML5", "Android Debug", "Android"]
+        platform: ["HTML5"]
     steps:
     - name: Checkout
       uses: actions/checkout@v3
