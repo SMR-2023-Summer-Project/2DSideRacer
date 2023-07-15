@@ -25,7 +25,7 @@ jobs:
     needs: import-assets
     runs-on: ubuntu-latest
     container: 
-      image: barichello/godot-ci:4.0.2
+      image: barichello/godot-ci:latest
     strategy:
       matrix:
         platform: ["Linux/X11", "Windows Desktop", "Mac OSX", "HTML5", "Android Debug", "Android"]
