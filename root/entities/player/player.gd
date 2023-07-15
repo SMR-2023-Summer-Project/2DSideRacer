@@ -17,6 +17,7 @@ var ropeLength = 500
 var isClimbing = false
 var canDJ = false
 var currentRopeLength
+var rotating = false
 
 @onready var camera = $Camera2D
 @onready var rope = $rope
@@ -45,7 +46,7 @@ func _physics_process(delta):
 			canDJ = false
 
 	# Handle Jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and is_on_floor() and not Input.is_action_pressed("flip"):
 		# Reset double jump condition
 		canDJ = true
 		velocity.y = JUMP_VELOCITY
@@ -91,17 +92,33 @@ func _physics_process(delta):
 			isClimbing = true
 			velocity.y = -CLIMB_SPEED
 			
+	
+	# Handle Grapple
 	hook()
 	
 	if not Input.is_action_pressed("swing"):
+		if not Input.is_action_pressed("flip"):
+			global_rotation_degrees = 0
 		hooked = false
 	if hooked:
-		
+		global_rotation_degrees = 10*sin($RayCast2D.global_rotation_degrees)
 		swing(delta)
 		# Swing speed manipulator
-		self.velocity *= 0.975
+		velocity *= 0.975
 		$Line2D.add_point(Vector2(0, 0))
 		$Line2D.add_point(to_local(hookPos))
+	
+	# Handle Flips
+	if Input.is_action_pressed("flip") and not Input.is_action_pressed("swing") and not is_on_floor():
+		rotating = true
+		global_rotation_degrees = $RayCast2D.global_rotation_degrees
+	elif Input.is_action_pressed("flip") and is_on_floor() and rotating:
+		global_rotation_degrees = 0
+		velocity.y = 10000
+		rotating = false
+	elif not Input.is_action_pressed("swing"):
+		global_rotation_degrees = 0
+		
 	move_and_slide()
 	respawn()
 	
@@ -128,15 +145,16 @@ func swing(delta):
 		global_position = hookPos + radius.normalized() * currentRopeLength
 		
 	velocity += (hookPos - global_position).normalized() * 15000 *delta
-	
-#func _draw():
-#	var pos = global_position
-#	if hooked:
-#		draw_line(Vector2(0, 0), to_local(hookPos), Color(1.0, 0.5, 0.0), 3, true)
-#	else:
-#		return
-	
 
+func reset_rotation(delta):
+	if global_rotation_degrees > 0:
+		global_rotation_degrees -= 0.1 * 180 * delta
+		if global_rotation_degrees < 0:
+			global_rotation_degrees = 0
+	elif rotation < 0:
+		rotation += 0.1 * 180 * delta
+		if rotation > 0:
+			rotation = 0
 #sets the player back to the most current spawnpoint
 func respawn():
 	if position.y >= 200:
