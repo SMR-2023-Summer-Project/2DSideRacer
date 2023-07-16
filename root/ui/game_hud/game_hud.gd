@@ -1,10 +1,12 @@
 # Author: Habib
 
 extends Control
+class_name GameHUD
 
 @onready var time_remaining = $TimeRemaining
 @onready var countdown = $Countdown
 @onready var player_progress = $PlayerProgress
+@onready var finished = $Finished
 
 func set_remaining_time (duration_seconds: int) -> void:
 	# sets the amount of time that is visible
@@ -17,43 +19,35 @@ func set_remaining_time (duration_seconds: int) -> void:
 	var text_content = "%02d:%02d" % [minutes, seconds]
 	
 	time_remaining.text = text_content
+	time_remaining.show()
 
-func _debug_do_test_countdown():
-	# tests the countdown functionality and remaining time
-	var time = 600
+func create_player_marker (name: String) -> Control:
+	# creates a new player marker on the top ui
+	# and returns it
 	
-	while time > 0:
-		set_remaining_time(time)
-		time -= 1
-		await Global.wait(1)
-
-func _debug_do_test_player_progress(name: String, is_local: bool):
-	# tests the player progress functionality
+	player_progress.show()
 	
-	var test_marker = player_progress.create_marker(name)
+	return player_progress.create_marker(name)
 
-	var x_position = 0.0
-	var goal_position = 50.0
+func play_countdown (starting_number: int) -> void:
+	# plays the countdown animation for the beginning
+	# of a round
 	
-	if not is_local:
-		test_marker.set_inactive()
+	countdown.show()
+	
+	await countdown.start(starting_number)
 
-	while x_position != goal_position:
-		x_position += randf()
-		x_position = clampf(x_position, 0, goal_position)
-		test_marker.set_progress(x_position / goal_position)
-		
-		# randomly pause for testing
-		if randf() < 0.05:
-			await Global.wait(1 + randi() % 3)
-		
-		await Global.wait(0.2)
+func show_finished ():
+	# displays the finished gui with an animation
+	
+	await finished.appear()
+
+func hide_finished ():
+	# hides the finished gui
+	
+	await finished.disappear()
 
 func _ready():
-	await countdown.start(3)
-	
-	_debug_do_test_player_progress("Player2", false)
-	_debug_do_test_player_progress("Player3", false)
-	_debug_do_test_player_progress("You", true)
-	
-	_debug_do_test_countdown()
+	time_remaining.hide()
+	player_progress.hide()
+	countdown.hide()

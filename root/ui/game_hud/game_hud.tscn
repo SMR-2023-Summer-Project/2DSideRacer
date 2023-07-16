@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://bm3dbb2721rlv"]
+[gd_scene load_steps=11 format=3 uid="uid://bm3dbb2721rlv"]
 
 [ext_resource type="FontFile" uid="uid://dse60503rxej7" path="res://root/assets/fonts/gotham_bold.otf" id="1_inb2t"]
 [ext_resource type="Script" path="res://root/ui/game_hud/game_hud.gd" id="1_ov5s7"]
 [ext_resource type="FontFile" uid="uid://dl6wwscxygfsw" path="res://root/assets/fonts/Sniglet-ExtraBold.ttf" id="3_p3aoh"]
 [ext_resource type="Script" path="res://root/ui/game_hud/countdown.gd" id="4_3mafe"]
 [ext_resource type="PackedScene" uid="uid://b2xsysstc4op4" path="res://root/ui/game_hud/player_progress.tscn" id="5_htog8"]
+[ext_resource type="PackedScene" uid="uid://db2eacei23gdj" path="res://checkered_flag.tscn" id="6_ggfu4"]
+[ext_resource type="Script" path="res://root/ui/game_hud/finished.gd" id="7_8n76h"]
 
 [sub_resource type="Theme" id="Theme_s4hqi"]
 default_font = ExtResource("1_inb2t")
@@ -12,9 +14,13 @@ default_font_size = 30
 
 [sub_resource type="Theme" id="Theme_8f8rd"]
 default_font = ExtResource("3_p3aoh")
-default_font_size = 200
+default_font_size = 100
 Label/colors/font_outline_color = Color(0, 0, 0, 1)
 Label/constants/outline_size = 50
+
+[sub_resource type="Theme" id="Theme_dvs3g"]
+default_font = ExtResource("3_p3aoh")
+default_font_size = 100
 
 [node name="GameHUD" type="Control"]
 layout_mode = 3
@@ -104,3 +110,37 @@ script = ExtResource("4_3mafe")
 layout_mode = 1
 offset_top = 35.0
 offset_bottom = 40.0
+
+[node name="Finished" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1152.0
+offset_right = 1152.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_dvs3g")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 50
+text = "FINISHED!"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("7_8n76h")
+
+[node name="CheckeredFlagTop" parent="." instance=ExtResource("6_ggfu4")]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -515.0
+grow_horizontal = 2
+
+[node name="CheckeredFlagBottom" parent="." instance=ExtResource("6_ggfu4")]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
