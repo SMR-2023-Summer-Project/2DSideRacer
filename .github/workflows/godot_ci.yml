@@ -30,15 +30,15 @@ jobs:
           mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
       - name: Web Build
         run: |
-          mkdir -v -p build/web
+          mkdir -v -p build/Web
           cd $PROJECT_PATH
           godot --help
-          godot -v --headless --export-release "HTML5" ../build/web/index.html
+          godot -v --headless --export-release "Web" ../build/Web/index.html
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
           name: web
-          path: build/web
+          path: build/Web
       - name: Install rsync 📚
         run: |
           apt-get update && apt-get install -y rsync
@@ -46,4 +46,4 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@releases/v4
         with:
           branch: gh-pages # The branch the action should deploy to.
-          folder: build/web # The folder the action should deploy.
+          folder: build/Web # The folder the action should deploy.
