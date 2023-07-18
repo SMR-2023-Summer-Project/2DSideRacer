@@ -9,7 +9,6 @@ on:
 
 env:
   GODOT_VERSION: 4.1
-  PROJECT_PATH: 2DSideRacer
 
 jobs:
 
@@ -31,7 +30,8 @@ jobs:
       - name: Web Build
         run: |
           mkdir -v -p build/web
-          godot -v --headless --path $PROJECT_PATH --export-release "Web" build/web/index.html
+          ls -lart
+          godot -v --headless --path . --export-release "Web" build/web/index.html
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
