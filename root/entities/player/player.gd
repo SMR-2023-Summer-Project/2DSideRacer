@@ -6,10 +6,10 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 const DASH_SPEED = 800
 const DASH_DURATION = 0.2
-const DASH_COOLDOWN = 1.0
+const DASH_COOLDOWN = 5.0
 const CLIMB_SPEED = 100  # Adjust climbing speed as needed
 
-
+var dash_cool = 0.0
 var dashTimer = 0.0
 var canDash = true
 var hookPos = Vector2()
@@ -73,9 +73,11 @@ func _physics_process(delta):
 
 	# Check if dash cooldown is complete.
 	if not canDash:
+		dash_cool += delta
 		dashTimer -= delta
-		if dashTimer <= 0.0:
+		if dashTimer <= 0.0 and dash_cool >= DASH_COOLDOWN:
 			canDash = true
+			dash_cool = 0
 	#Climbing
 	if isClimbing:
 		if is_on_floor() or not is_on_wall():
@@ -156,8 +158,4 @@ func _enter_tree():
 	set_multiplayer_authority(str(name).to_int())
 func update_spawn(new_position):
 	spawn_point = new_position
-
-
-
-
 

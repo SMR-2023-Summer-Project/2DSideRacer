@@ -1,22 +1,22 @@
 [gd_scene load_steps=59 format=3 uid="uid://3iwpe0n7knwo"]
 
 [ext_resource type="Script" path="res://root/entities/player/player.gd" id="1_wsm0r"]
-[ext_resource type="Texture2D" uid="uid://e71ekarsr5" path="res://root/assets/sprites/entities/crabby/fall.png" id="2_her7o"]
-[ext_resource type="Texture2D" uid="uid://bkv8ofk08o40p" path="res://root/assets/sprites/entities/crabby/idle.png" id="2_piy4l"]
-[ext_resource type="Texture2D" uid="uid://bpxeln2eh41md" path="res://root/assets/sprites/entities/crabby/fall_right.png" id="3_160ia"]
-[ext_resource type="Texture2D" uid="uid://byffionvuygo8" path="res://root/assets/sprites/entities/crabby/jump.png" id="4_qqd7g"]
-[ext_resource type="Texture2D" uid="uid://mpcxc14nli2q" path="res://root/assets/sprites/entities/crabby/run.png" id="5_nuy38"]
-[ext_resource type="Texture2D" uid="uid://bpnu1jp0pojf1" path="res://root/assets/sprites/entities/crabby/idle_right.png" id="5_yeiy0"]
-[ext_resource type="Texture2D" uid="uid://jd4yslt13fqb" path="res://root/assets/sprites/entities/crabby/jump_right.png" id="7_heg7o"]
-[ext_resource type="Texture2D" uid="uid://c3cl2c0sft72g" path="res://root/assets/sprites/entities/crabby/run_right.png" id="9_rxhy7"]
+[ext_resource type="Texture2D" uid="uid://co53vvfox4cik" path="res://root/assets/sprites/entities/crabby/fall.png" id="2_her7o"]
+[ext_resource type="Texture2D" uid="uid://cc4r8koiibbd0" path="res://root/assets/sprites/entities/crabby/idle.png" id="2_piy4l"]
+[ext_resource type="Texture2D" uid="uid://cc0dkqvgsnwdb" path="res://root/assets/sprites/entities/crabby/fall_right.png" id="3_160ia"]
+[ext_resource type="Texture2D" uid="uid://ob0uomy68jji" path="res://root/assets/sprites/entities/crabby/jump.png" id="4_qqd7g"]
+[ext_resource type="Texture2D" uid="uid://1rg1d355b85o" path="res://root/assets/sprites/entities/crabby/run.png" id="5_nuy38"]
+[ext_resource type="Texture2D" uid="uid://d180m7w6lrjdd" path="res://root/assets/sprites/entities/crabby/idle_right.png" id="5_yeiy0"]
+[ext_resource type="Texture2D" uid="uid://bw22l0unrri7v" path="res://root/assets/sprites/entities/crabby/jump_right.png" id="7_heg7o"]
+[ext_resource type="Texture2D" uid="uid://u4rp5qx5e7sq" path="res://root/assets/sprites/entities/crabby/run_right.png" id="9_rxhy7"]
 [ext_resource type="Script" path="res://root/entities/player/player_animations.gd" id="10_1f6r6"]
 [ext_resource type="Script" path="res://root/entities/player/player_sounds.gd" id="11_wtaoh"]
-[ext_resource type="AudioStream" uid="uid://byhxhvx06mftr" path="res://root/assets/audio/sfx/snd_jump.ogg" id="12_agtq3"]
-[ext_resource type="AudioStream" uid="uid://bj5yh32jqgxaa" path="res://root/assets/audio/sfx/snd_step.ogg" id="13_i0xb2"]
-[ext_resource type="AudioStream" uid="uid://c80qo2opcl355" path="res://root/assets/audio/sfx/Jump 4.wav" id="14_mf707"]
-[ext_resource type="AudioStream" uid="uid://rgodk0wkvnug" path="res://root/assets/audio/sfx/climb_1.wav" id="15_202mj"]
-[ext_resource type="AudioStream" uid="uid://cyc6g4qmgl5u0" path="res://root/assets/audio/sfx/Jump 1.wav" id="16_dtg4o"]
-[ext_resource type="Texture2D" uid="uid://xhdb2na7xs7u" path="res://root/assets/sprites/misc/chain2.png" id="17_jfigp"]
+[ext_resource type="AudioStream" uid="uid://dbmnlgq2bun4" path="res://root/assets/audio/sfx/snd_jump.ogg" id="12_agtq3"]
+[ext_resource type="AudioStream" uid="uid://nrysdvu5e24x" path="res://root/assets/audio/sfx/snd_step.ogg" id="13_i0xb2"]
+[ext_resource type="AudioStream" uid="uid://pl410lh1kv3n" path="res://root/assets/audio/sfx/Jump 4.wav" id="14_mf707"]
+[ext_resource type="AudioStream" uid="uid://caywek7884n4l" path="res://root/assets/audio/sfx/climb_1.wav" id="15_202mj"]
+[ext_resource type="AudioStream" uid="uid://bf5arqxv34tgn" path="res://root/assets/audio/sfx/Jump 1.wav" id="16_dtg4o"]
+[ext_resource type="Texture2D" uid="uid://cat3bg03amjun" path="res://root/assets/sprites/misc/chain2.png" id="17_jfigp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rbe6w"]
 size = Vector2(42, 24)
@@ -342,15 +342,19 @@ animations = [{
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/sync = true
+properties/0/watch = false
 properties/1/path = NodePath("Animations:animation")
 properties/1/spawn = true
 properties/1/sync = true
+properties/1/watch = false
 properties/2/path = NodePath(".:rotation")
 properties/2/spawn = true
 properties/2/sync = true
+properties/2/watch = false
 properties/3/path = NodePath("Grapple:points")
 properties/3/spawn = true
 properties/3/sync = true
+properties/3/watch = false
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(1, 0)

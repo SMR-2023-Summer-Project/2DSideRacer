@@ -24,6 +24,8 @@ var previously_on_floor = true
 
 var previously_couldDJ = true
 
+var previously_couldDash = true
+
 func _ready():
 	# parent of this node will always be assumed
 	# to be a characterbody2d being the player
@@ -50,7 +52,7 @@ func _physics_process(delta):
 		# player has just landed
 		land_sfx.play()
 		
-	if Input.is_action_just_pressed("dash"):
+	if Input.is_action_just_pressed("dash") and previously_couldDash:
 		#player has just pressed dash key
 		dash_sfx.play()
 		
@@ -61,4 +63,5 @@ func _physics_process(delta):
 		
 	previously_on_floor = player.is_on_floor()
 	previously_couldDJ = player.get("canDJ")
+	previously_couldDash = player.get("canDash")
 	
