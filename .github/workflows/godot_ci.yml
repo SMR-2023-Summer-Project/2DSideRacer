@@ -2,59 +2,60 @@ name: Godot CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "add-ci" ]
   pull_request:
     branches: [ "main" ]
   workflow_dispatch:
 
 env:
-  EXPORT_NAME: exports
+  GODOT_VERSION: 4.1
 
 jobs:
-  import-assets:
-    runs-on: ubuntu-latest
-    container: 
-      image: barichello/godot-ci:latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-    - name: Import Assets
-      run: godot -v -e --quit --headless
 
-  export:
-    needs: import-assets
-    runs-on: ubuntu-latest
-    container: 
-      image: barichello/godot-ci:latest
-    strategy:
-      matrix:
-        platform: ["HTML5"]
+  export-web:
+    name: Web Export
+    runs-on: ubuntu-20.04
+    container:
+      image: barichello/godot-ci:4.1
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-    - name: Export
-      run: |
-        mkdir -v -p build/${{ matrix.platform }}
-        cd $EXPORT_NAME
-        godot -v --export-release --headless "${{ matrix.platform }}" ../build/${{ matrix.platform }}/$EXPORT_NAME.${{ matrix.platform == 'Linux/X11' && 'x86_64' || matrix.platform == 'Windows Desktop' && 'exe' || matrix.platform == 'Mac OSX' && 'zip' || matrix.platform == 'HTML5' && 'index.html' || matrix.platform == 'Android Debug' && 'apk' || 'apk' }}
-    - name: Upload Artifacts
-      uses: actions/upload-artifact@v2
-      with:
-        name: ${{ env.EXPORT_NAME }}-${{ matrix.platform }}
-        path: build/${{ matrix.platform }}
-
-  deploy:
-    needs: export
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-    - name: Download Artifacts
-      uses: actions/download-artifact@v2
-      with:
-        name: ${{ env.EXPORT_NAME }}-HTML5
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./build/HTML5
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          lfs: true
+      - name: Setup
+        run: |
+          mkdir -v -p ~/.local/share/godot/export_templates
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+          ls -lart ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+      - name: Web Build
+        run: |
+          mkdir -v -p build/web
+          ls -lart
+          godot -v --headless --path . --export-release "Web" build/web/index.html
+      - name: Add coi-service-worker
+        run: |
+          git clone https://github.com/gzuidhof/coi-serviceworker.git
+          mv coi-serviceworker/coi-serviceworker.js build/web/coi-serviceworker.js
+      - name: Upload Web Artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: web
+          path: build/web
+      - name: Windows Build
+        run: |
+          mkdir -v -p build/win
+          ls -lart
+          godot -v --headless --path . --export-release "Windows Desktop" build/win/2dsideracer.exe
+      - name: Upload Windows Artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: win
+          path: build/win
+      - name: Install rsync 📚
+        run: |
+          apt-get update && apt-get install -y rsync
+      - name: Deploy to GitHub Pages 🚀
+        uses: JamesIves/github-pages-deploy-action@releases/v4
+        with:
+          branch: gh-pages # The branch the action should deploy to.
+          folder: build/web # The folder the action should deploy.

@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://duatterworpdb"]
-
-[ext_resource type="Script" path="res://GUI/gear_button.gd" id="1_iioti"]
-
-[node name="GearButton" type="Button"]
-offset_right = 292.0
-offset_bottom = 150.0
-text = "Gear 1"
-script = ExtResource("1_iioti")
