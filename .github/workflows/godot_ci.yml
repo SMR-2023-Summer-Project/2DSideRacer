@@ -32,11 +32,21 @@ jobs:
           mkdir -v -p build/web
           ls -lart
           godot -v --headless --path . --export-release "Web" build/web/index.html
-      - name: Upload Artifact
+      - name: Upload Web Artifact
         uses: actions/upload-artifact@v1
         with:
           name: web
           path: build/web
+      - name: Windows Build
+        run: |
+          mkdir -v -p build/win
+          ls -lart
+          godot -v --headless --path . --export-release "Windows Desktop" build/win/2dsideracer.exe
+      - name: Upload Windows Artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: win
+          path: build/win
       - name: Install rsync 📚
         run: |
           apt-get update && apt-get install -y rsync
