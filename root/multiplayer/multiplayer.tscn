@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cdn18fm4gxl0m"]
+[gd_scene load_steps=7 format=3 uid="uid://cdn18fm4gxl0m"]
 
 [ext_resource type="Texture2D" uid="uid://dxm4dj6s1rvw8" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
 [ext_resource type="Script" path="res://root/scenes/demo_scene/Checkpoint.gd" id="2_53ldr"]
+[ext_resource type="Script" path="res://root/multiplayer/coin.gd" id="3_4pfx8"]
 
 [sub_resource type="GDScript" id="GDScript_463ds"]
 script/source = "# author Cesar
@@ -889,6 +890,9 @@ script = ExtResource("2_53ldr")
 [node name="Checkpoint5" type="Area2D" parent="."]
 position = Vector2(558, -543)
 script = ExtResource("2_53ldr")
+
+[node name="Coin" type="Area2D" parent="."]
+script = ExtResource("3_4pfx8")
 
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HBoxContainer/Connect" to="." method="_on_join_pressed"]
