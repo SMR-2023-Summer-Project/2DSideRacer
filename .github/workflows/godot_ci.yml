@@ -32,6 +32,10 @@ jobs:
           mkdir -v -p build/web
           ls -lart
           godot -v --headless --path . --export-release "Web" build/web/index.html
+      - name: Add coi-service-worker
+        run: |
+          git clone https://github.com/gzuidhof/coi-serviceworker.git
+          mv coi-serviceworker/coi-serviceworker.js build/web/coi-serviceworker.js
       - name: Upload Web Artifact
         uses: actions/upload-artifact@v1
         with:
