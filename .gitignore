@@ -16,3 +16,6 @@ mono_crash.*.json
 
 # Godot import files
 *.import
+
+# for local exports
+build
