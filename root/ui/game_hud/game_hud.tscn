@@ -5,8 +5,8 @@
 [ext_resource type="FontFile" uid="uid://dl6wwscxygfsw" path="res://root/assets/fonts/Sniglet-ExtraBold.ttf" id="3_p3aoh"]
 [ext_resource type="Script" path="res://root/ui/game_hud/countdown.gd" id="4_3mafe"]
 [ext_resource type="PackedScene" uid="uid://b2xsysstc4op4" path="res://root/ui/game_hud/player_progress.tscn" id="5_htog8"]
-[ext_resource type="PackedScene" uid="uid://db2eacei23gdj" path="res://checkered_flag.tscn" id="6_ggfu4"]
 [ext_resource type="Script" path="res://root/ui/game_hud/finished.gd" id="7_8n76h"]
+[ext_resource type="PackedScene" uid="uid://boahtv6xc4gls" path="res://root/ui/game_hud/checkered_flag.tscn" id="7_fun4c"]
 
 [sub_resource type="Theme" id="Theme_s4hqi"]
 default_font = ExtResource("1_inb2t")
@@ -128,19 +128,16 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("7_8n76h")
 
-[node name="CheckeredFlagTop" parent="." instance=ExtResource("6_ggfu4")]
+[node name="CheckeredFlagTop" parent="." instance=ExtResource("7_fun4c")]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = -515.0
-grow_horizontal = 2
 
-[node name="CheckeredFlagBottom" parent="." instance=ExtResource("6_ggfu4")]
+[node name="CheckeredFlagBottom" parent="." instance=ExtResource("7_fun4c")]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 0

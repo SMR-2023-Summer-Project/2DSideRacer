@@ -18,3 +18,6 @@ mono_crash.*.json
 
 # for local exports
 build
+
+# macOS attrib files
+.DS_Store
