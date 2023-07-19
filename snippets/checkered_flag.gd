@@ -19,6 +19,9 @@ func scroll(ammount: int) -> void:
 	while abs(total_scroll) > FLAG_WIDTH:
 		var first_flag = flags.pop_front()
 		
+		if first_flag == null:
+			continue
+		
 		remove_child(first_flag)
 		add_child(first_flag)
 		
