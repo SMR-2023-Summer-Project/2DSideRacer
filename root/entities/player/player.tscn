@@ -1,22 +1,23 @@
-[gd_scene load_steps=59 format=3 uid="uid://3iwpe0n7knwo"]
+[gd_scene load_steps=60 format=3 uid="uid://3iwpe0n7knwo"]
 
 [ext_resource type="Script" path="res://root/entities/player/player.gd" id="1_wsm0r"]
-[ext_resource type="Texture2D" uid="uid://co53vvfox4cik" path="res://root/assets/sprites/entities/crabby/fall.png" id="2_her7o"]
-[ext_resource type="Texture2D" uid="uid://cc4r8koiibbd0" path="res://root/assets/sprites/entities/crabby/idle.png" id="2_piy4l"]
-[ext_resource type="Texture2D" uid="uid://cc0dkqvgsnwdb" path="res://root/assets/sprites/entities/crabby/fall_right.png" id="3_160ia"]
-[ext_resource type="Texture2D" uid="uid://ob0uomy68jji" path="res://root/assets/sprites/entities/crabby/jump.png" id="4_qqd7g"]
-[ext_resource type="Texture2D" uid="uid://1rg1d355b85o" path="res://root/assets/sprites/entities/crabby/run.png" id="5_nuy38"]
-[ext_resource type="Texture2D" uid="uid://d180m7w6lrjdd" path="res://root/assets/sprites/entities/crabby/idle_right.png" id="5_yeiy0"]
-[ext_resource type="Texture2D" uid="uid://bw22l0unrri7v" path="res://root/assets/sprites/entities/crabby/jump_right.png" id="7_heg7o"]
-[ext_resource type="Texture2D" uid="uid://u4rp5qx5e7sq" path="res://root/assets/sprites/entities/crabby/run_right.png" id="9_rxhy7"]
+[ext_resource type="Texture2D" uid="uid://pqd7egv5p3nd" path="res://root/assets/sprites/entities/crabby/fall.png" id="2_her7o"]
+[ext_resource type="Texture2D" uid="uid://2wqqtxuqixs7" path="res://root/assets/sprites/entities/crabby/idle.png" id="2_piy4l"]
+[ext_resource type="Texture2D" uid="uid://bykgfdplh68f3" path="res://root/assets/sprites/entities/crabby/fall_right.png" id="3_160ia"]
+[ext_resource type="Texture2D" uid="uid://qx7mu2wwblek" path="res://root/assets/sprites/entities/crabby/jump.png" id="4_qqd7g"]
+[ext_resource type="Texture2D" uid="uid://kqfuv7gfdgre" path="res://root/assets/sprites/entities/crabby/run.png" id="5_nuy38"]
+[ext_resource type="Texture2D" uid="uid://bip545jxu8b5" path="res://root/assets/sprites/entities/crabby/idle_right.png" id="5_yeiy0"]
+[ext_resource type="Texture2D" uid="uid://bjtmcg6ftnlmm" path="res://root/assets/sprites/entities/crabby/jump_right.png" id="7_heg7o"]
+[ext_resource type="Texture2D" uid="uid://chfsglojyuqnh" path="res://root/assets/sprites/entities/crabby/run_right.png" id="9_rxhy7"]
 [ext_resource type="Script" path="res://root/entities/player/player_animations.gd" id="10_1f6r6"]
 [ext_resource type="Script" path="res://root/entities/player/player_sounds.gd" id="11_wtaoh"]
-[ext_resource type="AudioStream" uid="uid://dbmnlgq2bun4" path="res://root/assets/audio/sfx/snd_jump.ogg" id="12_agtq3"]
-[ext_resource type="AudioStream" uid="uid://nrysdvu5e24x" path="res://root/assets/audio/sfx/snd_step.ogg" id="13_i0xb2"]
-[ext_resource type="AudioStream" uid="uid://pl410lh1kv3n" path="res://root/assets/audio/sfx/Jump 4.wav" id="14_mf707"]
-[ext_resource type="AudioStream" uid="uid://caywek7884n4l" path="res://root/assets/audio/sfx/climb_1.wav" id="15_202mj"]
-[ext_resource type="AudioStream" uid="uid://bf5arqxv34tgn" path="res://root/assets/audio/sfx/Jump 1.wav" id="16_dtg4o"]
-[ext_resource type="Texture2D" uid="uid://cat3bg03amjun" path="res://root/assets/sprites/misc/chain2.png" id="17_jfigp"]
+[ext_resource type="AudioStream" uid="uid://djjalm15u7e65" path="res://root/assets/audio/sfx/snd_jump.ogg" id="12_agtq3"]
+[ext_resource type="AudioStream" uid="uid://bdqub7o6a0uvn" path="res://root/assets/audio/sfx/snd_step.ogg" id="13_i0xb2"]
+[ext_resource type="AudioStream" uid="uid://dfowurtf14dkb" path="res://root/assets/audio/sfx/Jump 4.wav" id="14_mf707"]
+[ext_resource type="AudioStream" uid="uid://dtmk6bu6yexs2" path="res://root/assets/audio/sfx/climb_1.wav" id="15_202mj"]
+[ext_resource type="AudioStream" uid="uid://7fik4pmlcg3d" path="res://root/assets/audio/sfx/Jump 1.wav" id="16_dtg4o"]
+[ext_resource type="Texture2D" uid="uid://dvxldjmeo7wde" path="res://root/assets/sprites/misc/chain2.png" id="17_jfigp"]
+[ext_resource type="PackedScene" uid="uid://c4pio12vr0fdi" path="res://root/scenes/demo_scene/ui.tscn" id="18_aqcll"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rbe6w"]
 size = Vector2(42, 24)
@@ -412,3 +413,5 @@ texture_repeat = 2
 width = 4.0
 texture = ExtResource("17_jfigp")
 texture_mode = 1
+
+[node name="UI" parent="." instance=ExtResource("18_aqcll")]

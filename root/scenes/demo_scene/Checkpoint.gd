@@ -22,6 +22,6 @@ func _ready() -> void:
 	collisionShape.shape.extents = Vector2(20, 50)
 	add_child(collisionShape)
 	# adds texture + scale to checkpoints
-	spriteNode.texture = load('res://root/assets/sprites/misc/checkpoint3.png')
-	spriteNode.scale = Vector2(0.047, 0.047)
-	add_child(spriteNode)
+	#spriteNode.texture = load('res://root/assets/sprites/misc/checkpoint3.png')
+	#spriteNode.scale = Vector2(0.047, 0.047)
+	#add_child(spriteNode)

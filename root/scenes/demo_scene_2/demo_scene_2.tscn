@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cvmei1amthshc"]
 
 [ext_resource type="PackedScene" uid="uid://3iwpe0n7knwo" path="res://root/entities/player/player.tscn" id="1_d4vpo"]
-[ext_resource type="Texture2D" uid="uid://dy2yi2mpe8ada" path="res://root/assets/sprites/tilesets/industrial_tileset.png" id="2_dmijj"]
+[ext_resource type="Texture2D" uid="uid://b0fld12hus6pb" path="res://root/assets/sprites/tilesets/industrial_tileset.png" id="2_dmijj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6x3bl"]
 texture = ExtResource("2_dmijj")

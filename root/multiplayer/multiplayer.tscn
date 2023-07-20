@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cdn18fm4gxl0m"]
 
-[ext_resource type="Texture2D" uid="uid://dxm4dj6s1rvw8" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
-[ext_resource type="Script" path="res://root/scenes/demo_scene/Checkpoint.gd" id="2_53ldr"]
+[ext_resource type="Texture2D" uid="uid://bqt4x7qa0lp40" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
+[ext_resource type="Script" path="res://root/scenes/demo_scene/Checkpoint.gd" id="2_6kt0a"]
 [ext_resource type="Script" path="res://root/multiplayer/coin.gd" id="3_4pfx8"]
 
 [sub_resource type="GDScript" id="GDScript_463ds"]
@@ -11,9 +11,9 @@ extends Node2D
 
 const PORT = 4433
 const Player = preload(\"res://root/entities/player/player.tscn\")
-
+#const ui = preload(\"res://root/scenes/demo_scene/ui.tscn\")
 var peer = ENetMultiplayerPeer.new()
-
+var mapChosen = false
 func _on_join_pressed(): 
 	$CanvasLayer.hide()
 	var txt : String = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HBoxContainer/Address.text
@@ -27,7 +27,6 @@ func _on_join_pressed():
 func _on_host_pressed():
 	# Start as server.
 	$CanvasLayer.hide()
-	
 	peer.create_server(PORT)
 	multiplayer.multiplayer_peer = peer
 	
@@ -39,8 +38,10 @@ func _on_host_pressed():
 func add_player(peer_id):
 	var player = Player.instantiate()
 	player.name = str(peer_id)
+	#var UI = ui.instantiate()
 	add_child(player)
-
+	print('Joined')
+	
 func remove_player(peer_id):
 	var player = get_node_or_null(str(peer_id))
 	if player:
@@ -873,25 +874,46 @@ spawn_path = NodePath("..")
 
 [node name="Checkpoint" type="Area2D" parent="."]
 position = Vector2(540, 2)
-script = ExtResource("2_53ldr")
+script = ExtResource("2_6kt0a")
 
 [node name="Checkpoint2" type="Area2D" parent="."]
 position = Vector2(-795, 11)
-script = ExtResource("2_53ldr")
+script = ExtResource("2_6kt0a")
 
 [node name="Checkpoint3" type="Area2D" parent="."]
 position = Vector2(-858, -300)
-script = ExtResource("2_53ldr")
+script = ExtResource("2_6kt0a")
 
 [node name="Checkpoint4" type="Area2D" parent="."]
 position = Vector2(520, -190)
-script = ExtResource("2_53ldr")
+script = ExtResource("2_6kt0a")
 
 [node name="Checkpoint5" type="Area2D" parent="."]
 position = Vector2(558, -543)
-script = ExtResource("2_53ldr")
+script = ExtResource("2_6kt0a")
 
 [node name="Coin" type="Area2D" parent="."]
+position = Vector2(111, 3)
+script = ExtResource("3_4pfx8")
+
+[node name="Coin2" type="Area2D" parent="."]
+position = Vector2(-347, -45)
+script = ExtResource("3_4pfx8")
+
+[node name="Coin3" type="Area2D" parent="."]
+position = Vector2(419, -585)
+script = ExtResource("3_4pfx8")
+
+[node name="Coin4" type="Area2D" parent="."]
+position = Vector2(111, -257)
+script = ExtResource("3_4pfx8")
+
+[node name="Coin" type="Area2D" parent="Coin4"]
+position = Vector2(251, 3)
+script = ExtResource("3_4pfx8")
+
+[node name="Coin" type="Area2D" parent="Coin4/Coin"]
+position = Vector2(-1157, -81)
 script = ExtResource("3_4pfx8")
 
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/Host" to="." method="_on_host_pressed"]
