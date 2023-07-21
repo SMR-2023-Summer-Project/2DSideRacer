@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cdn18fm4gxl0m"]
 
-[ext_resource type="Texture2D" uid="uid://bqt4x7qa0lp40" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
+[ext_resource type="Texture2D" uid="uid://cc0e8mgiks7xv" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
 [ext_resource type="Script" path="res://root/scenes/demo_scene/Checkpoint.gd" id="2_6kt0a"]
 [ext_resource type="Script" path="res://root/multiplayer/coin.gd" id="3_4pfx8"]
 
@@ -14,6 +14,7 @@ const Player = preload(\"res://root/entities/player/player.tscn\")
 #const ui = preload(\"res://root/scenes/demo_scene/ui.tscn\")
 var peer = ENetMultiplayerPeer.new()
 var mapChosen = false
+const select = preload('res://root/scenes/Select Map/Map Selector.tscn')
 func _on_join_pressed(): 
 	$CanvasLayer.hide()
 	var txt : String = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HBoxContainer/Address.text
@@ -32,8 +33,10 @@ func _on_host_pressed():
 	
 	multiplayer.peer_connected.connect(add_player)
 	multiplayer.peer_disconnected.connect(remove_player)
-	
-	add_player(multiplayer.get_unique_id())
+	var s = select.instantiate()
+	s.position = Vector2(-750,-600)
+	add_child(s)
+	#add_player(multiplayer.get_unique_id())
 
 func add_player(peer_id):
 	var player = Player.instantiate()

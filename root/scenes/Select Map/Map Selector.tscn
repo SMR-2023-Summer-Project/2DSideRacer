@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://root/scenes/Select Map/Map Selector.gd" id="1_o8m4b"]
 [ext_resource type="Script" path="res://root/scenes/Select Map/Animation_Selection.gd" id="2_40f4k"]
-[ext_resource type="Texture2D" uid="uid://bkbfbrfw2glgp" path="res://root/assets/sprites/Menus/back_button.png" id="3_ehkru"]
+[ext_resource type="Texture2D" uid="uid://cyrmdiak381x0" path="res://root/assets/sprites/Menus/back_button.png" id="3_ehkru"]
 
 [node name="Map Selector" type="Node2D"]
 script = ExtResource("1_o8m4b")
@@ -22,6 +22,7 @@ color = Color(0, 0, 0, 1)
 script = ExtResource("2_40f4k")
 
 [node name="TextureRect" type="TextureRect" parent="ColorRect/ColorRect"]
+visible = false
 layout_mode = 0
 offset_left = -158.0
 offset_top = -79.0
@@ -30,5 +31,13 @@ offset_bottom = 198.0
 texture = ExtResource("3_ehkru")
 expand_mode = 1
 
-[connection signal="mouse_entered" from="ColorRect/ColorRect" to="ColorRect/ColorRect" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="ColorRect/ColorRect" to="ColorRect/ColorRect" method="_on_mouse_exited"]
+[node name="BackButton" type="Button" parent="ColorRect/ColorRect/TextureRect"]
+layout_mode = 0
+offset_left = 161.0
+offset_top = 82.0
+offset_right = 380.0
+offset_bottom = 191.0
+
+[connection signal="mouse_entered" from="ColorRect/ColorRect/TextureRect/BackButton" to="ColorRect/ColorRect" method="_on_back_button_mouse_entered"]
+[connection signal="mouse_exited" from="ColorRect/ColorRect/TextureRect/BackButton" to="ColorRect/ColorRect" method="_on_back_button_mouse_exited"]
+[connection signal="pressed" from="ColorRect/ColorRect/TextureRect/BackButton" to="ColorRect/ColorRect" method="_on_back_button_pressed"]
