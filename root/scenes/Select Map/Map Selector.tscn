@@ -3,12 +3,8 @@
 [ext_resource type="Script" path="res://root/scenes/Select Map/Map Selector.gd" id="1_o8m4b"]
 <<<<<<< Updated upstream
 [ext_resource type="Script" path="res://root/scenes/Select Map/Animation_Selection.gd" id="2_40f4k"]
-<<<<<<< Updated upstream
 [ext_resource type="Texture2D" uid="uid://bkbfbrfw2glgp" path="res://root/assets/sprites/Menus/back_button.png" id="3_ehkru"]
 =======
->>>>>>> Stashed changes
-=======
-[ext_resource type="Texture2D" uid="uid://cyfpxdji3ulqd" path="res://root/assets/sprites/Menus/back_button.png" id="3_ehkru"]
 >>>>>>> Stashed changes
 
 [node name="Map Selector" type="Node2D"]

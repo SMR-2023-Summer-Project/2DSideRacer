@@ -4,16 +4,10 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 var spawn_point = Vector2(-496,32)#makes a global spawnpoint
-<<<<<<< Updated upstream
 var spawnY = 200
 var mapChosen = false
 var map = ''
 func updated_respawn(new_point):#Makes a function to change the spawnpoint
-=======
-var real_level = true #sets the level as an actual level
-
-func updated_spawn(new_point):#Makes a function to change the spawnpoint
->>>>>>> Stashed changes
 	spawn_point = new_point
 func updated_respawn_distance(y):#Makes a function to change the spawnpoint
 	spawnY = y

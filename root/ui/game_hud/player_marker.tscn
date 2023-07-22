@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://tlrp4ceisqqd"]
 
-[ext_resource type="FontFile" uid="uid://dw1hls670hidd" path="res://root/assets/fonts/gotham_bold.otf" id="1_ho58t"]
+[ext_resource type="FontFile" uid="uid://dse60503rxej7" path="res://root/assets/fonts/gotham_bold.otf" id="1_ho58t"]
 [ext_resource type="Script" path="res://root/ui/game_hud/player_marker.gd" id="1_x3myf"]
 
 [sub_resource type="Theme" id="Theme_4gsg6"]

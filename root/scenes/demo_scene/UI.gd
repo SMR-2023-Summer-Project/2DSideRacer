@@ -14,3 +14,6 @@ func _ready():
 	add_child(coin_sprite)
 	add_child(coin_count)
 	print("UI Started")
+
+
+

@@ -1,14 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://cdn18fm4gxl0m"]
 
-<<<<<<< Updated upstream
 <<<<<<< HEAD
 [ext_resource type="Texture2D" uid="uid://bqt4x7qa0lp40" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
 =======
 [ext_resource type="Texture2D" uid="uid://2oapie35h1tm" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
 >>>>>>> parent of 587d552 (Map 1 - Tower of Hell)
-=======
-[ext_resource type="Texture2D" uid="uid://ddtchfkahnfvc" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
->>>>>>> Stashed changes
 [ext_resource type="Script" path="res://root/scenes/demo_scene/Checkpoint.gd" id="2_6kt0a"]
 [ext_resource type="Script" path="res://root/multiplayer/coin.gd" id="3_4pfx8"]
 [ext_resource type="PackedScene" uid="uid://cvmei1amthshc" path="res://root/scenes/demo_scene_2/demo_scene_2.tscn" id="4_sd4gr"]
@@ -25,7 +21,6 @@ const Player = preload(\"res://root/entities/player/player.tscn\")
 var peer = ENetMultiplayerPeer.new()
 var mapChosen = false
 const select = preload('res://root/scenes/Select Map/Map Selector.tscn')
-<<<<<<< Updated upstream
 var map = null
 var players = 0
 func _ready():
@@ -36,9 +31,6 @@ func _ready():
 	Global.updated_respawn(Vector2(0,0))
 	if mapChosen:
 		_on_host_pressed()
-=======
-
->>>>>>> Stashed changes
 func _on_join_pressed(): 
 	$CanvasLayer.hide()
 	var txt : String = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HBoxContainer/Address.text
@@ -56,7 +48,6 @@ func _on_host_pressed():
 	# Start as server.
 	$CanvasLayer.hide()
 	
-<<<<<<< Updated upstream
 	if !mapChosen:	
 		var s = select.instantiate()
 		s.position = Vector2(-750,-600)
