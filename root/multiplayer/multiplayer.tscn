@@ -56,8 +56,15 @@ func _on_host_pressed():
 		
 		multiplayer.peer_connected.connect(add_player)
 		multiplayer.peer_disconnected.connect(remove_player)
+<<<<<<< Updated upstream
 		
 	
+=======
+		if players > 1:
+			$Lobby.queue_free()
+			$Node2D.show()
+
+>>>>>>> Stashed changes
 
 func add_player(peer_id):
 	var player = Player.instantiate()
