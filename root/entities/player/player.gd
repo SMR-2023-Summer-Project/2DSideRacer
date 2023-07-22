@@ -176,6 +176,7 @@ func swing(delta):
 func respawn():
 	if position.y >= spawnY:
 		position = spawn_point
+		print(position)
 func force_respawn():
 	position = spawn_point
 
