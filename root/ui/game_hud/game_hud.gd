@@ -48,47 +48,50 @@ func hide_finished ():
 	await finished.disappear()
 
 func _debug ():
-	var marker = create_player_marker("You")
-	
-	marker.set_inactive()
-	
-	var max_time = 10
-	var start = Time.get_unix_time_from_system()
-	
-	await play_countdown(3)
-	
-	marker.set_active()
-	
-	var x_position = 0
-	var goal = 60
-	
-	while true:
-		var current = Time.get_unix_time_from_system()
-		var delta_time = current - start
-		var game_time = clampf(max_time - delta_time, 0, max_time)
+	if Global.mapChosen:
+		var marker = create_player_marker("You")
 		
-		set_remaining_time(game_time)
+		marker.set_inactive()
 		
-		if game_time == 0:
-			break
+		var max_time = 10
+		var start = Time.get_unix_time_from_system()
 		
-		x_position += randf()
-		x_position = clampf(x_position, 0, goal)
+		await play_countdown(3)
 		
-		marker.set_progress(x_position / goal)
+		marker.set_active()
 		
-		await Global.wait(0.15)
-	
-	marker.set_inactive()
-	
-	time_remaining.hide()
-	player_progress.hide()
-	
-	await show_finished()
-	
-	await Global.wait(3)
-	
-	await hide_finished()
+		var x_position = 0
+		var goal = 60
+		
+#		while true: #timer and progress bar, implement when there is an actual level
+#			var current = Time.get_unix_time_from_system()
+#			var delta_time = current - start
+#			var game_time = clampf(max_time - delta_time, 0, max_time)
+#			
+#			set_remaining_time(game_time)
+#			
+#			if game_time == 0:
+#				break
+#			
+#			x_position += randf()
+#			x_position = clampf(x_position, 0, goal)
+#			
+#			marker.set_progress(x_position / goal)
+#			
+#			await Global.wait(0.15)
+#		
+#		marker.set_inactive()
+#		
+#		time_remaining.hide()
+#		player_progress.hide()
+#		
+#		await show_finished()
+#		
+#		await Global.wait(3)
+#		
+#		await hide_finished()
+	else:
+		print('Not in a level')
 
 func _ready():
 	time_remaining.hide()
