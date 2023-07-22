@@ -1,6 +1,6 @@
 # Godot 2D Side Scroller Racing Game
 
-Welcome to our platform-based racing game! This project, created with the Godot game engine, is inspired by the competitive mechanics found in games like SpeedRunners. In our game, players control characters who compete in platform-based levels, focusing on mastering platforming mechanics, navigating obstacles, and using character-specific abilities to gain an edge. Check out the game [here]https://smr-2023-summer-project.github.io/2DSideRacer/).
+Welcome to our platform-based racing game! This project, created with the Godot game engine, is inspired by the competitive mechanics found in games like SpeedRunners. In our game, players control characters who compete in platform-based levels, focusing on mastering platforming mechanics, navigating obstacles, and using character-specific abilities to gain an edge. Check out the game [**here**](https://smr-2023-summer-project.github.io/2DSideRacer/).
 
 ## Key Features
 * 2D Side Scroller Racing in a platformer style.
