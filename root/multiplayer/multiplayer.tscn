@@ -1,17 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cdn18fm4gxl0m"]
+[gd_scene load_steps=9 format=3 uid="uid://cdn18fm4gxl0m"]
 
-<<<<<<< Updated upstream
-[ext_resource type="Texture2D" uid="uid://2oapie35h1tm" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
-=======
-<<<<<<< HEAD
-[ext_resource type="Texture2D" uid="uid://ddjguaff56c0u" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
-=======
-[ext_resource type="Texture2D" uid="uid://2oapie35h1tm" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
->>>>>>> 3d9a99664531f49ab755ca573bbdbdc2acdd4376
->>>>>>> Stashed changes
+[ext_resource type="Texture2D" uid="uid://bqt4x7qa0lp40" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
 [ext_resource type="Script" path="res://root/scenes/demo_scene/Checkpoint.gd" id="2_6kt0a"]
 [ext_resource type="Script" path="res://root/multiplayer/coin.gd" id="3_4pfx8"]
-[ext_resource type="AudioStream" uid="uid://crcm213qkl73k" path="res://root/assets/audio/music/Background Track 1.mp3" id="4_n732u"]
+[ext_resource type="PackedScene" uid="uid://cvmei1amthshc" path="res://root/scenes/demo_scene_2/demo_scene_2.tscn" id="4_sd4gr"]
+[ext_resource type="Script" path="res://root/scenes/Select Map/Animation_Selection.gd" id="5_pmmvp"]
 
 [sub_resource type="GDScript" id="GDScript_463ds"]
 script/source = "# author Cesar
@@ -24,40 +17,61 @@ const Player = preload(\"res://root/entities/player/player.tscn\")
 var peer = ENetMultiplayerPeer.new()
 var mapChosen = false
 const select = preload('res://root/scenes/Select Map/Map Selector.tscn')
+var map = null
+var players = 0
+func _ready():
+	$BackButton.previousScene = 'res://root/ui/title_screen/title_screen.tscn'
+	$BackButton.position += Vector2(-700,-600) 
+	mapChosen = Global.mapChosen
+	Global.updated_respawn_distance(200)
+	Global.updated_respawn(Vector2(0,0))
+	if mapChosen:
+		_on_host_pressed()
 func _on_join_pressed(): 
 	$CanvasLayer.hide()
 	var txt : String = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HBoxContainer/Address.text
 	if txt == \"\":
 		OS.alert(\"Need a remote to connect to.\")
 		return
-		
+	
 	peer.create_client(txt, PORT)
 	multiplayer.multiplayer_peer = peer
-
+	if players > 1:
+			$Lobby.queue_free()
+			$Node2D.show()
+	
 func _on_host_pressed():
 	# Start as server.
 	$CanvasLayer.hide()
-	peer.create_server(PORT)
-	multiplayer.multiplayer_peer = peer
 	
-	multiplayer.peer_connected.connect(add_player)
-	multiplayer.peer_disconnected.connect(remove_player)
-	var s = select.instantiate()
-	s.position = Vector2(-750,-600)
-	add_child(s)
-	#add_player(multiplayer.get_unique_id())
+	if !mapChosen:	
+		var s = select.instantiate()
+		s.position = Vector2(-750,-600)
+		add_child(s)
+	else:
+		$BackButton.queue_free()
+		add_player(multiplayer.get_unique_id())
+		peer.create_server(PORT)
+		multiplayer.multiplayer_peer = peer
+		
+		multiplayer.peer_connected.connect(add_player)
+		multiplayer.peer_disconnected.connect(remove_player)
+		
+	
 
 func add_player(peer_id):
 	var player = Player.instantiate()
 	player.name = str(peer_id)
 	#var UI = ui.instantiate()
 	add_child(player)
+	players +=1
 	print('Joined')
 	
 func remove_player(peer_id):
 	var player = get_node_or_null(str(peer_id))
 	if player:
 		player.queue_free()
+		players -=1
 "
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_spn0y"]
@@ -928,10 +942,16 @@ script = ExtResource("3_4pfx8")
 position = Vector2(-1157, -81)
 script = ExtResource("3_4pfx8")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_n732u")
-volume_db = -20.0
-autoplay = true
+[node name="Node2D" parent="." instance=ExtResource("4_sd4gr")]
+visible = false
+
+[node name="Camera2D" type="Camera2D" parent="Node2D"]
+position = Vector2(-142, -200)
+
+[node name="BackButton" type="ColorRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_pmmvp")
 
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HBoxContainer/Connect" to="." method="_on_join_pressed"]

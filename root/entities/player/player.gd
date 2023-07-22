@@ -10,6 +10,7 @@ const DASH_COOLDOWN = 0.35
 const CLIMB_SPEED = 100  # Adjust climbing speed as needed
 const WALL_JUMP_DELAY = 0.2  # The time window for wall jump after leaving the ground
 
+var spawnY = 200
 var dash_cool = 0.0
 var dashTimer = 0.0
 var canDash = true
@@ -34,15 +35,22 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var wallJumpTimer = 0.0
 
 func _ready():
+	changeRD()
+	force_respawn()
 	#ui = preload("res://root/scenes/demo_scene/ui.tscn")
 	currentRopeLength = ropeLength
 	if not is_multiplayer_authority(): return
+	changeRD()
 	respawn()
 	print("Ready")
 	camera.make_current()
+	
 
 func _physics_process(delta):
 	#	queue_redraw()
+	changeRD()
+	respawn()
+	
 	if not is_multiplayer_authority(): return
 	$Grapple.clear_points()
 	# Add the gravity & Handle double jump
@@ -136,8 +144,9 @@ func _physics_process(delta):
 		wallJumpTimer -= delta
 
 	move_and_slide()
+	
 
-	respawn()
+	
 
 func hook():
 	$RayCast2D.look_at(get_global_mouse_position())
@@ -165,8 +174,10 @@ func swing(delta):
 
 # sets the player back to the most current spawnpoint
 func respawn():
-	if position.y >= 200:
+	if position.y >= spawnY:
 		position = spawn_point
+func force_respawn():
+	position = spawn_point
 
 func _enter_tree():
 	set_multiplayer_authority(str(name).to_int())
@@ -180,10 +191,12 @@ func addCoins():
 	$UI.coin_count.text = str(coins)
 
 # Function to handle wall jumps
+func changeRD():
+	spawnY = Global.spawnY
 func wall_jump():
 	if is_on_wall() and wallJumpTimer <= 0.0:
 		if Input.is_action_pressed("ui_right") or Input.is_action_pressed("ui_left"):
-			if get_direction() != prevDirection:
+			if get_direction() != prevDirection && Input.is_action_pressed("ui_up"):
 				print('wall jump')
 				velocity.y = WALL_JUMP_VELOCITY * 1.5
 				wallJumpTimer = WALL_JUMP_DELAY
