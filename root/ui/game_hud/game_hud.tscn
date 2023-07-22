@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://bm3dbb2721rlv"]
 
-[ext_resource type="FontFile" uid="uid://dse60503rxej7" path="res://root/assets/fonts/gotham_bold.otf" id="1_inb2t"]
+[ext_resource type="FontFile" uid="uid://dw1hls670hidd" path="res://root/assets/fonts/gotham_bold.otf" id="1_inb2t"]
 [ext_resource type="Script" path="res://root/ui/game_hud/game_hud.gd" id="1_ov5s7"]
-[ext_resource type="FontFile" uid="uid://dl6wwscxygfsw" path="res://root/assets/fonts/Sniglet-ExtraBold.ttf" id="3_p3aoh"]
+[ext_resource type="FontFile" uid="uid://b4lbm00gfexbj" path="res://root/assets/fonts/Sniglet-ExtraBold.ttf" id="3_p3aoh"]
 [ext_resource type="Script" path="res://root/ui/game_hud/countdown.gd" id="4_3mafe"]
 [ext_resource type="PackedScene" uid="uid://b2xsysstc4op4" path="res://root/ui/game_hud/player_progress.tscn" id="5_htog8"]
 [ext_resource type="Script" path="res://root/ui/game_hud/finished.gd" id="7_8n76h"]
