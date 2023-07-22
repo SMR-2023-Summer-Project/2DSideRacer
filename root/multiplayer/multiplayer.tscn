@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cdn18fm4gxl0m"]
+[gd_scene load_steps=8 format=3 uid="uid://cdn18fm4gxl0m"]
 
-[ext_resource type="Texture2D" uid="uid://cc0e8mgiks7xv" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
+[ext_resource type="Texture2D" uid="uid://2oapie35h1tm" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
 [ext_resource type="Script" path="res://root/scenes/demo_scene/Checkpoint.gd" id="2_6kt0a"]
 [ext_resource type="Script" path="res://root/multiplayer/coin.gd" id="3_4pfx8"]
+[ext_resource type="AudioStream" uid="uid://crcm213qkl73k" path="res://root/assets/audio/music/Background Track 1.mp3" id="4_n732u"]
 
 [sub_resource type="GDScript" id="GDScript_463ds"]
 script/source = "# author Cesar
@@ -918,6 +919,11 @@ script = ExtResource("3_4pfx8")
 [node name="Coin" type="Area2D" parent="Coin4/Coin"]
 position = Vector2(-1157, -81)
 script = ExtResource("3_4pfx8")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_n732u")
+volume_db = -20.0
+autoplay = true
 
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HBoxContainer/Connect" to="." method="_on_join_pressed"]
