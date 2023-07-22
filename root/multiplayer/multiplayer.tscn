@@ -1,6 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://cdn18fm4gxl0m"]
 
+<<<<<<< HEAD
 [ext_resource type="Texture2D" uid="uid://bqt4x7qa0lp40" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
+=======
+[ext_resource type="Texture2D" uid="uid://2oapie35h1tm" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
+>>>>>>> parent of 587d552 (Map 1 - Tower of Hell)
 [ext_resource type="Script" path="res://root/scenes/demo_scene/Checkpoint.gd" id="2_6kt0a"]
 [ext_resource type="Script" path="res://root/multiplayer/coin.gd" id="3_4pfx8"]
 [ext_resource type="PackedScene" uid="uid://cvmei1amthshc" path="res://root/scenes/demo_scene_2/demo_scene_2.tscn" id="4_sd4gr"]
