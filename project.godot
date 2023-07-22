@@ -16,6 +16,7 @@ config/features=PackedStringArray("4.1", "Forward Plus")
 
 [autoload]
 
+Signals="*res://root/scenes/maps/Random_Map/Platform_Generation/signals.gd"
 Global="*res://root/scenes/demo_scene/Global.gd"
 
 [dotnet]
