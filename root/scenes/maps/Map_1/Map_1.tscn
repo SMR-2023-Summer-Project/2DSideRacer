@@ -1,10 +1,10 @@
 [gd_scene load_steps=5 format=3 uid="uid://b56vr2wb6mv2o"]
 
-[ext_resource type="Script" path="res://root/scenes/maps/map1/map1.gd" id="1_ricxt"]
-[ext_resource type="Texture2D" uid="uid://cqh3x5jlh4sl8" path="res://root/assets/sprites/tilesets/industrial_tileset.png" id="2_v1ocg"]
+[ext_resource type="Script" path="res://root/scenes/maps/Map_1/Map_1.gd" id="1_xloox"]
+[ext_resource type="Texture2D" uid="uid://cqh3x5jlh4sl8" path="res://root/assets/sprites/tilesets/industrial_tileset.png" id="2_3dvr6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6x3bl"]
-texture = ExtResource("2_v1ocg")
+texture = ExtResource("2_3dvr6")
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/terrain = 0
@@ -272,7 +272,7 @@ terrain_set_0/terrain_1/color = Color(0.5, 0.4375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_6x3bl")
 
 [node name="Tutorial" type="Node2D"]
-script = ExtResource("1_ricxt")
+script = ExtResource("1_xloox")
 
 [node name="tilemap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_exoj6")
