@@ -189,7 +189,7 @@ func update_spawn(new_position):
 func addCoins():
 	coins += 1
 	print("This player added a coin, coin count is: ", coins)
-	$UI.coin_count.text = str(coins)
+	$UI/GameHUD.get_node('CoinCount').text = str(coins)
 
 # Function to handle wall jumps
 func changeRD():

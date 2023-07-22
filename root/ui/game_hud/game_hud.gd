@@ -7,6 +7,7 @@ class_name GameHUD
 @onready var countdown = $Countdown
 @onready var player_progress = $PlayerProgress
 @onready var finished = $Finished
+@onready var coin_count = $CoinCount
 
 func set_remaining_time (duration_seconds: int) -> void:
 	# sets the amount of time that is visible
