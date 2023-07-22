@@ -1,6 +1,14 @@
 [gd_scene load_steps=8 format=3 uid="uid://cdn18fm4gxl0m"]
 
+<<<<<<< Updated upstream
 [ext_resource type="Texture2D" uid="uid://2oapie35h1tm" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
+=======
+<<<<<<< HEAD
+[ext_resource type="Texture2D" uid="uid://ddjguaff56c0u" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
+=======
+[ext_resource type="Texture2D" uid="uid://2oapie35h1tm" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
+>>>>>>> 3d9a99664531f49ab755ca573bbdbdc2acdd4376
+>>>>>>> Stashed changes
 [ext_resource type="Script" path="res://root/scenes/demo_scene/Checkpoint.gd" id="2_6kt0a"]
 [ext_resource type="Script" path="res://root/multiplayer/coin.gd" id="3_4pfx8"]
 [ext_resource type="AudioStream" uid="uid://crcm213qkl73k" path="res://root/assets/audio/music/Background Track 1.mp3" id="4_n732u"]
