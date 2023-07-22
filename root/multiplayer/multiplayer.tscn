@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://cl80pd1y8hj2j"]
 
-[ext_resource type="Texture2D" uid="uid://ddtchfkahnfvc" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
+[ext_resource type="Texture2D" uid="uid://dn3eej05ykrmm" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
 [ext_resource type="Script" path="res://root/scenes/demo_scene/Checkpoint.gd" id="2_6kt0a"]
 [ext_resource type="Script" path="res://root/multiplayer/coin.gd" id="3_4pfx8"]
 [ext_resource type="PackedScene" uid="uid://bm70c7wsn6m54" path="res://root/scenes/demo_scene_2/demo_scene_2.tscn" id="4_sd4gr"]
@@ -50,12 +50,14 @@ func _on_host_pressed():
 		add_child(s)
 	else:
 		$BackButton.queue_free()
-		add_player(multiplayer.get_unique_id())
+		
 		peer.create_server(PORT)
 		multiplayer.multiplayer_peer = peer
 		
 		multiplayer.peer_connected.connect(add_player)
 		multiplayer.peer_disconnected.connect(remove_player)
+		
+		add_player(multiplayer.get_unique_id())
 		$BackButton.queue_free()
 		
 	
