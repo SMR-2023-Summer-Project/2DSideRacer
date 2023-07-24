@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bk8fcby8ra26h"]
-
-[ext_resource type="Script" path="res://root/scenes/maps/Random_Map/Generator/generator.gd" id="1_6xgmi"]
-
-[node name="generator" type="CharacterBody2D"]
-script = ExtResource("1_6xgmi")
