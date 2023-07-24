@@ -1,10 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://cl80pd1y8hj2j"]
+[gd_scene load_steps=15 format=3 uid="uid://cl80pd1y8hj2j"]
 
-[ext_resource type="Texture2D" uid="uid://dn3eej05ykrmm" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
+[ext_resource type="Texture2D" uid="uid://dqn31qc7p4lbs" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
 [ext_resource type="Script" path="res://root/scenes/demo_scene/Checkpoint.gd" id="2_6kt0a"]
 [ext_resource type="Script" path="res://root/multiplayer/coin.gd" id="3_4pfx8"]
 [ext_resource type="PackedScene" uid="uid://bm70c7wsn6m54" path="res://root/scenes/demo_scene_2/demo_scene_2.tscn" id="4_sd4gr"]
 [ext_resource type="Script" path="res://root/scenes/Select Map/Animation_Selection.gd" id="5_pmmvp"]
+[ext_resource type="Script" path="res://root/multiplayer/Collectible1.gd" id="6_v5q2l"]
+[ext_resource type="Texture2D" uid="uid://ckjtgnu87osbb" path="res://root/assets/sprites/misc/new_five_second_speed_up_sprite.png" id="7_mb3d5"]
+[ext_resource type="Script" path="res://root/multiplayer/SpeedBoostArea2D.gd" id="7_r6sit"]
 
 [sub_resource type="GDScript" id="GDScript_463ds"]
 script/source = "# author Cesar
@@ -86,6 +89,9 @@ func remove_player(peer_id):
 	if player:
 		player.queue_free()
 		players -=1
+
+
+
 "
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_spn0y"]
@@ -847,6 +853,25 @@ texture = ExtResource("1_pod0c")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_spn0y")
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1ajsu"]
+radius = 27.0
+height = 68.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7duic"]
+atlas = ExtResource("7_mb3d5")
+region = Rect2(284, 0, 142, 213)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a2i86"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7duic")
+}],
+"loop": true,
+"name": &"5secspeedboost",
+"speed": 5.0
+}]
+
 [node name="Multiplayer" type="Node2D"]
 position = Vector2(-5, -3)
 script = SubResource("GDScript_463ds")
@@ -963,5 +988,24 @@ script = ExtResource("5_pmmvp")
 
 [node name="Node2D" parent="." instance=ExtResource("4_sd4gr")]
 
+[node name="Collectible1" type="Node2D" parent="."]
+script = ExtResource("6_v5q2l")
+
+[node name="SpeedBoostArea1" type="Area2D" parent="Collectible1"]
+script = ExtResource("7_r6sit")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collectible1/SpeedBoostArea1"]
+position = Vector2(203, 11)
+shape = SubResource("CapsuleShape2D_1ajsu")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Collectible1"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Collectible1"]
+position = Vector2(203, 17)
+scale = Vector2(0.457746, 0.457746)
+sprite_frames = SubResource("SpriteFrames_a2i86")
+animation = &"5secspeedboost"
+
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HBoxContainer/Connect" to="." method="_on_join_pressed"]
+[connection signal="body_entered" from="Collectible1/SpeedBoostArea1" to="Collectible1/SpeedBoostArea1" method="_on_body_entered"]
