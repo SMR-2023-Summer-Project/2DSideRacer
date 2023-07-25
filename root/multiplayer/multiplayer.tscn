@@ -1,10 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://cl80pd1y8hj2j"]
+[gd_scene load_steps=19 format=3 uid="uid://cl80pd1y8hj2j"]
 
+[ext_resource type="Texture2D" uid="uid://dmne2ol6uqkrn" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
 [ext_resource type="Texture2D" uid="uid://dqn31qc7p4lbs" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
 [ext_resource type="Script" path="res://root/scenes/demo_scene/Checkpoint.gd" id="2_6kt0a"]
 [ext_resource type="Script" path="res://root/multiplayer/coin.gd" id="3_4pfx8"]
 [ext_resource type="PackedScene" uid="uid://bm70c7wsn6m54" path="res://root/scenes/demo_scene_2/demo_scene_2.tscn" id="4_sd4gr"]
 [ext_resource type="Script" path="res://root/scenes/Select Map/Animation_Selection.gd" id="5_pmmvp"]
+[ext_resource type="Script" path="res://root/multiplayer/Collectible1.gd" id="6_5vr5w"]
+[ext_resource type="Script" path="res://root/multiplayer/SpeedBoostArea2D.gd" id="7_a6kl4"]
+[ext_resource type="Texture2D" uid="uid://bmhrkguaph8yw" path="res://root/assets/sprites/misc/new_five_second_speed_up_sprite.png" id="8_f0xg3"]
 
 [sub_resource type="GDScript" id="GDScript_463ds"]
 script/source = "# author Cesar
@@ -56,15 +60,10 @@ func _on_host_pressed():
 		
 		multiplayer.peer_connected.connect(add_player)
 		multiplayer.peer_disconnected.connect(remove_player)
-<<<<<<< Updated upstream
-		
-	
-=======
-		if players > 1:
+
+  if players > 1:
 			$Lobby.queue_free()
 			$Node2D.show()
-
->>>>>>> Stashed changes
 
 func add_player(peer_id):
 	var player = Player.instantiate()
@@ -840,6 +839,51 @@ texture = ExtResource("1_pod0c")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_spn0y")
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oo5dn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qgn2d"]
+atlas = ExtResource("8_f0xg3")
+region = Rect2(284, 0, 142, 213)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_48ns3"]
+atlas = ExtResource("8_f0xg3")
+region = Rect2(0, 0, 142, 213)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xycp"]
+atlas = ExtResource("8_f0xg3")
+region = Rect2(142, 0, 142, 213)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_akxfm"]
+atlas = ExtResource("8_f0xg3")
+region = Rect2(0, 213, 142, 213)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqwui"]
+atlas = ExtResource("8_f0xg3")
+region = Rect2(142, 213, 142, 213)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_togwt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qgn2d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_48ns3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5xycp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_akxfm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqwui")
+}],
+"loop": true,
+"name": &"5secspeedboost",
+"speed": 5.0
+}]
+
 [node name="Multiplayer" type="Node2D"]
 position = Vector2(-5, -3)
 script = SubResource("GDScript_463ds")
@@ -959,6 +1003,28 @@ position = Vector2(-142, -200)
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("5_pmmvp")
+
+[node name="Node2D" parent="." instance=ExtResource("4_sd4gr")]
+
+[node name="Collectible1" type="Node2D" parent="."]
+script = ExtResource("6_5vr5w")
+
+[node name="SpeedBoostArea1" type="Area2D" parent="Collectible1"]
+script = ExtResource("7_a6kl4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collectible1/SpeedBoostArea1"]
+position = Vector2(203, 11)
+shape = SubResource("CapsuleShape2D_oo5dn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Collectible1"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Collectible1"]
+position = Vector2(203, 17)
+scale = Vector2(0.457746, 0.457746)
+sprite_frames = SubResource("SpriteFrames_togwt")
+animation = &"5secspeedboost"
+autoplay = "5secspeedboost"
+frame_progress = 0.206805
 
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HBoxContainer/Connect" to="." method="_on_join_pressed"]

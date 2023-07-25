@@ -1,3 +1,10 @@
+[gd_scene format=3 uid="uid://bn284mo1w1jy2"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
 [gd_scene load_steps=3 format=3 uid="uid://c2j2qklr3oc5d"]
 
 [ext_resource type="Texture2D" uid="uid://dpkfp8llpqjmg" path="res://root/scenes/maps/Random_Map/tile.png" id="1_jmo38"]
