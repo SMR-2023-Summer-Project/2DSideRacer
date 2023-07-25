@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Player
 
-const SPEED = 300.0
+var SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 const WALL_JUMP_VELOCITY = -300.0
 const DASH_SPEED = 800
@@ -209,3 +209,7 @@ func get_direction():
 	elif direction > 0:
 		return 1
 	return 0
+
+func fiveSecondSpeedUp():
+	SPEED = 600.0
+	print("The player has collected a five second speed boost.")
