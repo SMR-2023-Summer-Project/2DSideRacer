@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://bcgkosxjxrybe"]
 
 [ext_resource type="Script" path="res://root/ui/title_screen/title_screen.gd" id="1_wv2gi"]
-[ext_resource type="FontFile" uid="uid://bmp4ounyu851e" path="res://root/assets/fonts/Sniglet-Regular.ttf" id="3_brs51"]
-[ext_resource type="Texture2D" uid="uid://d1c2aj2d8h7a0" path="res://root/assets/sprites/backgrounds/title_screen_BG.jpeg" id="3_nuk6w"]
-[ext_resource type="FontFile" uid="uid://1qmbs3epi8kj" path="res://root/assets/fonts/KiriFont.otf" id="4_s8gf4"]
-[ext_resource type="Texture2D" uid="uid://ds2p1yjag7rhy" path="res://root/ui/title_screen/left-and-right-arrow.png" id="7_47820"]
-[ext_resource type="Texture2D" uid="uid://b5lkhek5nokle" path="res://root/ui/title_screen/up-arrow.png" id="7_p8dbp"]
+[ext_resource type="FontFile" uid="uid://bbyk7b8tya326" path="res://root/assets/fonts/Sniglet-Regular.ttf" id="3_brs51"]
+[ext_resource type="Texture2D" uid="uid://c54whunja67pc" path="res://root/assets/sprites/backgrounds/title_screen_BG.jpeg" id="3_nuk6w"]
+[ext_resource type="FontFile" uid="uid://c0ffvg6tis31j" path="res://root/assets/fonts/KiriFont.otf" id="4_s8gf4"]
+[ext_resource type="Texture2D" uid="uid://cb2djwysjes3s" path="res://root/ui/title_screen/left-and-right-arrow.png" id="7_47820"]
+[ext_resource type="Texture2D" uid="uid://c1t3rn0xv0k7p" path="res://root/ui/title_screen/up-arrow.png" id="7_p8dbp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v10mw"]
 bg_color = Color(0.341176, 0.694118, 0.305882, 1)

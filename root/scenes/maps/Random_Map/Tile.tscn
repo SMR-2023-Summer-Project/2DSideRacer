@@ -5,17 +5,3 @@
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-[gd_scene load_steps=3 format=3 uid="uid://c2j2qklr3oc5d"]
-
-[ext_resource type="Texture2D" uid="uid://dpkfp8llpqjmg" path="res://root/scenes/maps/Random_Map/tile.png" id="1_jmo38"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7w20k"]
-size = Vector2(17, 16)
-
-[node name="Tile" type="CharacterBody2D"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_7w20k")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_jmo38")
