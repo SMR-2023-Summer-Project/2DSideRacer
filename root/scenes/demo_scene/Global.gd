@@ -9,7 +9,6 @@ var mapChosen = false
 var map = ''
 func updated_respawn(new_point):#Makes a function to change the spawnpoint
 	spawn_point = new_point
-	print('Spawn Changed to', new_point)
 func updated_respawn_distance(y):#Makes a function to change the spawnpoint
 	spawnY = y
 func change_mapChose(chosen, chosenMap):
