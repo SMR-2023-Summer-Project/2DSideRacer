@@ -1,4 +1,4 @@
-# Author: Habib
+	# Author: Habib
 
 extends Control
 
@@ -57,9 +57,9 @@ func _physics_process(delta):
 	# incase window size changes, we need to update
 	# size of marker
 	var actual_parent_size = Vector2(get_parent().size)
-	
+
 	if parent_size != actual_parent_size:
 		parent_size = actual_parent_size
-		
+
 		# reset marker position
 		set_progress(progress, false)

@@ -1,15 +1,19 @@
 extends CharacterBody2D
 class_name Player
 
-const SPEED = 300.0
+var SPEED = 300.0
 const JUMP_VELOCITY = -400.0
+const JUMP_POWER_MODIFIER = 4 # Alter degree of jump power increase
+const MAX_JUMP_VELOCITY = -600.0 # Limit possible jump power decrease
 const WALL_JUMP_VELOCITY = -300.0
 const DASH_SPEED = 800
 const DASH_DURATION = 0.2
-const DASH_COOLDOWN = 0.5
+const DASH_COOLDOWN = 0.35
 const CLIMB_SPEED = 100  # Adjust climbing speed as needed
 const WALL_JUMP_DELAY = 0.2  # The time window for wall jump after leaving the ground
 
+var speedup = 0
+var spawnY = 200
 var dash_cool = 0.0
 var dashTimer = 0.0
 var canDash = true
@@ -21,6 +25,9 @@ var canDJ = false
 var currentRopeLength
 var rotating = false
 var spawn_point = Global.spawn_point
+var powerup_active = false
+var powerup_timer = 5
+var powerup_type = ""
 @onready var camera = $Camera2D
 @onready var rope = $rope
 @onready var ray = $RayCast2D
@@ -34,15 +41,22 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var wallJumpTimer = 0.0
 
 func _ready():
+	changeRD()
+	force_respawn()
 	#ui = preload("res://root/scenes/demo_scene/ui.tscn")
 	currentRopeLength = ropeLength
 	if not is_multiplayer_authority(): return
-	respawn()
+	changeRD()
+	#respawn()
 	print("Ready")
 	camera.make_current()
+	
 
 func _physics_process(delta):
 	#	queue_redraw()
+	changeRD()
+	#respawn()
+	
 	if not is_multiplayer_authority(): return
 	$Grapple.clear_points()
 	# Add the gravity & Handle double jump
@@ -51,12 +65,15 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("jump") and canDJ:
 			velocity.y = JUMP_VELOCITY * 0.75
 			canDJ = false
-	wall_jump_logic()
+	wall_jump()
 	# Handle Jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor() and not Input.is_action_pressed("flip"):
 		# Reset double jump condition
 		canDJ = true
 		velocity.y = JUMP_VELOCITY
+	# Handle Jump Power.
+	elif !is_on_floor() and Input.is_action_pressed("jump") and velocity.y < 0 and velocity.y > MAX_JUMP_VELOCITY:
+		velocity.y -= JUMP_POWER_MODIFIER
 	var newDirection = get_direction()
 	if newDirection != prevDirection:
 		prevDirection = newDirection
@@ -95,8 +112,10 @@ func _physics_process(delta):
 		else:
 			if Input.is_action_pressed("ui_up"):
 				velocity.y = -CLIMB_SPEED
+				$PlayerSounds/ClimbSfx.play()
 			elif Input.is_action_pressed("ui_down"):
 				velocity.y = CLIMB_SPEED
+				$PlayerSounds/ClimbSfx.play()
 			else:
 				velocity.y = 0
 	else:
@@ -104,6 +123,7 @@ func _physics_process(delta):
 		if is_on_wall() and Input.is_action_just_pressed("climb"):
 			isClimbing = true
 			velocity.y = -CLIMB_SPEED
+			$PlayerSounds/ClimbSfx.play()
 
 	# Handle Grapple
 	hook()
@@ -120,6 +140,10 @@ func _physics_process(delta):
 		$Grapple.add_point(Vector2(0, 0))
 		$Grapple.add_point(to_local(hookPos))
 
+	# Handle grapple cooldown
+	if hookCooldownTimer > 0.0:
+		hookCooldownTimer -= delta  # Decrease the cooldown timer during each frame
+
 	# Handle Flips
 	if Input.is_action_pressed("flip") and not Input.is_action_pressed("swing") and not is_on_floor():
 		rotating = true
@@ -135,17 +159,40 @@ func _physics_process(delta):
 	if wallJumpTimer > 0:
 		wallJumpTimer -= delta
 
-	move_and_slide()
+	# Powerup timing
+	if powerup_active:
+		if powerup_timer > 0:
+			powerup_timer -= delta
+		else:
+			if speedup == 1:
+				SPEED = 300
+				powerup_active = false
+				speedup -= 1
+				print('Speed Boost Ended')
+				
+			else:
+				speedup -= 1
 
-	respawn()
+	move_and_slide()
+	
+
+	
+
+const HOOK_COOLDOWN = 0.5 #set the cooldown time
+var hookCooldownTimer = 0.0 #initialize timer
 
 func hook():
+	if hookCooldownTimer > 0.0: #check if hook is on cooldown
+		return
+	
 	$RayCast2D.look_at(get_global_mouse_position())
 	if Input.is_action_just_pressed("swing"):
 		hookPos = get_hook_pos()
 		if hookPos:
+			$PlayerSounds/GrappleSfx.play()
 			hooked = true
 			currentRopeLength = global_position.distance_to(hookPos)
+			hookCooldownTimer = HOOK_COOLDOWN #set the hook on cooldown
 
 func get_hook_pos():
 	if $RayCast2D.is_colliding():
@@ -160,14 +207,19 @@ func swing(delta):
 
 	if global_position.distance_to(hookPos) > currentRopeLength:
 		global_position = hookPos + radius.normalized() * currentRopeLength
-
+	#$PlayerSounds/SwingSfx.play()
 	velocity += (hookPos - global_position).normalized() * 15000 * delta
 
 # sets the player back to the most current spawnpoint
 func respawn():
-	if position.y >= 200:
+	if position.y >= spawnY:
+		$PlayerSounds/HurtSfx.play()
 		position = spawn_point
-
+		print(position)
+		
+func force_respawn():
+	position = spawn_point
+	$PlayerSounds/HurtSfx.play()
 func _enter_tree():
 	set_multiplayer_authority(str(name).to_int())
 
@@ -177,13 +229,16 @@ func update_spawn(new_position):
 func addCoins():
 	coins += 1
 	print("This player added a coin, coin count is: ", coins)
-	$UI.coin_count.text = str(coins)
+	$UI/GameHUD.get_node('CoinCount').text = str(coins)+" / 5"
+	$PlayerSounds/CoinCollectSfx.play()
 
 # Function to handle wall jumps
-func wall_jump_logic():
+func changeRD():
+	spawnY = Global.spawnY
+func wall_jump():
 	if is_on_wall() and wallJumpTimer <= 0.0:
 		if Input.is_action_pressed("ui_right") or Input.is_action_pressed("ui_left"):
-			if get_direction() != prevDirection:
+			if get_direction() != prevDirection && Input.is_action_pressed("ui_up"):
 				print('wall jump')
 				velocity.y = WALL_JUMP_VELOCITY * 1.5
 				wallJumpTimer = WALL_JUMP_DELAY
@@ -195,3 +250,19 @@ func get_direction():
 	elif direction > 0:
 		return 1
 	return 0
+
+func fiveSecondSpeedUp():
+	powerup_active = true
+	powerup_timer = 5
+	powerup_type = 'speedboost'
+	speedup += 1 
+	$PlayerSounds/PowerUpSfx.play()
+	print("The player has collected a five second speed boost.")
+	if speedup == 1:
+		SPEED = 550.0
+	else:
+		print('Speed Power Up extended by: ', powerup_timer, ' seconds.')
+	
+	
+	
+	

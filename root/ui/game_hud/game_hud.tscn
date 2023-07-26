@@ -1,12 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://bm3dbb2721rlv"]
+[gd_scene load_steps=13 format=3 uid="uid://bm3dbb2721rlv"]
 
-[ext_resource type="FontFile" uid="uid://dse60503rxej7" path="res://root/assets/fonts/gotham_bold.otf" id="1_inb2t"]
+[ext_resource type="FontFile" uid="uid://c6af7dlkv5cwk" path="res://root/assets/fonts/gotham_bold.otf" id="1_inb2t"]
 [ext_resource type="Script" path="res://root/ui/game_hud/game_hud.gd" id="1_ov5s7"]
-[ext_resource type="FontFile" uid="uid://dl6wwscxygfsw" path="res://root/assets/fonts/Sniglet-ExtraBold.ttf" id="3_p3aoh"]
+[ext_resource type="FontFile" uid="uid://4lxefddwi3vi" path="res://root/assets/fonts/Sniglet-ExtraBold.ttf" id="3_p3aoh"]
 [ext_resource type="Script" path="res://root/ui/game_hud/countdown.gd" id="4_3mafe"]
 [ext_resource type="PackedScene" uid="uid://b2xsysstc4op4" path="res://root/ui/game_hud/player_progress.tscn" id="5_htog8"]
 [ext_resource type="Script" path="res://root/ui/game_hud/finished.gd" id="7_8n76h"]
 [ext_resource type="PackedScene" uid="uid://boahtv6xc4gls" path="res://root/ui/game_hud/checkered_flag.tscn" id="7_fun4c"]
+[ext_resource type="Script" path="res://root/ui/game_hud/CoinCount.gd" id="8_nesx2"]
+[ext_resource type="Texture2D" uid="uid://b3tukm43cbhyr" path="res://root/assets/sprites/misc/coin.png" id="8_ow8wv"]
 
 [sub_resource type="Theme" id="Theme_s4hqi"]
 default_font = ExtResource("1_inb2t")
@@ -116,8 +118,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1152.0
-offset_right = 1152.0
+offset_left = 1499.0
+offset_top = -1.0
+offset_right = 1499.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_dvs3g")
@@ -141,3 +145,21 @@ anchors_preset = -1
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+
+[node name="CoinCount" type="Label" parent="."]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 20.0
+offset_right = 80.0
+offset_bottom = 45.0
+text = "0"
+script = ExtResource("8_nesx2")
+
+[node name="CoinSprite" type="TextureRect" parent="CoinCount"]
+layout_mode = 0
+offset_left = -60.0
+offset_top = -20.0
+offset_right = 1220.0
+offset_bottom = 1260.0
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("8_ow8wv")

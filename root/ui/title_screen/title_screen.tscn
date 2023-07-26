@@ -1,20 +1,26 @@
-[gd_scene load_steps=9 format=3 uid="uid://bcgkosxjxrybe"]
+[gd_scene load_steps=20 format=3 uid="uid://bcgkosxjxrybe"]
 
 [ext_resource type="Script" path="res://root/ui/title_screen/title_screen.gd" id="1_wv2gi"]
-[ext_resource type="FontFile" uid="uid://bmp4ounyu851e" path="res://root/assets/fonts/Sniglet-Regular.ttf" id="3_brs51"]
-[ext_resource type="Texture2D" uid="uid://d1c2aj2d8h7a0" path="res://root/assets/sprites/backgrounds/title_screen_BG.jpeg" id="3_nuk6w"]
-[ext_resource type="FontFile" uid="uid://1qmbs3epi8kj" path="res://root/assets/fonts/KiriFont.otf" id="4_s8gf4"]
-[ext_resource type="Texture2D" uid="uid://80f2qbk5ikt7" path="res://root/assets/sprites/backgrounds/Industrial_background_1.png" id="5_atv4k"]
-[ext_resource type="Texture2D" uid="uid://ds2p1yjag7rhy" path="res://root/ui/title_screen/left-and-right-arrow.png" id="7_47820"]
-[ext_resource type="Texture2D" uid="uid://b5lkhek5nokle" path="res://root/ui/title_screen/up-arrow.png" id="7_p8dbp"]
+[ext_resource type="Texture2D" uid="uid://dp0jweu8qtcxr" path="res://root/assets/sprites/backgrounds/Industrial_background_1.png" id="2_6bxax"]
+[ext_resource type="FontFile" uid="uid://ddatl0ecnj2y3" path="res://root/assets/fonts/Sniglet-Regular.ttf" id="3_brs51"]
+[ext_resource type="Texture2D" uid="uid://cm4epqe8hpft3" path="res://root/assets/sprites/backgrounds/Industrial Background/Industrial_background_2.png" id="3_t8c5s"]
+[ext_resource type="Texture2D" uid="uid://dh0v5uy7vyo31" path="res://root/assets/sprites/backgrounds/Industrial Background/Industrial_background_1.png" id="4_7fhr3"]
+[ext_resource type="Texture2D" uid="uid://bs5qx78p3r8ud" path="res://root/assets/sprites/backgrounds/Industrial Background/Industrial_background_3.png" id="4_j1hoy"]
+[ext_resource type="FontFile" uid="uid://clmlh5yqarnmt" path="res://root/assets/fonts/KiriFont.otf" id="4_s8gf4"]
+[ext_resource type="Texture2D" uid="uid://cltllvqjbdkaq" path="res://root/assets/sprites/backgrounds/Sky City/Layer1.png" id="5_bsqw6"]
+[ext_resource type="Texture2D" uid="uid://dgvkku8fwb3a1" path="res://root/assets/sprites/backgrounds/Industrial Background/Industrial_background_4.png" id="5_ckxba"]
+[ext_resource type="Texture2D" uid="uid://dfakq7fgl6x64" path="res://root/ui/title_screen/left-and-right-arrow.png" id="7_47820"]
+[ext_resource type="Texture2D" uid="uid://cmahjlajvw0jr" path="res://root/assets/sprites/misc/play.png" id="7_hwcrs"]
+[ext_resource type="Texture2D" uid="uid://bvq8facqc6ttp" path="res://root/ui/title_screen/up-arrow.png" id="7_p8dbp"]
+[ext_resource type="Texture2D" uid="uid://b3tukm43cbhyr" path="res://root/assets/sprites/misc/coin.png" id="8_ec2sv"]
+[ext_resource type="Texture2D" uid="uid://le0s0weuax6j" path="res://root/assets/sprites/misc/checkered_flag.png" id="9_55r1i"]
+[ext_resource type="Texture2D" uid="uid://cgiibypa52e8m" path="res://root/assets/sprites/misc/slow_down_opponent_powerup_sprite.png" id="10_ec3vu"]
+[ext_resource type="Texture2D" uid="uid://38m4eui4j6f5" path="res://root/assets/sprites/misc/checkpoint.png" id="11_otj8b"]
+[ext_resource type="Texture2D" uid="uid://bcdjgkdqx8lhx" path="res://root/assets/sprites/misc/new_five_second_speed_up_sprite copy.png" id="12_8mtxb"]
+[ext_resource type="AudioStream" uid="uid://df178m8fdjyh7" path="res://root/assets/audio/music/Background Track 2 (Loop).mp3" id="13_7ko37"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v10mw"]
-bg_color = Color(0.341176, 0.694118, 0.305882, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0, 0.239216, 0, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_56mnb"]
+bg_color = Color(0.196078, 0.00392157, 0.34902, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
@@ -29,23 +35,43 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wv2gi")
 
-[node name="Play" type="Button" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(2.4, 2.025)
+texture = ExtResource("2_6bxax")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(2.4, 2.025)
+texture = ExtResource("3_t8c5s")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(2.4, 2.025)
+texture = ExtResource("4_j1hoy")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(2.4, 2.025)
+texture = ExtResource("5_ckxba")
+
+[node name="PlayButton" type="Button" parent="."]
 top_level = true
 layout_mode = 0
-offset_left = 487.0
-offset_top = 233.0
-offset_right = 671.0
-offset_bottom = 308.0
-theme_override_colors/font_color = Color(0.709804, 0.0588235, 0.337255, 1)
-theme_override_colors/font_pressed_color = Color(0.993846, 0.579034, 0.681901, 1)
-theme_override_colors/font_hover_color = Color(0.993846, 0.579034, 0.681901, 1)
-theme_override_constants/outline_size = 14
+offset_left = 451.0
+offset_top = 193.0
+offset_right = 1164.0
+offset_bottom = 411.0
+scale = Vector2(0.39827, 0.462912)
+theme_override_colors/font_color = Color(0.478431, 1, 0.121569, 1)
+theme_override_colors/font_pressed_color = Color(0.458824, 0.027451, 0.207843, 1)
+theme_override_colors/font_hover_color = Color(1, 0.184314, 0.909804, 1)
 theme_override_fonts/font = ExtResource("4_s8gf4")
-theme_override_font_sizes/font_size = 60
-text = "PLAY!"
+theme_override_font_sizes/font_size = 50
+icon = ExtResource("7_hwcrs")
 flat = true
 
-[node name="Quit" type="Button" parent="."]
+[node name="QuitButton" type="Button" parent="."]
 top_level = true
 layout_mode = 0
 offset_left = 994.0
@@ -53,111 +79,168 @@ offset_top = 543.0
 offset_right = 1129.0
 offset_bottom = 619.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 7
+theme_override_colors/font_hover_color = Color(0.447059, 0.447059, 0.447059, 0.447059)
+theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("3_brs51")
 theme_override_font_sizes/font_size = 50
 text = "Quit"
 flat = true
 
-[node name="title_screen_BG" type="Sprite2D" parent="."]
-position = Vector2(576, 323)
-scale = Vector2(1.8254, 1.79722)
-texture = ExtResource("3_nuk6w")
-
 [node name="Game Name" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.035
-offset_left = 292.0
-offset_top = 48.0
-offset_right = 882.68
-offset_bottom = 152.0
-theme_override_colors/font_color = Color(0, 0.447059, 0.788235, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 18
+offset_left = 159.0
+offset_top = 36.0
+offset_right = 968.68
+offset_bottom = 168.0
+theme_override_colors/font_color = Color(0.329412, 0.462745, 1, 1)
+theme_override_colors/font_outline_color = Color(0.913725, 0.8, 0.0509804, 1)
+theme_override_constants/outline_size = 10
+theme_override_constants/line_spacing = 10
 theme_override_fonts/font = ExtResource("4_s8gf4")
-theme_override_font_sizes/font_size = 80
-text = "Game Name!"
+theme_override_font_sizes/font_size = 55
+text = "ChronoChase: 
+The Karbs Conundrum!"
+horizontal_alignment = 1
 
-[node name="control_panel" type="Panel" parent="."]
+[node name="ControlPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 451.0
+offset_top = 350.0
+offset_right = 830.0
+offset_bottom = 590.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_56mnb")
+
+[node name="IndustrialBackground1" type="Sprite2D" parent="ControlPanel"]
+position = Vector2(53, 82)
+scale = Vector2(0.0989583, 0.153125)
+texture = ExtResource("4_7fhr3")
+
+[node name="IndustrialBackground2" type="Sprite2D" parent="ControlPanel"]
+position = Vector2(55, 143)
+scale = Vector2(0.172396, 0.128125)
+texture = ExtResource("4_7fhr3")
+
+[node name="Layer1" type="Sprite2D" parent="ControlPanel"]
+position = Vector2(306, 89)
+scale = Vector2(0.0375434, 0.0611497)
+texture = ExtResource("5_bsqw6")
+
+[node name="Layer2" type="Sprite2D" parent="ControlPanel"]
+position = Vector2(273, 142)
+scale = Vector2(0.0355903, 0.0625)
+texture = ExtResource("5_bsqw6")
+
+[node name="Layer3" type="Sprite2D" parent="ControlPanel"]
+position = Vector2(335, 140)
+scale = Vector2(0.0347222, 0.0641396)
+texture = ExtResource("5_bsqw6")
+
+[node name="Label" type="Label" parent="ControlPanel"]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.035
-anchor_bottom = 0.062
-offset_left = 21.0
-offset_top = 367.0
-offset_right = 298.68
-offset_bottom = 585.824
-theme_override_styles/panel = SubResource("StyleBoxFlat_v10mw")
-
-[node name="move_label" type="Label" parent="control_panel"]
-layout_mode = 0
-offset_left = 159.0
-offset_top = 153.0
-offset_right = 271.0
-offset_bottom = 201.0
+anchor_right = 0.395
+anchor_bottom = 0.144
+offset_left = 118.0
+offset_top = 67.0
+offset_right = 180.705
+offset_bottom = 177.64
+theme_override_constants/line_spacing = 7
 theme_override_fonts/font = ExtResource("3_brs51")
 theme_override_font_sizes/font_size = 35
-text = "= MOVE"
+text = "= Jump =      W
+= Move =  A      D
+= Swing
+"
 
-[node name="control_label" type="Label" parent="control_panel"]
-layout_mode = 0
-offset_left = 25.0
-offset_top = 14.0
-offset_right = 219.0
-offset_bottom = 68.0
-theme_override_colors/font_color = Color(0.992157, 0.776471, 0.341176, 1)
-theme_override_fonts/font = ExtResource("3_brs51")
-theme_override_font_sizes/font_size = 40
-text = "CONTROLS:"
-
-[node name="up_arrow" type="TextureRect" parent="control_panel"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.156
-anchor_top = 0.247
-anchor_right = 0.407
-anchor_bottom = 0.494
-offset_left = 18.392
-offset_top = 2.027
-offset_right = 3.57401
-offset_bottom = -8.94601
-texture = ExtResource("5_atv4k")
-expand_mode = 1
-
-[node name="left_right_arrow" type="TextureRect" parent="control_panel"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.535
-anchor_top = 1.921
-anchor_right = 0.535
-anchor_bottom = 1.921
-offset_left = -106.13
-offset_top = -354.539
-offset_right = -34.13
-offset_bottom = -298.539
-texture = ExtResource("5_atv4k")
-expand_mode = 1
-
-[node name="Left-and-right-arrow" type="Sprite2D" parent="control_panel"]
-position = Vector2(101, 170)
-scale = Vector2(0.117188, 0.15918)
-texture = ExtResource("7_47820")
-
-[node name="Up-arrow" type="Sprite2D" parent="control_panel"]
-position = Vector2(99.75, 93.25)
-scale = Vector2(0.0517578, 0.0927734)
+[node name="Up-arrow" type="Sprite2D" parent="ControlPanel"]
+position = Vector2(53, 82)
+scale = Vector2(0.0678711, 0.0864258)
 texture = ExtResource("7_p8dbp")
 
-[node name="jump_label" type="Label" parent="control_panel"]
-layout_mode = 0
-offset_left = 155.0
-offset_top = 75.0
-offset_right = 261.0
-offset_bottom = 123.0
-theme_override_fonts/font = ExtResource("3_brs51")
-theme_override_font_sizes/font_size = 35
-text = "= JUMP"
+[node name="Left-and-right-arrow" type="Sprite2D" parent="ControlPanel"]
+position = Vector2(54, 142)
+scale = Vector2(0.140625, 0.183594)
+texture = ExtResource("7_47820")
 
-[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
+[node name="ControlsLabel" type="Label" parent="ControlPanel"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 17.0
+offset_right = 198.0
+offset_bottom = 46.0
+theme_override_colors/font_color = Color(1, 0.898039, 0.0705882, 1)
+theme_override_fonts/font = ExtResource("4_s8gf4")
+theme_override_font_sizes/font_size = 25
+text = "CONTROLS:"
+
+[node name="ItemPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 296.0
+offset_right = 407.0
+offset_bottom = 597.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_56mnb")
+
+[node name="ItemList" type="Label" parent="ItemPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.395
+anchor_bottom = 0.144
+offset_left = 18.0
+offset_top = 52.0
+offset_right = 210.295
+offset_bottom = 235.656
+theme_override_constants/line_spacing = 5
+theme_override_fonts/font = ExtResource("3_brs51")
+theme_override_font_sizes/font_size = 32
+text = "Collect
+      Speed up
+      Slow down opponet
+      Checkpoint
+First to        wins"
+
+[node name="Items" type="Label" parent="ItemPanel"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 17.0
+offset_right = 198.0
+offset_bottom = 46.0
+theme_override_colors/font_color = Color(1, 0.898039, 0.0705882, 1)
+theme_override_fonts/font = ExtResource("4_s8gf4")
+theme_override_font_sizes/font_size = 25
+text = "ITEMS:"
+
+[node name="Coin" type="Sprite2D" parent="ItemPanel"]
+position = Vector2(139, 73)
+scale = Vector2(0.0531251, 0.0503906)
+texture = ExtResource("8_ec2sv")
+
+[node name="CheckeredFlag" type="Sprite2D" parent="ItemPanel"]
+position = Vector2(146, 256)
+scale = Vector2(0.0198171, 0.0230671)
+texture = ExtResource("9_55r1i")
+
+[node name="SlowDownOpponentPowerupSprite" type="Sprite2D" parent="ItemPanel"]
+position = Vector2(33, 159)
+scale = Vector2(0.138221, 0.144231)
+texture = ExtResource("10_ec3vu")
+
+[node name="Checkpoint" type="Sprite2D" parent="ItemPanel"]
+position = Vector2(34.0001, 206)
+scale = Vector2(0.0917969, 0.0917969)
+texture = ExtResource("11_otj8b")
+
+[node name="NewFiveSecondSpeedUpSpriteCopy" type="Sprite2D" parent="ItemPanel"]
+position = Vector2(31, 118)
+scale = Vector2(0.31746, 0.343525)
+texture = ExtResource("12_8mtxb")
+
+[node name="TitleScreenMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_7ko37")
+volume_db = -20.0
+autoplay = true
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_pressed"]

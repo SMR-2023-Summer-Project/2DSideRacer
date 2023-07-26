@@ -4,10 +4,17 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 var spawn_point = Vector2(-496,32)#makes a global spawnpoint
-
-func updated_spawn(new_point):#Makes a function to change the spawnpoint
+var spawnY = 200
+var mapChosen = false
+var map = ''
+func updated_respawn(new_point):#Makes a function to change the spawnpoint
 	spawn_point = new_point
-
+	print('Spawn Changed to', new_point)
+func updated_respawn_distance(y):#Makes a function to change the spawnpoint
+	spawnY = y
+func change_mapChose(chosen, chosenMap):
+	mapChosen = chosen
+	map = chosenMap
 func is_server() -> bool:
 	# returns true if the calling instance is the
 	# current host of a server
