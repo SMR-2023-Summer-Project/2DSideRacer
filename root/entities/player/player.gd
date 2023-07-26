@@ -3,7 +3,8 @@ class_name Player
 
 var SPEED = 300.0
 const JUMP_VELOCITY = -400.0
-const MAX_JUMP_VELOCITY = -600.0
+const JUMP_POWER_MODIFIER = 4 # Alter degree of jump power increase
+const MAX_JUMP_VELOCITY = -600.0 # Limit possible jump power decrease
 const WALL_JUMP_VELOCITY = -300.0
 const DASH_SPEED = 800
 const DASH_DURATION = 0.2
@@ -72,7 +73,7 @@ func _physics_process(delta):
 		velocity.y = JUMP_VELOCITY
 	# Handle Jump Power.
 	elif !is_on_floor() and Input.is_action_pressed("jump") and velocity.y < 0 and velocity.y > MAX_JUMP_VELOCITY:
-		velocity.y -= 4
+		velocity.y -= JUMP_POWER_MODIFIER
 	var newDirection = get_direction()
 	if newDirection != prevDirection:
 		prevDirection = newDirection
