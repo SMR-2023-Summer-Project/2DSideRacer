@@ -1,19 +1,30 @@
 #Author: Jacob
 extends Node2D
 var rng = RandomNumberGenerator.new()
-var tile = preload("res://root/scenes/maps/Random_Map/Tile.tscn")
+const tile = preload("res://root/scenes/maps/Random_Map/Assets/Tile.tscn")
+const startTile = preload("res://root/scenes/maps/Random_Map/Assets/start.tscn")
+const endTile = preload("res://root/scenes/maps/Random_Map/Assets/end.tscn")
+const DFStile = preload("res://root/scenes/maps/Random_Map/Assets/brown.tscn")
+const Player = preload("res://root/entities/player/player.tscn")
+#const coinLoad = preload("res://root/multiplayer/coin.gd")
+
+#Change number of entities
+const numCoins = 30
+const numBoosts = 5
 
 #Game parameters
-const gameWidth = 400
-const gameHeight = 200
-const tileSize = 16
+const gameWidth = 6400
+const gameHeight = 1600
+const tileSize = 48
+const yOffSet = 0
+const xOffSet = 0
 
 #Cave generation parameters
-const chanceToStartAlive = 0.380
+const chanceToStartAlive = 0.4
 const chanceOfWall = 0.01
 const deathLimit = 3
 const birthLimit = 4
-const simulationNum = 20
+const simulationNum = 30
 
 #Board parameters
 const boardWidth = int(gameWidth / tileSize)
@@ -21,11 +32,11 @@ const boardHeight = int(gameHeight / tileSize)
 var board = zeros(boardWidth, boardHeight)
 
 #starting and ending generation
-var start = [randi_range(1,boardWidth*0.1)]
-var end = [randi_range(boardWidth*0.9,boardWidth-1)]
+var start = [randi_range(2,boardWidth*0.1)]
+var end = [randi_range(boardWidth*0.9,boardWidth-3)]
 func generateStartAndEnd():
 	#generating starting y
-	for startXLevel in range(0,boardWidth): #fail safe incase the col is all wall
+	for startXLevel in range(1,boardWidth): #fail safe incase the col is all wall
 		var generated = false
 		for startYLevel in range(boardHeight-2,0,-1):
 			if (board[startXLevel][startYLevel]!=1 and board[startXLevel][startYLevel+1]==1):
@@ -128,6 +139,7 @@ func getNeighbors(x,y):
 				neighbors.append([neighborX,neighborY])
 	return neighbors
 
+var visitedPath = []
 #Does a Depth-First search in order to find if the maze is solvable
 func doDFS():
 	var visited = []
@@ -142,24 +154,95 @@ func doDFS():
 				if (board[neighbors[0]][neighbors[1]]==0) and (neighbors not in visited):
 					stack.append(neighbors)
 		if element == end:
+			visitedPath = visited
 			return true
 	return false
 
+#Draws the tiles on map
 func drawMap():
 	for x in boardWidth:
 		for y in boardHeight:
-			var piece = tile.instantiate()
-			add_child(piece)
-			piece.position = Vector2(x*tileSize,y*tileSize)
+			if(board[x][y]==1):
+				var piece = tile.instantiate()
+				piece.position = Vector2(x*tileSize+xOffSet,y*tileSize+yOffSet)
+				add_child(piece)
+				
+	
+	#Uncomment this following code if you want the DFS path to be visualized
+#	for coord in visitedPath:
+#		var b = DFStile.instantiate()
+#		b.position = Vector2(coord[0]*tileSize+xOffSet,coord[1]*tileSize+yOffSet)
+#		add_child(b)
+	
+	var s = startTile.instantiate()
+	s.position = Vector2(start[0]*tileSize+xOffSet, (start[1]+1)*tileSize+yOffSet)
+	add_child(s)
 
-func _ready():
+	var e = endTile.instantiate()
+	e.position = Vector2(end[0]*tileSize+xOffSet, end[1]*tileSize+yOffSet)
+	add_child(e)
+	
+#	for coords in coinCoords:
+#		var coin = coinLoad.instantiate()
+#		coin.position = Vector2(coords[0],coords[1])
+#		add_child(coin)
+
+#Draws border to prevent gaps
+func drawBorder():
+	#Fills top and bottom wall in
+	for index in boardWidth:
+		board[index][0] = 1
+		board[index][boardHeight-1] = 1
+	#fills in left and right
+	for index in boardHeight:
+		board[0][index] = 1
+		board[boardWidth-1][index]=1
+
+#generates board, this will always generate a viable board
+func generateBoard():
+	#Starts the board randomly
 	startBoard()
+	#Does cellular atomatia
 	simulationStep()
+	#Generates start and end points
 	generateStartAndEnd()
+	#Checks if the map is viable
 	while(!doDFS()):
+		#If not, clears board and keeps generating new board until something viable
 		clearBoard()
 		startBoard()
 		simulationStep()
 		generateStartAndEnd()
 	
-	
+	drawBorder()
+
+#Generates player
+func generatePlayer():
+	var player = Player.instantiate()
+	player.position = Vector2(start[0]*tileSize+xOffSet,start[1]*tileSize+yOffSet)
+	Global.updated_respawn(Vector2(start[0]*tileSize+xOffSet,start[1]*tileSize+yOffSet))
+	player.update_spawn(Vector2(start[0]*tileSize+xOffSet,start[1]*tileSize+yOffSet))
+	player.force_respawn()
+	player.name = str(multiplayer.get_unique_id())
+	add_child(player)
+
+#Only call these when map is fully setup and generated
+#var coinCoords = []
+#func addCoins():
+#	var count = 0
+#	while count < numCoins:
+#		var randX = randi_range(0,boardWidth)
+#		var randY = randi_range(0,boardHeight)
+#
+#		if (board[randX][randY] == 0):
+#			coinCoords.append([randX,randY])
+#			count += 1
+
+func addSpeedBoosts():
+	pass
+
+func _ready():
+	generateBoard()
+	generatePlayer()
+	drawMap()
+

@@ -44,7 +44,7 @@ func _ready():
 	currentRopeLength = ropeLength
 	if not is_multiplayer_authority(): return
 	changeRD()
-	respawn()
+	#respawn()
 	print("Ready")
 	camera.make_current()
 	
@@ -52,7 +52,7 @@ func _ready():
 func _physics_process(delta):
 	#	queue_redraw()
 	changeRD()
-	respawn()
+	#respawn()
 	
 	if not is_multiplayer_authority(): return
 	$Grapple.clear_points()

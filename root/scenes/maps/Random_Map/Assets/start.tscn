@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhsxykssuas1s"]
+
+[ext_resource type="Texture2D" uid="uid://b6hq8ohmqelfo" path="res://root/scenes/maps/Random_Map/Assets/green.png" id="1_brk1x"]
+
+[node name="start" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("1_brk1x")
