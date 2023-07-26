@@ -1,11 +1,16 @@
-[gd_scene load_steps=15 format=3 uid="uid://bcgkosxjxrybe"]
+[gd_scene load_steps=20 format=3 uid="uid://bcgkosxjxrybe"]
 
 [ext_resource type="Script" path="res://root/ui/title_screen/title_screen.gd" id="1_wv2gi"]
+[ext_resource type="Texture2D" uid="uid://dp0jweu8qtcxr" path="res://root/assets/sprites/backgrounds/Industrial_background_1.png" id="2_6bxax"]
 [ext_resource type="FontFile" uid="uid://ddatl0ecnj2y3" path="res://root/assets/fonts/Sniglet-Regular.ttf" id="3_brs51"]
+[ext_resource type="Texture2D" uid="uid://cm4epqe8hpft3" path="res://root/assets/sprites/backgrounds/Industrial Background/Industrial_background_2.png" id="3_t8c5s"]
 [ext_resource type="Texture2D" uid="uid://dh0v5uy7vyo31" path="res://root/assets/sprites/backgrounds/Industrial Background/Industrial_background_1.png" id="4_7fhr3"]
+[ext_resource type="Texture2D" uid="uid://bs5qx78p3r8ud" path="res://root/assets/sprites/backgrounds/Industrial Background/Industrial_background_3.png" id="4_j1hoy"]
 [ext_resource type="FontFile" uid="uid://clmlh5yqarnmt" path="res://root/assets/fonts/KiriFont.otf" id="4_s8gf4"]
 [ext_resource type="Texture2D" uid="uid://cltllvqjbdkaq" path="res://root/assets/sprites/backgrounds/Sky City/Layer1.png" id="5_bsqw6"]
+[ext_resource type="Texture2D" uid="uid://dgvkku8fwb3a1" path="res://root/assets/sprites/backgrounds/Industrial Background/Industrial_background_4.png" id="5_ckxba"]
 [ext_resource type="Texture2D" uid="uid://dfakq7fgl6x64" path="res://root/ui/title_screen/left-and-right-arrow.png" id="7_47820"]
+[ext_resource type="Texture2D" uid="uid://cmahjlajvw0jr" path="res://root/assets/sprites/misc/play.png" id="7_hwcrs"]
 [ext_resource type="Texture2D" uid="uid://bvq8facqc6ttp" path="res://root/ui/title_screen/up-arrow.png" id="7_p8dbp"]
 [ext_resource type="Texture2D" uid="uid://b3tukm43cbhyr" path="res://root/assets/sprites/misc/coin.png" id="8_ec2sv"]
 [ext_resource type="Texture2D" uid="uid://le0s0weuax6j" path="res://root/assets/sprites/misc/checkered_flag.png" id="9_55r1i"]
@@ -30,25 +35,40 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wv2gi")
 
-[node name="Backgroud" type="ColorRect" parent="."]
-layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 648.0
-color = Color(0.294118, 0.00392157, 0.588235, 1)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(2.4, 2.025)
+texture = ExtResource("2_6bxax")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(2.4, 2.025)
+texture = ExtResource("3_t8c5s")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(2.4, 2.025)
+texture = ExtResource("4_j1hoy")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(2.4, 2.025)
+texture = ExtResource("5_ckxba")
 
 [node name="PlayButton" type="Button" parent="."]
 top_level = true
 layout_mode = 0
-offset_left = 517.0
-offset_top = 247.0
-offset_right = 701.0
-offset_bottom = 322.0
+offset_left = 451.0
+offset_top = 193.0
+offset_right = 1164.0
+offset_bottom = 411.0
+scale = Vector2(0.39827, 0.462912)
 theme_override_colors/font_color = Color(0.478431, 1, 0.121569, 1)
 theme_override_colors/font_pressed_color = Color(0.458824, 0.027451, 0.207843, 1)
 theme_override_colors/font_hover_color = Color(1, 0.184314, 0.909804, 1)
 theme_override_fonts/font = ExtResource("4_s8gf4")
 theme_override_font_sizes/font_size = 50
-text = "PLAY!"
+icon = ExtResource("7_hwcrs")
 flat = true
 
 [node name="QuitButton" type="Button" parent="."]
@@ -71,9 +91,9 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.035
 offset_left = 159.0
-offset_top = 66.0
+offset_top = 36.0
 offset_right = 968.68
-offset_bottom = 198.0
+offset_bottom = 168.0
 theme_override_colors/font_color = Color(0.329412, 0.462745, 1, 1)
 theme_override_colors/font_outline_color = Color(0.913725, 0.8, 0.0509804, 1)
 theme_override_constants/outline_size = 10
@@ -86,10 +106,10 @@ horizontal_alignment = 1
 
 [node name="ControlPanel" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 509.0
-offset_top = 345.0
-offset_right = 888.0
-offset_bottom = 585.0
+offset_left = 451.0
+offset_top = 350.0
+offset_right = 830.0
+offset_bottom = 590.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_56mnb")
 
 [node name="IndustrialBackground1" type="Sprite2D" parent="ControlPanel"]
@@ -157,10 +177,10 @@ text = "CONTROLS:"
 
 [node name="ItemPanel" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 75.0
-offset_top = 308.0
-offset_right = 432.0
-offset_bottom = 609.0
+offset_left = 50.0
+offset_top = 296.0
+offset_right = 407.0
+offset_bottom = 597.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_56mnb")
 
 [node name="ItemList" type="Label" parent="ItemPanel"]
