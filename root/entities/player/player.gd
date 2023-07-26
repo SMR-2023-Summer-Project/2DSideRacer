@@ -3,6 +3,8 @@ class_name Player
 
 var SPEED = 300.0
 const JUMP_VELOCITY = -400.0
+const JUMP_POWER_MODIFIER = 4 # Alter degree of jump power increase
+const MAX_JUMP_VELOCITY = -600.0 # Limit possible jump power decrease
 const WALL_JUMP_VELOCITY = -300.0
 const DASH_SPEED = 800
 const DASH_DURATION = 0.2
@@ -10,6 +12,7 @@ const DASH_COOLDOWN = 0.35
 const CLIMB_SPEED = 100  # Adjust climbing speed as needed
 const WALL_JUMP_DELAY = 0.2  # The time window for wall jump after leaving the ground
 
+var speedup = 0
 var spawnY = 200
 var dash_cool = 0.0
 var dashTimer = 0.0
@@ -68,6 +71,9 @@ func _physics_process(delta):
 		# Reset double jump condition
 		canDJ = true
 		velocity.y = JUMP_VELOCITY
+	# Handle Jump Power.
+	elif !is_on_floor() and Input.is_action_pressed("jump") and velocity.y < 0 and velocity.y > MAX_JUMP_VELOCITY:
+		velocity.y -= JUMP_POWER_MODIFIER
 	var newDirection = get_direction()
 	if newDirection != prevDirection:
 		prevDirection = newDirection
@@ -131,6 +137,10 @@ func _physics_process(delta):
 		$Grapple.add_point(Vector2(0, 0))
 		$Grapple.add_point(to_local(hookPos))
 
+	# Handle grapple cooldown
+	if hookCooldownTimer > 0.0:
+		hookCooldownTimer -= delta  # Decrease the cooldown timer during each frame
+
 	# Handle Flips
 	if Input.is_action_pressed("flip") and not Input.is_action_pressed("swing") and not is_on_floor():
 		rotating = true
@@ -145,21 +155,33 @@ func _physics_process(delta):
 	# Wall jump logic
 	if wallJumpTimer > 0:
 		wallJumpTimer -= delta
-		
+
 	# Powerup timing
 	if powerup_active:
 		if powerup_timer > 0:
 			powerup_timer -= delta
 		else:
-			SPEED = 300
-			powerup_active = false
+			if speedup == 1:
+				SPEED = 300
+				powerup_active = false
+				speedup -= 1
+				print('Speed Boost Ended')
+				
+			else:
+				speedup -= 1
 
 	move_and_slide()
 	
 
 	
 
+const HOOK_COOLDOWN = 1.0 #set the cooldown time
+var hookCooldownTimer = 0.0 #initialize timer
+
 func hook():
+	if hookCooldownTimer > 0.0: #check if hook is on cooldown
+		return
+	
 	$RayCast2D.look_at(get_global_mouse_position())
 	if Input.is_action_just_pressed("swing"):
 		hookPos = get_hook_pos()
@@ -167,6 +189,7 @@ func hook():
 			$PlayerSounds/GrappleSfx.play()
 			hooked = true
 			currentRopeLength = global_position.distance_to(hookPos)
+			hookCooldownTimer = HOOK_COOLDOWN #set the hook on cooldown
 
 func get_hook_pos():
 	if $RayCast2D.is_colliding():
@@ -228,6 +251,15 @@ func get_direction():
 func fiveSecondSpeedUp():
 	powerup_active = true
 	powerup_timer = 5
-	SPEED = 550.0
+	powerup_type = 'speedboost'
+	speedup += 1 
 	$PlayerSounds/PowerUpSfx.play()
 	print("The player has collected a five second speed boost.")
+	if speedup == 1:
+		SPEED = 550.0
+	else:
+		print('Speed Power Up extended by: ', powerup_timer, ' seconds.')
+	
+	
+	
+	

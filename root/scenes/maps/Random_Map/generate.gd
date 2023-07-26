@@ -6,18 +6,18 @@ const startTile = preload("res://root/scenes/maps/Random_Map/Assets/start.tscn")
 const endTile = preload("res://root/scenes/maps/Random_Map/Assets/end.tscn")
 const DFStile = preload("res://root/scenes/maps/Random_Map/Assets/brown.tscn")
 const Player = preload("res://root/entities/player/player.tscn")
-#const coinLoad = preload("res://root/multiplayer/coin.gd")
+const gameHud = preload("res://root/ui/game_hud/game_hud.tscn")
+const coinLoad = preload("res://root/multiplayer/coin.gd")
+const speedLoad = preload("res://root/multiplayer/Collectible1.gd")
 
 #Change number of entities
-const numCoins = 30
-const numBoosts = 5
+const numCoins = 50
+const numBoosts = 50
 
 #Game parameters
 const gameWidth = 6400
 const gameHeight = 1600
 const tileSize = 48
-const yOffSet = 0
-const xOffSet = 0
 
 #Cave generation parameters
 const chanceToStartAlive = 0.4
@@ -38,7 +38,7 @@ func generateStartAndEnd():
 	#generating starting y
 	for startXLevel in range(1,boardWidth): #fail safe incase the col is all wall
 		var generated = false
-		for startYLevel in range(boardHeight-2,0,-1):
+		for startYLevel in range(boardHeight-4,0,-1):
 			if (board[startXLevel][startYLevel]!=1 and board[startXLevel][startYLevel+1]==1):
 				start = [startXLevel,startYLevel]
 				generated = true
@@ -164,28 +164,33 @@ func drawMap():
 		for y in boardHeight:
 			if(board[x][y]==1):
 				var piece = tile.instantiate()
-				piece.position = Vector2(x*tileSize+xOffSet,y*tileSize+yOffSet)
+				piece.position = Vector2(x*tileSize,y*tileSize)
 				add_child(piece)
 				
 	
 	#Uncomment this following code if you want the DFS path to be visualized
 #	for coord in visitedPath:
 #		var b = DFStile.instantiate()
-#		b.position = Vector2(coord[0]*tileSize+xOffSet,coord[1]*tileSize+yOffSet)
+#		b.position = Vector2(coord[0]*tileSize,coord[1]*tileSize)
 #		add_child(b)
 	
 	var s = startTile.instantiate()
-	s.position = Vector2(start[0]*tileSize+xOffSet, (start[1]+1)*tileSize+yOffSet)
+	s.position = Vector2(start[0]*tileSize, (start[1]+1)*tileSize)
 	add_child(s)
 
 	var e = endTile.instantiate()
-	e.position = Vector2(end[0]*tileSize+xOffSet, end[1]*tileSize+yOffSet)
+	e.position = Vector2(end[0]*tileSize, end[1]*tileSize)
 	add_child(e)
 	
-#	for coords in coinCoords:
-#		var coin = coinLoad.instantiate()
-#		coin.position = Vector2(coords[0],coords[1])
-#		add_child(coin)
+	for coords in coinCoords:
+		var coin = coinLoad.new()
+		coin.position = Vector2(coords[0]*tileSize,coords[1]*tileSize)
+		add_child(coin)
+	
+	for coords in speedCoords:
+		var speed = speedLoad.new()
+		speed.position = Vector2(coords[0]*tileSize,coords[1]*tileSize)
+		add_child(speed)
 
 #Draws border to prevent gaps
 func drawBorder():
@@ -215,34 +220,46 @@ func generateBoard():
 		generateStartAndEnd()
 	
 	drawBorder()
+	addCoins()
 
 #Generates player
 func generatePlayer():
 	var player = Player.instantiate()
-	player.position = Vector2(start[0]*tileSize+xOffSet,start[1]*tileSize+yOffSet)
-	Global.updated_respawn(Vector2(start[0]*tileSize+xOffSet,start[1]*tileSize+yOffSet))
-	player.update_spawn(Vector2(start[0]*tileSize+xOffSet,start[1]*tileSize+yOffSet))
+	player.position = Vector2(start[0]*tileSize,start[1]*tileSize)
+	Global.updated_respawn(Vector2(start[0]*tileSize,start[1]*tileSize))
+	player.update_spawn(Vector2(start[0]*tileSize,start[1]*tileSize))
 	player.force_respawn()
 	player.name = str(multiplayer.get_unique_id())
 	add_child(player)
 
 #Only call these when map is fully setup and generated
-#var coinCoords = []
-#func addCoins():
-#	var count = 0
-#	while count < numCoins:
-#		var randX = randi_range(0,boardWidth)
-#		var randY = randi_range(0,boardHeight)
-#
-#		if (board[randX][randY] == 0):
-#			coinCoords.append([randX,randY])
-#			count += 1
+var coinCoords = []
+func addCoins():
+	var count = 0
+	while count < numCoins:
+		var randX = randi_range(1,boardWidth-4)
+		var randY = randi_range(1,boardHeight-4)
 
+		if (board[randX][randY] == 0):
+			coinCoords.append([randX,randY])
+			count += 1
+
+var speedCoords = []
 func addSpeedBoosts():
-	pass
+	var count = 0
+	while count < numBoosts:
+		var randX = randi_range(1,boardWidth-4)
+		var randY = randi_range(1,boardHeight-4)
+
+		if (board[randX][randY] == 0):
+			speedCoords.append([randX,randY])
+			count += 1
+
+func addHUD():
+	var hud = gameHud.instantiate()
+	
 
 func _ready():
 	generateBoard()
 	generatePlayer()
 	drawMap()
-
