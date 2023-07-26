@@ -131,6 +131,10 @@ func _physics_process(delta):
 		$Grapple.add_point(Vector2(0, 0))
 		$Grapple.add_point(to_local(hookPos))
 
+	# Handle grapple cooldown
+	if hookCooldownTimer > 0.0:
+		hookCooldownTimer -= delta  # Decrease the cooldown timer during each frame
+
 	# Handle Flips
 	if Input.is_action_pressed("flip") and not Input.is_action_pressed("swing") and not is_on_floor():
 		rotating = true
@@ -159,7 +163,13 @@ func _physics_process(delta):
 
 	
 
+const HOOK_COOLDOWN = 1.0 #set the cooldown time
+var hookCooldownTimer = 0.0 #initialize timer
+
 func hook():
+	if hookCooldownTimer > 0.0: #check if hook is on cooldown
+		return
+	
 	$RayCast2D.look_at(get_global_mouse_position())
 	if Input.is_action_just_pressed("swing"):
 		hookPos = get_hook_pos()
@@ -167,6 +177,7 @@ func hook():
 			$PlayerSounds/GrappleSfx.play()
 			hooked = true
 			currentRopeLength = global_position.distance_to(hookPos)
+			hookCooldownTimer = HOOK_COOLDOWN #set the hook on cooldown
 
 func get_hook_pos():
 	if $RayCast2D.is_colliding():
