@@ -112,8 +112,10 @@ func _physics_process(delta):
 		else:
 			if Input.is_action_pressed("ui_up"):
 				velocity.y = -CLIMB_SPEED
+				$PlayerSounds/ClimbSfx.play()
 			elif Input.is_action_pressed("ui_down"):
 				velocity.y = CLIMB_SPEED
+				$PlayerSounds/ClimbSfx.play()
 			else:
 				velocity.y = 0
 	else:
@@ -121,6 +123,7 @@ func _physics_process(delta):
 		if is_on_wall() and Input.is_action_just_pressed("climb"):
 			isClimbing = true
 			velocity.y = -CLIMB_SPEED
+			$PlayerSounds/ClimbSfx.play()
 
 	# Handle Grapple
 	hook()
@@ -204,7 +207,7 @@ func swing(delta):
 
 	if global_position.distance_to(hookPos) > currentRopeLength:
 		global_position = hookPos + radius.normalized() * currentRopeLength
-
+	#$PlayerSounds/SwingSfx.play()
 	velocity += (hookPos - global_position).normalized() * 15000 * delta
 
 # sets the player back to the most current spawnpoint
