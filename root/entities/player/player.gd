@@ -216,7 +216,7 @@ func respawn():
 		
 func force_respawn():
 	position = spawn_point
-
+	$PlayerSounds/HurtSfx.play()
 func _enter_tree():
 	set_multiplayer_authority(str(name).to_int())
 

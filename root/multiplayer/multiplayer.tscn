@@ -1,6 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://cl80pd1y8hj2j"]
+[gd_scene load_steps=19 format=3 uid="uid://cl80pd1y8hj2j"]
 
-[ext_resource type="Texture2D" uid="uid://pe04f4jhhp54" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
+[ext_resource type="Texture2D" uid="uid://bqt4x7qa0lp40" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
 [ext_resource type="Script" path="res://root/scenes/demo_scene/Checkpoint.gd" id="2_6kt0a"]
 [ext_resource type="Script" path="res://root/multiplayer/coin.gd" id="3_4pfx8"]
 [ext_resource type="PackedScene" uid="uid://bm70c7wsn6m54" path="res://root/scenes/demo_scene_2/demo_scene_2.tscn" id="4_sd4gr"]
@@ -8,8 +8,9 @@
 [ext_resource type="Script" path="res://root/multiplayer/Collectible1.gd" id="6_5vr5w"]
 [ext_resource type="PackedScene" uid="uid://cux5nlw6mqti" path="res://root/scenes/collectible_1.tscn" id="6_s01lp"]
 [ext_resource type="Script" path="res://root/multiplayer/SpeedBoostArea2D.gd" id="7_a6kl4"]
-[ext_resource type="Texture2D" uid="uid://b3w1b8jmab3no" path="res://root/assets/sprites/misc/new_five_second_speed_up_sprite.png" id="8_f0xg3"]
-[ext_resource type="AudioStream" uid="uid://l33bquiu7kyk" path="res://root/assets/audio/music/Background Track 1.mp3" id="10_eg2mq"]
+[ext_resource type="Texture2D" uid="uid://dcebt6jlcpba3" path="res://root/assets/sprites/misc/new_five_second_speed_up_sprite.png" id="8_f0xg3"]
+[ext_resource type="AudioStream" uid="uid://b7wdguemqjn2x" path="res://root/assets/audio/music/Background Track 1.mp3" id="10_eg2mq"]
+[ext_resource type="Script" path="res://root/multiplayer/DieBox.gd" id="10_x10xs"]
 
 [sub_resource type="GDScript" id="GDScript_463ds"]
 script/source = "# author Cesar
@@ -871,6 +872,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0j4qw"]
+size = Vector2(9131, 93)
+
 [node name="Multiplayer" type="Node2D"]
 position = Vector2(-5, -3)
 script = SubResource("GDScript_463ds")
@@ -1014,6 +1018,13 @@ sprite_frames = SubResource("SpriteFrames_togwt")
 animation = &"5secspeedboost"
 autoplay = "5secspeedboost"
 frame_progress = 0.206805
+
+[node name="DieBox4" type="Area2D" parent="."]
+script = ExtResource("10_x10xs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DieBox4"]
+position = Vector2(400.5, 589.5)
+shape = SubResource("RectangleShape2D_0j4qw")
 
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HBoxContainer/Connect" to="." method="_on_join_pressed"]
