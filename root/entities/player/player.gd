@@ -175,7 +175,7 @@ func _physics_process(delta):
 
 	
 
-const HOOK_COOLDOWN = 1.0 #set the cooldown time
+const HOOK_COOLDOWN = 0.5 #set the cooldown time
 var hookCooldownTimer = 0.0 #initialize timer
 
 func hook():
