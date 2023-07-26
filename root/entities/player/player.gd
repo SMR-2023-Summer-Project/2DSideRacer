@@ -22,6 +22,9 @@ var canDJ = false
 var currentRopeLength
 var rotating = false
 var spawn_point = Global.spawn_point
+var powerup_active = false
+var powerup_timer = 5
+var powerup_type = ""
 @onready var camera = $Camera2D
 @onready var rope = $rope
 @onready var ray = $RayCast2D
@@ -142,6 +145,14 @@ func _physics_process(delta):
 	# Wall jump logic
 	if wallJumpTimer > 0:
 		wallJumpTimer -= delta
+		
+	# Powerup timing
+	if powerup_active:
+		if powerup_timer > 0:
+			powerup_timer -= delta
+		else:
+			SPEED = 300
+			powerup_active = false
 
 	move_and_slide()
 	
@@ -153,6 +164,7 @@ func hook():
 	if Input.is_action_just_pressed("swing"):
 		hookPos = get_hook_pos()
 		if hookPos:
+			$PlayerSounds/GrappleSfx.play()
 			hooked = true
 			currentRopeLength = global_position.distance_to(hookPos)
 
@@ -214,6 +226,8 @@ func get_direction():
 	return 0
 
 func fiveSecondSpeedUp():
-	SPEED = 600.0
+	powerup_active = true
+	powerup_timer = 5
+	SPEED = 550.0
 	$PlayerSounds/PowerUpSfx.play()
 	print("The player has collected a five second speed boost.")
