@@ -175,8 +175,10 @@ func swing(delta):
 # sets the player back to the most current spawnpoint
 func respawn():
 	if position.y >= spawnY:
+		$PlayerSounds/HurtSfx.play()
 		position = spawn_point
 		print(position)
+		
 func force_respawn():
 	position = spawn_point
 
@@ -190,6 +192,7 @@ func addCoins():
 	coins += 1
 	print("This player added a coin, coin count is: ", coins)
 	$UI/GameHUD.get_node('CoinCount').text = str(coins)
+	$PlayerSounds/CoinCollectSfx.play()
 
 # Function to handle wall jumps
 func changeRD():
@@ -212,4 +215,5 @@ func get_direction():
 
 func fiveSecondSpeedUp():
 	SPEED = 600.0
+	$PlayerSounds/PowerUpSfx.play()
 	print("The player has collected a five second speed boost.")

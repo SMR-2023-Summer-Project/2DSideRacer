@@ -1,23 +1,26 @@
-[gd_scene load_steps=61 format=3 uid="uid://3iwpe0n7knwo"]
+[gd_scene load_steps=64 format=3 uid="uid://3iwpe0n7knwo"]
 
 [ext_resource type="Script" path="res://root/entities/player/player.gd" id="1_wsm0r"]
-[ext_resource type="Texture2D" uid="uid://b4wets1ixpolo" path="res://root/assets/sprites/entities/crabby/fall.png" id="2_her7o"]
-[ext_resource type="Texture2D" uid="uid://b4fuy70c3k4f2" path="res://root/assets/sprites/entities/crabby/idle.png" id="2_piy4l"]
-[ext_resource type="Texture2D" uid="uid://dvshfylfp41mt" path="res://root/assets/sprites/entities/crabby/fall_right.png" id="3_160ia"]
-[ext_resource type="Texture2D" uid="uid://d77tbiu55jd1" path="res://root/assets/sprites/entities/crabby/jump.png" id="4_qqd7g"]
-[ext_resource type="Texture2D" uid="uid://chix4mkj6ykns" path="res://root/assets/sprites/entities/crabby/run.png" id="5_nuy38"]
-[ext_resource type="Texture2D" uid="uid://47gx3bakb1p" path="res://root/assets/sprites/entities/crabby/idle_right.png" id="5_yeiy0"]
-[ext_resource type="Texture2D" uid="uid://b13ivh2dhp2wd" path="res://root/assets/sprites/entities/crabby/jump_right.png" id="7_heg7o"]
-[ext_resource type="Texture2D" uid="uid://2cljxq88o7pd" path="res://root/assets/sprites/entities/crabby/run_right.png" id="9_rxhy7"]
+[ext_resource type="Texture2D" uid="uid://dg5dj2ola2qsd" path="res://root/assets/sprites/entities/crabby/fall.png" id="2_her7o"]
+[ext_resource type="Texture2D" uid="uid://7ip10insdmur" path="res://root/assets/sprites/entities/crabby/idle.png" id="2_piy4l"]
+[ext_resource type="Texture2D" uid="uid://sd08k0v8ojca" path="res://root/assets/sprites/entities/crabby/fall_right.png" id="3_160ia"]
+[ext_resource type="Texture2D" uid="uid://bxm2td664nvmp" path="res://root/assets/sprites/entities/crabby/jump.png" id="4_qqd7g"]
+[ext_resource type="Texture2D" uid="uid://41ysymmb1873" path="res://root/assets/sprites/entities/crabby/run.png" id="5_nuy38"]
+[ext_resource type="Texture2D" uid="uid://c13wm20xxvya1" path="res://root/assets/sprites/entities/crabby/idle_right.png" id="5_yeiy0"]
+[ext_resource type="Texture2D" uid="uid://bm1ohwhuvrs76" path="res://root/assets/sprites/entities/crabby/jump_right.png" id="7_heg7o"]
+[ext_resource type="Texture2D" uid="uid://cq5vt8lavfkjv" path="res://root/assets/sprites/entities/crabby/run_right.png" id="9_rxhy7"]
 [ext_resource type="Script" path="res://root/entities/player/player_animations.gd" id="10_1f6r6"]
 [ext_resource type="Script" path="res://root/entities/player/player_sounds.gd" id="11_wtaoh"]
-[ext_resource type="AudioStream" uid="uid://2jeojl5f5ys3" path="res://root/assets/audio/sfx/snd_jump.ogg" id="12_agtq3"]
-[ext_resource type="AudioStream" uid="uid://cm85x8cgluvtm" path="res://root/assets/audio/sfx/snd_step.ogg" id="13_i0xb2"]
-[ext_resource type="AudioStream" uid="uid://deyaqkox3dh5h" path="res://root/assets/audio/sfx/Jump 4.wav" id="14_mf707"]
-[ext_resource type="AudioStream" uid="uid://c0d286jukvk24" path="res://root/assets/audio/sfx/climb_1.wav" id="15_202mj"]
-[ext_resource type="AudioStream" uid="uid://dmar1lopqwy8e" path="res://root/assets/audio/sfx/Jump 1.wav" id="16_dtg4o"]
-[ext_resource type="Texture2D" uid="uid://bb7jwntfniqxd" path="res://root/assets/sprites/misc/chain2.png" id="17_jfigp"]
+[ext_resource type="AudioStream" uid="uid://dnhhif8yub20x" path="res://root/assets/audio/sfx/snd_jump.ogg" id="12_agtq3"]
+[ext_resource type="AudioStream" uid="uid://brgr8xa4yf1yf" path="res://root/assets/audio/sfx/snd_step.ogg" id="13_i0xb2"]
+[ext_resource type="AudioStream" uid="uid://f35tjojnm6sm" path="res://root/assets/audio/sfx/Jump 4.wav" id="14_mf707"]
+[ext_resource type="AudioStream" uid="uid://0c8fdmaco2ye" path="res://root/assets/audio/sfx/climb_1.wav" id="15_202mj"]
+[ext_resource type="AudioStream" uid="uid://b1yv5gtwcmnor" path="res://root/assets/audio/sfx/Jump 1.wav" id="16_dtg4o"]
+[ext_resource type="AudioStream" uid="uid://ci1r20l52t3cu" path="res://root/assets/audio/sfx/Hurt noise.mp3" id="17_g6h0w"]
+[ext_resource type="Texture2D" uid="uid://q6vap748whvu" path="res://root/assets/sprites/misc/chain2.png" id="17_jfigp"]
+[ext_resource type="AudioStream" uid="uid://br7e6m37mylhv" path="res://root/assets/audio/sfx/Coin noise.mp3" id="18_apg4p"]
 [ext_resource type="PackedScene" uid="uid://c4pio12vr0fdi" path="res://root/scenes/demo_scene/ui.tscn" id="18_aqcll"]
+[ext_resource type="AudioStream" uid="uid://bvvxhhb5cf7wv" path="res://root/assets/audio/sfx/Powerup2 noise.mp3" id="19_i5nck"]
 [ext_resource type="PackedScene" uid="uid://bm3dbb2721rlv" path="res://root/ui/game_hud/game_hud.tscn" id="19_tfd85"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rbe6w"]
@@ -344,19 +347,15 @@ animations = [{
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/sync = true
-properties/0/watch = false
 properties/1/path = NodePath("Animations:animation")
 properties/1/spawn = true
 properties/1/sync = true
-properties/1/watch = false
 properties/2/path = NodePath(".:rotation")
 properties/2/spawn = true
 properties/2/sync = true
-properties/2/watch = false
 properties/3/path = NodePath("Grapple:points")
 properties/3/spawn = true
 properties/3/sync = true
-properties/3/watch = false
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(1, 0)
@@ -403,6 +402,15 @@ stream = ExtResource("15_202mj")
 
 [node name="DJSfx" type="AudioStreamPlayer2D" parent="PlayerSounds"]
 stream = ExtResource("16_dtg4o")
+
+[node name="HurtSfx" type="AudioStreamPlayer2D" parent="PlayerSounds"]
+stream = ExtResource("17_g6h0w")
+
+[node name="CoinCollectSfx" type="AudioStreamPlayer2D" parent="PlayerSounds"]
+stream = ExtResource("18_apg4p")
+
+[node name="PowerUpSfx" type="AudioStreamPlayer2D" parent="PlayerSounds"]
+stream = ExtResource("19_i5nck")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(500, 0)

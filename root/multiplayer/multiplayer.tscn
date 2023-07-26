@@ -1,13 +1,14 @@
-[gd_scene load_steps=15 format=3 uid="uid://cl80pd1y8hj2j"]
+[gd_scene load_steps=16 format=3 uid="uid://cl80pd1y8hj2j"]
 
-[ext_resource type="Texture2D" uid="uid://dytuw65gnhyi3" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
+[ext_resource type="Texture2D" uid="uid://7ye1ivaiip7p" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
 [ext_resource type="Script" path="res://root/scenes/demo_scene/Checkpoint.gd" id="2_6kt0a"]
 [ext_resource type="Script" path="res://root/multiplayer/coin.gd" id="3_4pfx8"]
 [ext_resource type="PackedScene" uid="uid://bm70c7wsn6m54" path="res://root/scenes/demo_scene_2/demo_scene_2.tscn" id="4_sd4gr"]
 [ext_resource type="Script" path="res://root/scenes/Select Map/Animation_Selection.gd" id="5_pmmvp"]
 [ext_resource type="Script" path="res://root/multiplayer/Collectible1.gd" id="6_5vr5w"]
 [ext_resource type="Script" path="res://root/multiplayer/SpeedBoostArea2D.gd" id="7_a6kl4"]
-[ext_resource type="Texture2D" uid="uid://dj7xey6p1syk6" path="res://root/assets/sprites/misc/new_five_second_speed_up_sprite.png" id="8_f0xg3"]
+[ext_resource type="Texture2D" uid="uid://bwe37m7e6u66o" path="res://root/assets/sprites/misc/new_five_second_speed_up_sprite.png" id="8_f0xg3"]
+[ext_resource type="AudioStream" uid="uid://cp5eecmecyxec" path="res://root/assets/audio/music/Background Track 1.mp3" id="10_eg2mq"]
 
 [sub_resource type="GDScript" id="GDScript_463ds"]
 script/source = "# author Cesar
@@ -955,7 +956,7 @@ position = Vector2(558, -543)
 script = ExtResource("2_6kt0a")
 
 [node name="Coin" type="Area2D" parent="."]
-position = Vector2(111, 3)
+position = Vector2(-663, -6)
 script = ExtResource("3_4pfx8")
 
 [node name="Coin2" type="Area2D" parent="."]
@@ -998,12 +999,17 @@ shape = SubResource("CapsuleShape2D_crlcr")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Collectible1"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Collectible1"]
-position = Vector2(161, 19)
+position = Vector2(165, 19)
 scale = Vector2(0.447183, 0.457746)
 sprite_frames = SubResource("SpriteFrames_togwt")
 animation = &"5secspeedboost"
 autoplay = "5secspeedboost"
 frame_progress = 0.206805
+
+[node name="MultiplayerMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_eg2mq")
+volume_db = -22.0
+autoplay = true
 
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HBoxContainer/Connect" to="." method="_on_join_pressed"]
