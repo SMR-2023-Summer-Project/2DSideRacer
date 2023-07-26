@@ -3,6 +3,7 @@ class_name Player
 
 var SPEED = 300.0
 const JUMP_VELOCITY = -400.0
+const MAX_JUMP_VELOCITY = -600.0
 const WALL_JUMP_VELOCITY = -300.0
 const DASH_SPEED = 800
 const DASH_DURATION = 0.2
@@ -69,6 +70,9 @@ func _physics_process(delta):
 		# Reset double jump condition
 		canDJ = true
 		velocity.y = JUMP_VELOCITY
+	# Handle Jump Power.
+	elif !is_on_floor() and Input.is_action_pressed("jump") and velocity.y < 0 and velocity.y > MAX_JUMP_VELOCITY:
+		velocity.y -= 4
 	var newDirection = get_direction()
 	if newDirection != prevDirection:
 		prevDirection = newDirection
@@ -132,6 +136,10 @@ func _physics_process(delta):
 		$Grapple.add_point(Vector2(0, 0))
 		$Grapple.add_point(to_local(hookPos))
 
+	# Handle grapple cooldown
+	if hookCooldownTimer > 0.0:
+		hookCooldownTimer -= delta  # Decrease the cooldown timer during each frame
+
 	# Handle Flips
 	if Input.is_action_pressed("flip") and not Input.is_action_pressed("swing") and not is_on_floor():
 		rotating = true
@@ -166,7 +174,13 @@ func _physics_process(delta):
 
 	
 
+const HOOK_COOLDOWN = 1.0 #set the cooldown time
+var hookCooldownTimer = 0.0 #initialize timer
+
 func hook():
+	if hookCooldownTimer > 0.0: #check if hook is on cooldown
+		return
+	
 	$RayCast2D.look_at(get_global_mouse_position())
 	if Input.is_action_just_pressed("swing"):
 		hookPos = get_hook_pos()
@@ -174,6 +188,7 @@ func hook():
 			$PlayerSounds/GrappleSfx.play()
 			hooked = true
 			currentRopeLength = global_position.distance_to(hookPos)
+			hookCooldownTimer = HOOK_COOLDOWN #set the hook on cooldown
 
 func get_hook_pos():
 	if $RayCast2D.is_colliding():

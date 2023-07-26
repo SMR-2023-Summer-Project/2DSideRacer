@@ -9,6 +9,8 @@
 [ext_resource type="Script" path="res://root/multiplayer/SpeedBoostArea2D.gd" id="7_a6kl4"]
 [ext_resource type="Texture2D" uid="uid://dcebt6jlcpba3" path="res://root/assets/sprites/misc/new_five_second_speed_up_sprite.png" id="8_f0xg3"]
 [ext_resource type="AudioStream" uid="uid://b7wdguemqjn2x" path="res://root/assets/audio/music/Background Track 1.mp3" id="10_eg2mq"]
+[ext_resource type="Texture2D" uid="uid://phwijiw766oi" path="res://root/assets/sprites/misc/new_five_second_speed_up_sprite.png" id="8_f0xg3"]
+[ext_resource type="AudioStream" uid="uid://corgr1urmc1go" path="res://root/assets/audio/music/Background Track 1.mp3" id="10_eg2mq"]
 
 [sub_resource type="GDScript" id="GDScript_463ds"]
 script/source = "# author Cesar
