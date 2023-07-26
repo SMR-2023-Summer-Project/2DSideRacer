@@ -1,14 +1,15 @@
-[gd_scene load_steps=16 format=3 uid="uid://cl80pd1y8hj2j"]
+[gd_scene load_steps=17 format=3 uid="uid://cl80pd1y8hj2j"]
 
-[ext_resource type="Texture2D" uid="uid://cnajyl3dmstj" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
+[ext_resource type="Texture2D" uid="uid://pe04f4jhhp54" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
 [ext_resource type="Script" path="res://root/scenes/demo_scene/Checkpoint.gd" id="2_6kt0a"]
 [ext_resource type="Script" path="res://root/multiplayer/coin.gd" id="3_4pfx8"]
 [ext_resource type="PackedScene" uid="uid://bm70c7wsn6m54" path="res://root/scenes/demo_scene_2/demo_scene_2.tscn" id="4_sd4gr"]
 [ext_resource type="Script" path="res://root/scenes/Select Map/Animation_Selection.gd" id="5_pmmvp"]
 [ext_resource type="Script" path="res://root/multiplayer/Collectible1.gd" id="6_5vr5w"]
+[ext_resource type="PackedScene" uid="uid://cux5nlw6mqti" path="res://root/scenes/collectible_1.tscn" id="6_s01lp"]
 [ext_resource type="Script" path="res://root/multiplayer/SpeedBoostArea2D.gd" id="7_a6kl4"]
-[ext_resource type="Texture2D" uid="uid://y84dcqvb3g8o" path="res://root/assets/sprites/misc/new_five_second_speed_up_sprite.png" id="8_f0xg3"]
-[ext_resource type="AudioStream" uid="uid://bqqecoevxa2uj" path="res://root/assets/audio/music/Background Track 1.mp3" id="10_eg2mq"]
+[ext_resource type="Texture2D" uid="uid://b3w1b8jmab3no" path="res://root/assets/sprites/misc/new_five_second_speed_up_sprite.png" id="8_f0xg3"]
+[ext_resource type="AudioStream" uid="uid://l33bquiu7kyk" path="res://root/assets/audio/music/Background Track 1.mp3" id="10_eg2mq"]
 
 [sub_resource type="GDScript" id="GDScript_463ds"]
 script/source = "# author Cesar
@@ -986,25 +987,7 @@ script = ExtResource("5_pmmvp")
 
 [node name="Node2D" parent="." instance=ExtResource("4_sd4gr")]
 
-[node name="Collectible1" type="Node2D" parent="."]
-script = ExtResource("6_5vr5w")
-
-[node name="SpeedBoostArea1" type="Area2D" parent="Collectible1"]
-script = ExtResource("7_a6kl4")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Collectible1/SpeedBoostArea1"]
-position = Vector2(158, 10)
-shape = SubResource("CapsuleShape2D_crlcr")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Collectible1"]
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Collectible1"]
-position = Vector2(165, 19)
-scale = Vector2(0.447183, 0.457746)
-sprite_frames = SubResource("SpriteFrames_togwt")
-animation = &"5secspeedboost"
-autoplay = "5secspeedboost"
-frame_progress = 0.206805
+[node name="Collectible1" parent="." instance=ExtResource("6_s01lp")]
 
 [node name="MultiplayerMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_eg2mq")
@@ -1034,5 +1017,4 @@ frame_progress = 0.206805
 
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HBoxContainer/Connect" to="." method="_on_join_pressed"]
-[connection signal="body_entered" from="Collectible1/SpeedBoostArea1" to="Collectible1/SpeedBoostArea1" method="_on_body_entered"]
 [connection signal="body_entered" from="Collectible2/SpeedBoostArea1" to="Collectible2/SpeedBoostArea1" method="_on_body_entered"]
