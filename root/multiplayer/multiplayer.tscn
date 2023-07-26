@@ -1029,6 +1029,7 @@ script = ExtResource("5_pmmvp")
 [node name="Node2D" parent="." instance=ExtResource("4_sd4gr")]
 
 [node name="Collectible1" parent="." instance=ExtResource("6_s01lp")]
+position = Vector2(-22, -14)
 
 [node name="MultiplayerMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_eg2mq")
@@ -1049,7 +1050,7 @@ shape = SubResource("CapsuleShape2D_crlcr")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Collectible2"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Collectible2"]
-position = Vector2(165, 19)
+position = Vector2(163, 17)
 scale = Vector2(0.447183, 0.457746)
 sprite_frames = SubResource("SpriteFrames_togwt")
 animation = &"5secspeedboost"
@@ -1064,7 +1065,7 @@ position = Vector2(400.5, 589.5)
 shape = SubResource("RectangleShape2D_0j4qw")
 
 [node name="Collectible3" parent="." instance=ExtResource("18_mwqg8")]
-position = Vector2(176, -7)
+position = Vector2(227, -7)
 
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HBoxContainer/Connect" to="." method="_on_join_pressed"]

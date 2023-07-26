@@ -170,8 +170,7 @@ func _physics_process(delta):
 				powerup_active = false
 				speedup -= 1
 				print('Speed Boost Ended')
-				
-			else:
+			elif speedup > 1:
 				speedup -= 1
 			if jumpup == 1:
 				JUMP_VELOCITY = -400.0
@@ -179,7 +178,7 @@ func _physics_process(delta):
 				powerup_active = false
 				jumpup -= 1
 				print('Jump Boost Ended')
-			else:
+			elif jumpup > 1:
 				jumpup -= 1
 
 	move_and_slide()
@@ -283,5 +282,5 @@ func fiveSecondJumpBoost():
 		JUMP_VELOCITY = -600.0
 		JUMP_POWER_MODIFIER = 8
 	else:
-		print('Speed Power Up extended by: ', powerup_timer, ' seconds.')
+		print('Jump Power Up extended by: ', powerup_timer, ' seconds.')
 	

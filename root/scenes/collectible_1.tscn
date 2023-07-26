@@ -2,15 +2,15 @@
 
 [ext_resource type="Script" path="res://root/multiplayer/Collectible1.gd" id="1_lbi1h"]
 [ext_resource type="Script" path="res://root/multiplayer/SpeedBoostArea2D.gd" id="2_vlrft"]
-[ext_resource type="Texture2D" uid="uid://dktnb3dc6a0g8" path="res://root/assets/sprites/misc/speed_up_sprite_frame_1.png" id="3_ng178"]
-[ext_resource type="Texture2D" uid="uid://cfvpalueu4p75" path="res://root/assets/sprites/misc/speed_up_sprite_frame_2.png" id="4_lpgde"]
-[ext_resource type="Texture2D" uid="uid://distyvt3hl3v1" path="res://root/assets/sprites/misc/speed_up_sprite_frame_3.png" id="5_cti7i"]
-[ext_resource type="Texture2D" uid="uid://d0opyehigmfwt" path="res://root/assets/sprites/misc/speed_up_sprite_frame_4.png" id="6_jxx0k"]
-[ext_resource type="Texture2D" uid="uid://bvmxsri677su5" path="res://root/assets/sprites/misc/speed_up_sprite_frame_5.png" id="7_h3mjg"]
-[ext_resource type="Texture2D" uid="uid://wa1ap5suhvxd" path="res://root/assets/sprites/misc/speed_up_sprite_frame_6.png" id="8_i3ggf"]
-[ext_resource type="Texture2D" uid="uid://bdjqkpivfmmrl" path="res://root/assets/sprites/misc/speed_up_sprite_frame_7.png" id="9_5dcsp"]
-[ext_resource type="Texture2D" uid="uid://bu186k4v4joyd" path="res://root/assets/sprites/misc/speed_up_sprite_frame_8.png" id="10_klwua"]
-[ext_resource type="Texture2D" uid="uid://fwue0tky5ysg" path="res://root/assets/sprites/misc/speed_up_sprite_frame_9.png" id="11_1fipp"]
+[ext_resource type="Texture2D" uid="uid://dwcelh1npjnkf" path="res://root/assets/sprites/misc/speed_up_sprite_frame_1.png" id="3_ng178"]
+[ext_resource type="Texture2D" uid="uid://bw60vpoxj00ci" path="res://root/assets/sprites/misc/speed_up_sprite_frame_2.png" id="4_lpgde"]
+[ext_resource type="Texture2D" uid="uid://btujuy2qmh3ny" path="res://root/assets/sprites/misc/speed_up_sprite_frame_3.png" id="5_cti7i"]
+[ext_resource type="Texture2D" uid="uid://bshkjqmk88csj" path="res://root/assets/sprites/misc/speed_up_sprite_frame_4.png" id="6_jxx0k"]
+[ext_resource type="Texture2D" uid="uid://y24wjpjdh4ik" path="res://root/assets/sprites/misc/speed_up_sprite_frame_5.png" id="7_h3mjg"]
+[ext_resource type="Texture2D" uid="uid://b6vnoivin1hp3" path="res://root/assets/sprites/misc/speed_up_sprite_frame_6.png" id="8_i3ggf"]
+[ext_resource type="Texture2D" uid="uid://0h5jvvmrvf6s" path="res://root/assets/sprites/misc/speed_up_sprite_frame_7.png" id="9_5dcsp"]
+[ext_resource type="Texture2D" uid="uid://pvgjnyk0lv4i" path="res://root/assets/sprites/misc/speed_up_sprite_frame_8.png" id="10_klwua"]
+[ext_resource type="Texture2D" uid="uid://cd7vjmcp6yagd" path="res://root/assets/sprites/misc/speed_up_sprite_frame_9.png" id="11_1fipp"]
 [ext_resource type="Script" path="res://root/scenes/AnimatedSprite2D.gd" id="12_qkgcl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_crlcr"]
@@ -134,6 +134,7 @@ scale = Vector2(0.447183, 0.457746)
 sprite_frames = SubResource("SpriteFrames_togwt")
 animation = &"5secspeedboost"
 autoplay = "5secspeedboost"
+frame = 1
 script = ExtResource("12_qkgcl")
 
 [connection signal="body_entered" from="SpeedBoostArea1" to="SpeedBoostArea1" method="_on_body_entered"]
