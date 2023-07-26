@@ -10,6 +10,7 @@ const DASH_COOLDOWN = 0.35
 const CLIMB_SPEED = 100  # Adjust climbing speed as needed
 const WALL_JUMP_DELAY = 0.2  # The time window for wall jump after leaving the ground
 
+var speedup = 0
 var spawnY = 200
 var dash_cool = 0.0
 var dashTimer = 0.0
@@ -145,14 +146,20 @@ func _physics_process(delta):
 	# Wall jump logic
 	if wallJumpTimer > 0:
 		wallJumpTimer -= delta
-		
+
 	# Powerup timing
 	if powerup_active:
 		if powerup_timer > 0:
 			powerup_timer -= delta
 		else:
-			SPEED = 300
-			powerup_active = false
+			if speedup == 1:
+				SPEED = 300
+				powerup_active = false
+				speedup -= 1
+				print('Speed Boost Ended')
+				
+			else:
+				speedup -= 1
 
 	move_and_slide()
 	
@@ -228,6 +235,15 @@ func get_direction():
 func fiveSecondSpeedUp():
 	powerup_active = true
 	powerup_timer = 5
-	SPEED = 550.0
+	powerup_type = 'speedboost'
+	speedup += 1 
 	$PlayerSounds/PowerUpSfx.play()
 	print("The player has collected a five second speed boost.")
+	if speedup == 1:
+		SPEED = 550.0
+	else:
+		print('Speed Power Up extended by: ', powerup_timer, ' seconds.')
+	
+	
+	
+	
