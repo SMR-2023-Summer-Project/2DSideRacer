@@ -58,11 +58,11 @@ texture = ExtResource("5_ckxba")
 [node name="PlayButton" type="Button" parent="."]
 top_level = true
 layout_mode = 0
-offset_left = 451.0
+offset_left = 431.0
 offset_top = 193.0
-offset_right = 1164.0
+offset_right = 1144.0
 offset_bottom = 411.0
-scale = Vector2(0.39827, 0.462912)
+scale = Vector2(0.396405, 0.406427)
 theme_override_colors/font_color = Color(0.478431, 1, 0.121569, 1)
 theme_override_colors/font_pressed_color = Color(0.458824, 0.027451, 0.207843, 1)
 theme_override_colors/font_hover_color = Color(1, 0.184314, 0.909804, 1)

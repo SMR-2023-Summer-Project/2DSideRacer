@@ -1,12 +1,18 @@
-[gd_scene load_steps=19 format=3 uid="uid://cl80pd1y8hj2j"]
+[gd_scene load_steps=25 format=3 uid="uid://cl80pd1y8hj2j"]
 
+[ext_resource type="Texture2D" uid="uid://d0elbuqk8eb3p" path="res://root/assets/sprites/backgrounds/Dystopian Background/Layer 1.png" id="1_jwgxo"]
 [ext_resource type="Texture2D" uid="uid://vxg43cp88ana" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
+[ext_resource type="Texture2D" uid="uid://ga4uikdxbygp" path="res://root/assets/sprites/backgrounds/Dystopian Background/Layer 2.png" id="2_3qq48"]
 [ext_resource type="Script" path="res://root/scenes/demo_scene/Checkpoint.gd" id="2_6kt0a"]
 [ext_resource type="Script" path="res://root/multiplayer/coin.gd" id="3_4pfx8"]
+[ext_resource type="Texture2D" uid="uid://cte5u4b8e13bi" path="res://root/assets/sprites/backgrounds/Dystopian Background/Layer 3.png" id="3_uwaa1"]
+[ext_resource type="Texture2D" uid="uid://c8usuffvm3wre" path="res://root/assets/sprites/backgrounds/Dystopian Background/Layer 4.png" id="4_a8eit"]
 [ext_resource type="PackedScene" uid="uid://bm70c7wsn6m54" path="res://root/scenes/demo_scene_2/demo_scene_2.tscn" id="4_sd4gr"]
 [ext_resource type="Script" path="res://root/scenes/Select Map/Animation_Selection.gd" id="5_pmmvp"]
+[ext_resource type="Texture2D" uid="uid://ds0wyx1cydrv0" path="res://root/assets/sprites/backgrounds/Dystopian Background/Layer 5.png" id="5_skorc"]
 [ext_resource type="Script" path="res://root/multiplayer/Collectible1.gd" id="6_5vr5w"]
 [ext_resource type="PackedScene" uid="uid://cux5nlw6mqti" path="res://root/scenes/collectible_1.tscn" id="6_s01lp"]
+[ext_resource type="Texture2D" uid="uid://3o1kxmbsona7" path="res://root/assets/sprites/backgrounds/Dystopian Background/Layer 62.png" id="6_wpynx"]
 [ext_resource type="Script" path="res://root/multiplayer/SpeedBoostArea2D.gd" id="7_a6kl4"]
 [ext_resource type="Texture2D" uid="uid://phwijiw766oi" path="res://root/assets/sprites/misc/new_five_second_speed_up_sprite.png" id="8_f0xg3"]
 [ext_resource type="AudioStream" uid="uid://corgr1urmc1go" path="res://root/assets/audio/music/Background Track 1.mp3" id="10_eg2mq"]
@@ -879,6 +885,44 @@ size = Vector2(9131, 93)
 position = Vector2(-5, -3)
 script = SubResource("GDScript_463ds")
 
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1152, 648)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("1_jwgxo")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1152, 648)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+texture = ExtResource("2_3qq48")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1152, 648)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+texture = ExtResource("3_uwaa1")
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1152, 648)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4"]
+texture = ExtResource("4_a8eit")
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1152, 648)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5"]
+texture = ExtResource("5_skorc")
+
+[node name="ParallaxLayer6" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1152, 648)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer6"]
+texture = ExtResource("6_wpynx")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="MainMenu" type="PanelContainer" parent="CanvasLayer"]
@@ -974,14 +1018,6 @@ script = ExtResource("3_4pfx8")
 
 [node name="Coin4" type="Area2D" parent="."]
 position = Vector2(111, -257)
-script = ExtResource("3_4pfx8")
-
-[node name="Coin" type="Area2D" parent="Coin4"]
-position = Vector2(251, 3)
-script = ExtResource("3_4pfx8")
-
-[node name="Coin" type="Area2D" parent="Coin4/Coin"]
-position = Vector2(-1157, -81)
 script = ExtResource("3_4pfx8")
 
 [node name="BackButton" type="ColorRect" parent="."]
