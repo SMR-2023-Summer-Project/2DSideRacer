@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://g1ne7axbvfd5"]
+
+[ext_resource type="Script" path="res://root/multiplayer/Collectible1.gd" id="1_reutd"]
+[ext_resource type="Script" path="res://root/scenes/JumpBoostArea1.gd" id="2_sdg1t"]
+[ext_resource type="Texture2D" path="res://root/assets/sprites/misc/new_five_second_jump_boost_sprite copy.png" id="3_kdfs4"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_crlcr"]
+radius = 33.0
+height = 82.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i2iv6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_kdfs4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Collectible2" type="Node2D"]
+script = ExtResource("1_reutd")
+
+[node name="SpeedBoostArea1" type="Area2D" parent="."]
+script = ExtResource("2_sdg1t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpeedBoostArea1"]
+position = Vector2(158, 10)
+shape = SubResource("CapsuleShape2D_crlcr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(155, 3)
+scale = Vector2(0.447183, 0.457746)
+sprite_frames = SubResource("SpriteFrames_i2iv6")
+
+[connection signal="body_entered" from="SpeedBoostArea1" to="SpeedBoostArea1" method="_on_body_entered" flags=18]

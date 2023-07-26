@@ -6,5 +6,5 @@ func _ready():
 var speedBoostAnimation = true
 
 func playSpeedBoostAnimation():
-	while speedBoostAnimation:
-		self.play("5secspeedboost")
+	#while speedBoostAnimation:
+	#	self.play("5secspeedboost")

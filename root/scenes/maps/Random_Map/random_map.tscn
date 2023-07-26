@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://root/scenes/maps/Random_Map/generate.gd" id="1_3qucg"]
 [ext_resource type="PackedScene" uid="uid://c2j2qklr3oc5d" path="res://root/scenes/maps/Random_Map/Assets/Tile.tscn" id="2_pxrvf"]
-[ext_resource type="AudioStream" uid="uid://bw0cr2uh4j8ap" path="res://root/assets/audio/music/Background Track 3 (Loop).mp3" id="3_1jdwc"]
+[ext_resource type="AudioStream" uid="uid://q4obps1dynr6" path="res://root/assets/audio/music/Background Track 3 (Loop).mp3" id="3_1jdwc"]
 
 [node name="random_map" type="Node2D"]
 script = ExtResource("1_3qucg")

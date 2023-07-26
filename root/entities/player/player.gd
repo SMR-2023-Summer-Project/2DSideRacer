@@ -2,8 +2,8 @@ extends CharacterBody2D
 class_name Player
 
 var SPEED = 300.0
-const JUMP_VELOCITY = -400.0
-const JUMP_POWER_MODIFIER = 4 # Alter degree of jump power increase
+var JUMP_VELOCITY = -400.0
+var JUMP_POWER_MODIFIER = 4 # Alter degree of jump power increase
 const MAX_JUMP_VELOCITY = -600.0 # Limit possible jump power decrease
 const WALL_JUMP_VELOCITY = -300.0
 const DASH_SPEED = 800
@@ -13,6 +13,7 @@ const CLIMB_SPEED = 100  # Adjust climbing speed as needed
 const WALL_JUMP_DELAY = 0.2  # The time window for wall jump after leaving the ground
 
 var speedup = 0
+var jumpup = 0
 var spawnY = 200
 var dash_cool = 0.0
 var dashTimer = 0.0
@@ -172,6 +173,14 @@ func _physics_process(delta):
 				
 			else:
 				speedup -= 1
+			if jumpup == 1:
+				JUMP_VELOCITY = -400.0
+				JUMP_POWER_MODIFIER = 4
+				powerup_active = false
+				jumpup -= 1
+				print('Jump Boost Ended')
+			else:
+				jumpup -= 1
 
 	move_and_slide()
 	
@@ -263,6 +272,16 @@ func fiveSecondSpeedUp():
 	else:
 		print('Speed Power Up extended by: ', powerup_timer, ' seconds.')
 	
-	
-	
+func fiveSecondJumpBoost():
+	powerup_active = true
+	powerup_timer = 5
+	powerup_type = 'jumpboost'
+	jumpup += 1 
+	$PlayerSounds/PowerUpSfx.play()
+	print("The player has collected a five second jump boost.")
+	if jumpup == 1:
+		JUMP_VELOCITY = -600.0
+		JUMP_POWER_MODIFIER = 8
+	else:
+		print('Speed Power Up extended by: ', powerup_timer, ' seconds.')
 	
