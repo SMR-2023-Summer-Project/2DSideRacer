@@ -1,11 +1,12 @@
 #Author: Jacob
 extends Node2D
 var rng = RandomNumberGenerator.new()
+
 const tile = preload("res://root/scenes/maps/Random_Map/Assets/Tile.tscn")
 const startTile = preload("res://root/scenes/maps/Random_Map/Assets/start.tscn")
 const endTile = preload("res://root/scenes/maps/Random_Map/Assets/end.tscn")
 const DFStile = preload("res://root/scenes/maps/Random_Map/Assets/brown.tscn")
-const Player = preload("res://root/entities/player/player.tscn")
+var player = preload("res://root/entities/player/player.tscn").instantiate()
 const gameHud = preload("res://root/ui/game_hud/game_hud.tscn")
 const coinLoad = preload("res://root/multiplayer/coin.gd")
 const speedLoad = preload("res://root/multiplayer/SpeedBoost.tscn")
@@ -13,10 +14,11 @@ const jumpLoad = preload("res://root/multiplayer/JumpBoost.tscn")
 
 #Change number of entities
 const numCoins = 50
-const numSpeedBoosts = 50
-const numJumpBoosts = 50
+const numSpeedBoosts = 4
+const numJumpBoosts = 4
 
 #Game parameters
+#Change to null if you want random gameWidth and gameHeight for variation
 const gameWidth = 9600
 const gameHeight = 2400
 const tileSize = 48
@@ -32,6 +34,10 @@ const simulationNum = 30
 const boardWidth = int(gameWidth / tileSize)
 const boardHeight = int(gameHeight / tileSize)
 var board = zeros(boardWidth, boardHeight)
+
+func generateRandomGameSize():
+	if gameWidth == null and gameHeight == null:
+		pass
 
 #starting and ending generation
 var start = [randi_range(2,boardWidth*0.1)]
@@ -177,12 +183,14 @@ func drawMap():
 #		add_child(b)
 	
 	var s = startTile.instantiate()
-	s.position = Vector2(start[0]*tileSize, (start[1]+1)*tileSize)
+	s.position = Vector2(start[0]*tileSize+1, (start[1]+1)*tileSize)
 	add_child(s)
 
-	var e = endTile.instantiate()
-	e.position = Vector2(end[0]*tileSize, end[1]*tileSize)
-	add_child(e)
+	var end_tile = endTile.instantiate()
+	end_tile.position = Vector2(end[0]*tileSize, end[1]*tileSize)
+	var area = end_tile.get_node("Area2D")
+	area.body_entered.connect(goalTouched)
+	add_child(end_tile)
 	
 	for coords in coinCoords:
 		var coin = coinLoad.new()
@@ -198,6 +206,7 @@ func drawMap():
 		var jump = jumpLoad.instantiate()
 		jump.position = Vector2(coords[0]*tileSize,coords[1]*tileSize)
 		add_child(jump)
+
 
 #Draws border to prevent gaps
 func drawBorder():
@@ -230,11 +239,12 @@ func generateBoard():
 	addCoins()
 	addJumpBoosts()
 	addSpeedBoosts()
+	addHUD()
 
 #Generates player
 func generatePlayer():
-	var player = Player.instantiate()
 	player.position = Vector2(start[0]*tileSize,start[1]*tileSize)
+	player.add_to_group("player")
 	
 	#Sets up camera
 	player.get_node("Camera2D").limit_left = 0
@@ -283,11 +293,39 @@ func addJumpBoosts():
 			jumpCoords.append([randX,randY])
 			count += 1
 
+var marker = null
+var hud = null
 func addHUD():
-	var hud = gameHud.instantiate()
+	hud = player.get_node("UI").get_node("GameHUD")
+	await hud.ready
+	marker = hud.create_player_marker("you")
 	
+
+func distanceFromGoal():
+	var position = player.position
+	var startPos = Vector2(start[0],start[1])*tileSize
+	var endPos = Vector2(end[0],end[1])*tileSize
+	
+	var distFromStart = (startPos-endPos).length()
+	var distPlayerToEnd = (endPos-position).length()
+	
+	return distPlayerToEnd/distFromStart
+
+func goalTouched(body):
+	if body.is_in_group("player"):
+		await hud.show_finished()
+		hud.hide_finished()
 
 func _ready():
 	generateBoard()
 	generatePlayer()
 	drawMap()
+
+
+func _process(delta):
+	var dist = 1-distanceFromGoal()
+	marker.set_progress(dist)
+#	if(dist>0.98 and dist<=1):
+#		goalTouched()
+
+

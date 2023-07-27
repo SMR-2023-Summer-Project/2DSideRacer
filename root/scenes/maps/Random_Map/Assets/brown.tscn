@@ -1,15 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://5h2ikq55pg78"]
+[gd_scene load_steps=2 format=3 uid="uid://5h2ikq55pg78"]
 
 [ext_resource type="Texture2D" uid="uid://dra1ttcnlsc44" path="res://root/scenes/maps/Random_Map/Assets/brown.png" id="1_nmqnt"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_f4yd5"]
-size = Vector2(17, 16)
-
-[node name="brown" type="CharacterBody2D"]
+[node name="brown" type="StaticBody2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(1.04701, 0.990406)
 texture = ExtResource("1_nmqnt")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_f4yd5")

@@ -26,7 +26,7 @@
 [ext_resource type="AudioStream" uid="uid://d1idwm2n7xcve" path="res://root/assets/audio/sfx/Grappling hook sfx.mp3" id="21_liuhm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rbe6w"]
-size = Vector2(42, 24)
+size = Vector2(39, 23)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tg4uu"]
 atlas = ExtResource("2_her7o")
@@ -368,8 +368,7 @@ position = Vector2(1, 0)
 script = ExtResource("1_wsm0r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(2, 1)
+position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_rbe6w")
 
 [node name="Animations" type="AnimatedSprite2D" parent="."]
