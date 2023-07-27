@@ -1,8 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://t7cdybsj0wba"]
+[gd_scene load_steps=10 format=3 uid="uid://t7cdybsj0wba"]
 
 [ext_resource type="Script" path="res://root/scenes/maps/Random_Map/generate.gd" id="1_3qucg"]
 [ext_resource type="PackedScene" uid="uid://c2j2qklr3oc5d" path="res://root/scenes/maps/Random_Map/Assets/Tile.tscn" id="2_pxrvf"]
-[ext_resource type="AudioStream" uid="uid://q4obps1dynr6" path="res://root/assets/audio/music/Background Track 3 (Loop).mp3" id="3_1jdwc"]
+[ext_resource type="AudioStream" uid="uid://bw0cr2uh4j8ap" path="res://root/assets/audio/music/Background Track 3 (Loop).mp3" id="3_1jdwc"]
+[ext_resource type="Texture2D" uid="uid://ddto5n7e5cnr1" path="res://root/assets/sprites/backgrounds/Dystopian Background/Layer 1.png" id="4_c63nh"]
+[ext_resource type="Texture2D" uid="uid://bl1yrxaww70r6" path="res://root/assets/sprites/backgrounds/Dystopian Background/Layer 2.png" id="5_qg87r"]
+[ext_resource type="Texture2D" uid="uid://bvqovxh4ebw2m" path="res://root/assets/sprites/backgrounds/Dystopian Background/Layer 3.png" id="6_e0bio"]
+[ext_resource type="Texture2D" uid="uid://dvhyqcqe5w15x" path="res://root/assets/sprites/backgrounds/Dystopian Background/Layer 4.png" id="7_yumuq"]
+[ext_resource type="Texture2D" uid="uid://hg3ecbcccecm" path="res://root/assets/sprites/backgrounds/Dystopian Background/Layer 5.png" id="8_6rorh"]
+[ext_resource type="Texture2D" uid="uid://bnkgmud81o6if" path="res://root/assets/sprites/backgrounds/Dystopian Background/Layer 62.png" id="9_dyjrx"]
 
 [node name="random_map" type="Node2D"]
 script = ExtResource("1_3qucg")
@@ -13,3 +19,41 @@ script = ExtResource("1_3qucg")
 stream = ExtResource("3_1jdwc")
 volume_db = -22.0
 autoplay = true
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1152, 648)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("4_c63nh")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1152, 648)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+texture = ExtResource("5_qg87r")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1152, 648)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+texture = ExtResource("6_e0bio")
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1152, 648)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4"]
+texture = ExtResource("7_yumuq")
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1152, 648)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5"]
+texture = ExtResource("8_6rorh")
+
+[node name="ParallaxLayer6" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1152, 648)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer6"]
+texture = ExtResource("9_dyjrx")

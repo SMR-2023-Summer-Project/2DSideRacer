@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://g1ne7axbvfd5"]
+[gd_scene load_steps=6 format=3 uid="uid://bii10xaq1r4ki"]
 
 [ext_resource type="Script" path="res://root/multiplayer/Collectible1.gd" id="1_reutd"]
 [ext_resource type="Script" path="res://root/scenes/JumpBoostArea1.gd" id="2_sdg1t"]
-[ext_resource type="Texture2D" path="res://root/assets/sprites/misc/new_five_second_jump_boost_sprite copy.png" id="3_kdfs4"]
+[ext_resource type="Texture2D" uid="uid://cwn0bcxs4gmrc" path="res://root/assets/sprites/misc/new_five_second_jump_boost_sprite copy.png" id="3_kdfs4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_crlcr"]
 radius = 33.0

@@ -34,6 +34,7 @@ var powerup_type = ""
 @onready var ray = $RayCast2D
 #var ui: PackedScene
 var coins = 0
+var numCoinsOnMap = 5
 var prevDirection = 0
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -237,8 +238,11 @@ func update_spawn(new_position):
 func addCoins():
 	coins += 1
 	print("This player added a coin, coin count is: ", coins)
-	$UI/GameHUD.get_node('CoinCount').text = str(coins)+" / 5"
+	$UI/GameHUD.get_node('CoinCount').text = str(coins)+" / "+str(numCoinsOnMap)
 	$PlayerSounds/CoinCollectSfx.play()
+
+func changeNumCoins(num):
+	numCoinsOnMap = num
 
 # Function to handle wall jumps
 func changeRD():

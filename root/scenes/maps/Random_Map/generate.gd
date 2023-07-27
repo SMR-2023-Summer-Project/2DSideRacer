@@ -15,8 +15,8 @@ const numCoins = 50
 const numBoosts = 50
 
 #Game parameters
-const gameWidth = 6400
-const gameHeight = 1600
+const gameWidth = 9600
+const gameHeight = 2400
 const tileSize = 48
 
 #Cave generation parameters
@@ -147,10 +147,10 @@ func doDFS():
 	
 	stack.append(start)
 	while stack.size()!=0:
-		var element = stack.pop_front()
+		var element = stack.pop_back()
 		if element not in visited:
 			visited.append(element)
-			for neighbors in getNeighbors(element[0],element[1]):
+			for neighbors in getNeighbors( element[0],element[1]):
 				if (board[neighbors[0]][neighbors[1]]==0) and (neighbors not in visited):
 					stack.append(neighbors)
 		if element == end:
@@ -226,10 +226,18 @@ func generateBoard():
 func generatePlayer():
 	var player = Player.instantiate()
 	player.position = Vector2(start[0]*tileSize,start[1]*tileSize)
+	
+	#Sets up camera
+	player.get_node("Camera2D").limit_left = 0
+	player.get_node("Camera2D").limit_right = gameWidth-tileSize
+	player.get_node("Camera2D").limit_top = 0
+	player.get_node("Camera2D").limit_bottom = gameHeight-tileSize
+	
 	Global.updated_respawn(Vector2(start[0]*tileSize,start[1]*tileSize))
 	player.update_spawn(Vector2(start[0]*tileSize,start[1]*tileSize))
 	player.force_respawn()
 	player.name = str(multiplayer.get_unique_id())
+	player.changeNumCoins(numCoins)
 	add_child(player)
 
 #Only call these when map is fully setup and generated

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://boahtv6xc4gls"]
 
 [ext_resource type="Script" path="res://root/ui/game_hud/checkered_flag.gd" id="1_4326u"]
-[ext_resource type="Texture2D" uid="uid://bds8icdjjo77a" path="res://root/assets/sprites/misc/checkered_flag.png" id="1_l1o3b"]
+[ext_resource type="Texture2D" uid="uid://pljhvxwbirgk" path="res://root/assets/sprites/misc/checkered_flag.png" id="1_l1o3b"]
 
 [node name="CheckeredFlag" type="Control"]
 layout_mode = 3
