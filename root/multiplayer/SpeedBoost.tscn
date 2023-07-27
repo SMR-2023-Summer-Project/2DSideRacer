@@ -1,0 +1,135 @@
+[gd_scene load_steps=17 format=3 uid="uid://d145q4tyl650d"]
+
+[ext_resource type="Script" path="res://root/multiplayer/SpeedBoostArea2D.gd" id="1_ge87w"]
+[ext_resource type="Texture2D" uid="uid://b5egdbxodv80g" path="res://root/assets/sprites/misc/speed_up_sprite_frame_1.png" id="2_ckm5f"]
+[ext_resource type="Texture2D" uid="uid://dvv816kxipiqy" path="res://root/assets/sprites/misc/speed_up_sprite_frame_2.png" id="3_f7uag"]
+[ext_resource type="Texture2D" uid="uid://cn8ukjsnfuc5n" path="res://root/assets/sprites/misc/speed_up_sprite_frame_3.png" id="4_pkh15"]
+[ext_resource type="Texture2D" uid="uid://df4s0nac3f7j" path="res://root/assets/sprites/misc/speed_up_sprite_frame_4.png" id="5_44vgs"]
+[ext_resource type="Texture2D" uid="uid://duim878rghicw" path="res://root/assets/sprites/misc/speed_up_sprite_frame_5.png" id="6_rgwf6"]
+[ext_resource type="Texture2D" uid="uid://crwcpx58jypx1" path="res://root/assets/sprites/misc/speed_up_sprite_frame_6.png" id="7_m2bwl"]
+[ext_resource type="Texture2D" uid="uid://yssdsvp3hlnc" path="res://root/assets/sprites/misc/speed_up_sprite_frame_7.png" id="8_1lv5g"]
+[ext_resource type="Texture2D" uid="uid://b5j0l5u1rdg5x" path="res://root/assets/sprites/misc/speed_up_sprite_frame_8.png" id="9_ooqqe"]
+[ext_resource type="Texture2D" uid="uid://7jlsucberxjf" path="res://root/assets/sprites/misc/speed_up_sprite_frame_9.png" id="10_51gah"]
+[ext_resource type="Script" path="res://root/scenes/AnimatedSprite2D.gd" id="11_7xnl7"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_weg0y"]
+radius = 33.0
+height = 82.0
+
+[sub_resource type="Animation" id="Animation_040ny"]
+resource_name = "5secanimation"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"5secspeedboost"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 12]
+}
+
+[sub_resource type="Animation" id="Animation_5b2ai"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dkehq"]
+_data = {
+"5secanimation": SubResource("Animation_040ny"),
+"RESET": SubResource("Animation_5b2ai")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ogk6f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ckm5f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ckm5f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ckm5f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ckm5f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ckm5f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_f7uag")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_pkh15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_44vgs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_rgwf6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_m2bwl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_1lv5g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ooqqe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_51gah")
+}],
+"loop": true,
+"name": &"5secspeedboost",
+"speed": 11.0
+}]
+
+[node name="SpeedBoost" type="Node2D"]
+
+[node name="SpeedBoostArea1" type="Area2D" parent="."]
+script = ExtResource("1_ge87w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpeedBoostArea1"]
+shape = SubResource("CapsuleShape2D_weg0y")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dkehq")
+}
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.447183, 0.457746)
+sprite_frames = SubResource("SpriteFrames_ogk6f")
+animation = &"5secspeedboost"
+autoplay = "5secspeedboost"
+script = ExtResource("11_7xnl7")
+
+[connection signal="body_entered" from="SpeedBoostArea1" to="SpeedBoostArea1" method="_on_body_entered"]

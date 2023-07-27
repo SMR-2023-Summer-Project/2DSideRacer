@@ -8,7 +8,7 @@ const DFStile = preload("res://root/scenes/maps/Random_Map/Assets/brown.tscn")
 const Player = preload("res://root/entities/player/player.tscn")
 const gameHud = preload("res://root/ui/game_hud/game_hud.tscn")
 const coinLoad = preload("res://root/multiplayer/coin.gd")
-const speedLoad = preload("res://root/multiplayer/Collectible1.gd")
+const speedLoad = preload("res://root/multiplayer/SpeedBoost.tscn")
 
 #Change number of entities
 const numCoins = 50
@@ -188,7 +188,7 @@ func drawMap():
 		add_child(coin)
 	
 	for coords in speedCoords:
-		var speed = speedLoad.new()
+		var speed = speedLoad.instantiate()
 		speed.position = Vector2(coords[0]*tileSize,coords[1]*tileSize)
 		add_child(speed)
 
@@ -221,6 +221,7 @@ func generateBoard():
 	
 	drawBorder()
 	addCoins()
+	addSpeedBoosts()
 
 #Generates player
 func generatePlayer():

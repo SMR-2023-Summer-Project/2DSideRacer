@@ -1029,7 +1029,7 @@ script = ExtResource("5_pmmvp")
 [node name="Node2D" parent="." instance=ExtResource("4_sd4gr")]
 
 [node name="Collectible1" parent="." instance=ExtResource("6_s01lp")]
-position = Vector2(-22, -14)
+position = Vector2(109, -269)
 
 [node name="MultiplayerMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_eg2mq")
