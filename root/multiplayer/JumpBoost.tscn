@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://oo88b5qbah5w"]
+
+[ext_resource type="Script" path="res://root/scenes/JumpBoostArea1.gd" id="1_itjht"]
+[ext_resource type="Texture2D" uid="uid://cwn0bcxs4gmrc" path="res://root/assets/sprites/misc/new_five_second_jump_boost_sprite copy.png" id="2_mudnh"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t4adh"]
+radius = 33.0
+height = 82.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bxxpb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_mudnh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="JumpBoost" type="Node2D"]
+
+[node name="SpeedBoostArea1" type="Area2D" parent="."]
+script = ExtResource("1_itjht")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpeedBoostArea1"]
+shape = SubResource("CapsuleShape2D_t4adh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.65, 0.65)
+sprite_frames = SubResource("SpriteFrames_bxxpb")
+
+[connection signal="body_entered" from="SpeedBoostArea1" to="SpeedBoostArea1" method="_on_body_entered" flags=18]

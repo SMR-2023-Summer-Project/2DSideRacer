@@ -9,10 +9,12 @@ const Player = preload("res://root/entities/player/player.tscn")
 const gameHud = preload("res://root/ui/game_hud/game_hud.tscn")
 const coinLoad = preload("res://root/multiplayer/coin.gd")
 const speedLoad = preload("res://root/multiplayer/SpeedBoost.tscn")
+const jumpLoad = preload("res://root/multiplayer/JumpBoost.tscn")
 
 #Change number of entities
 const numCoins = 50
-const numBoosts = 50
+const numSpeedBoosts = 50
+const numJumpBoosts = 50
 
 #Game parameters
 const gameWidth = 9600
@@ -191,6 +193,11 @@ func drawMap():
 		var speed = speedLoad.instantiate()
 		speed.position = Vector2(coords[0]*tileSize,coords[1]*tileSize)
 		add_child(speed)
+		
+	for coords in jumpCoords:
+		var jump = jumpLoad.instantiate()
+		jump.position = Vector2(coords[0]*tileSize,coords[1]*tileSize)
+		add_child(jump)
 
 #Draws border to prevent gaps
 func drawBorder():
@@ -221,6 +228,7 @@ func generateBoard():
 	
 	drawBorder()
 	addCoins()
+	addJumpBoosts()
 	addSpeedBoosts()
 
 #Generates player
@@ -256,12 +264,23 @@ func addCoins():
 var speedCoords = []
 func addSpeedBoosts():
 	var count = 0
-	while count < numBoosts:
+	while count < numSpeedBoosts:
 		var randX = randi_range(1,boardWidth-4)
 		var randY = randi_range(1,boardHeight-4)
 
 		if (board[randX][randY] == 0):
 			speedCoords.append([randX,randY])
+			count += 1
+
+var jumpCoords = []
+func addJumpBoosts():
+	var count = 0
+	while count < numSpeedBoosts:
+		var randX = randi_range(1,boardWidth-4)
+		var randY = randi_range(1,boardHeight-4)
+
+		if (board[randX][randY] == 0):
+			jumpCoords.append([randX,randY])
 			count += 1
 
 func addHUD():
