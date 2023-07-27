@@ -77,3 +77,6 @@ func drop_and_rotate_text(fade_out: bool) -> Signal:
 func _ready():
 	# extract horizontal pane node from parent
 	horizontal_pane = get_parent().get_node("HorizontalPane")
+
+func _physics_process(delta):
+	pivot_offset = size / 2

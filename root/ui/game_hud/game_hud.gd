@@ -41,12 +41,16 @@ func play_countdown (starting_number: int) -> void:
 func show_finished ():
 	# displays the finished gui with an animation
 	
+	finished.visible = true
+	
 	await finished.appear()
 
 func hide_finished ():
 	# hides the finished gui
 	
 	await finished.disappear()
+	
+	finished.visible = false
 
 func _debug ():
 	if Global.mapChosen:
@@ -98,5 +102,6 @@ func _ready():
 	time_remaining.hide()
 	player_progress.hide()
 	countdown.hide()
+	finished.hide()
 	
 	await _debug()

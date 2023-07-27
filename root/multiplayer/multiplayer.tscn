@@ -1,16 +1,23 @@
-[gd_scene load_steps=19 format=3 uid="uid://cl80pd1y8hj2j"]
+[gd_scene load_steps=26 format=3 uid="uid://cl80pd1y8hj2j"]
 
-[ext_resource type="Texture2D" uid="uid://vxg43cp88ana" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
+[ext_resource type="Texture2D" uid="uid://ciwkp7suhuah3" path="res://root/assets/sprites/backgrounds/Dystopian Background/Layer 1.png" id="1_jwgxo"]
+[ext_resource type="Texture2D" uid="uid://cnajyl3dmstj" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
+[ext_resource type="Texture2D" uid="uid://dkcc71hfa3gjp" path="res://root/assets/sprites/backgrounds/Dystopian Background/Layer 2.png" id="2_3qq48"]
 [ext_resource type="Script" path="res://root/scenes/demo_scene/Checkpoint.gd" id="2_6kt0a"]
 [ext_resource type="Script" path="res://root/multiplayer/coin.gd" id="3_4pfx8"]
+[ext_resource type="Texture2D" uid="uid://ckmx6mdxtivmv" path="res://root/assets/sprites/backgrounds/Dystopian Background/Layer 3.png" id="3_uwaa1"]
+[ext_resource type="Texture2D" uid="uid://bxd1j2wcdaq27" path="res://root/assets/sprites/backgrounds/Dystopian Background/Layer 4.png" id="4_a8eit"]
 [ext_resource type="PackedScene" uid="uid://bm70c7wsn6m54" path="res://root/scenes/demo_scene_2/demo_scene_2.tscn" id="4_sd4gr"]
 [ext_resource type="Script" path="res://root/scenes/Select Map/Animation_Selection.gd" id="5_pmmvp"]
+[ext_resource type="Texture2D" uid="uid://c67bm671hv6s4" path="res://root/assets/sprites/backgrounds/Dystopian Background/Layer 5.png" id="5_skorc"]
 [ext_resource type="Script" path="res://root/multiplayer/Collectible1.gd" id="6_5vr5w"]
 [ext_resource type="PackedScene" uid="uid://cux5nlw6mqti" path="res://root/scenes/collectible_1.tscn" id="6_s01lp"]
+[ext_resource type="Texture2D" uid="uid://djdctifbn84dl" path="res://root/assets/sprites/backgrounds/Dystopian Background/Layer 62.png" id="6_wpynx"]
 [ext_resource type="Script" path="res://root/multiplayer/SpeedBoostArea2D.gd" id="7_a6kl4"]
-[ext_resource type="Texture2D" uid="uid://phwijiw766oi" path="res://root/assets/sprites/misc/new_five_second_speed_up_sprite.png" id="8_f0xg3"]
-[ext_resource type="AudioStream" uid="uid://corgr1urmc1go" path="res://root/assets/audio/music/Background Track 1.mp3" id="10_eg2mq"]
+[ext_resource type="Texture2D" uid="uid://y84dcqvb3g8o" path="res://root/assets/sprites/misc/new_five_second_speed_up_sprite.png" id="8_f0xg3"]
+[ext_resource type="AudioStream" uid="uid://bqqecoevxa2uj" path="res://root/assets/audio/music/Background Track 1.mp3" id="10_eg2mq"]
 [ext_resource type="Script" path="res://root/multiplayer/DieBox.gd" id="10_x10xs"]
+[ext_resource type="PackedScene" uid="uid://g1ne7axbvfd5" path="res://root/scenes/collectible_2.tscn" id="18_mwqg8"]
 
 [sub_resource type="GDScript" id="GDScript_463ds"]
 script/source = "# author Cesar
@@ -879,6 +886,44 @@ size = Vector2(9131, 93)
 position = Vector2(-5, -3)
 script = SubResource("GDScript_463ds")
 
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1152, 648)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("1_jwgxo")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1152, 648)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+texture = ExtResource("2_3qq48")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1152, 648)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+texture = ExtResource("3_uwaa1")
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1152, 648)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4"]
+texture = ExtResource("4_a8eit")
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1152, 648)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5"]
+texture = ExtResource("5_skorc")
+
+[node name="ParallaxLayer6" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1152, 648)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer6"]
+texture = ExtResource("6_wpynx")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="MainMenu" type="PanelContainer" parent="CanvasLayer"]
@@ -976,14 +1021,6 @@ script = ExtResource("3_4pfx8")
 position = Vector2(111, -257)
 script = ExtResource("3_4pfx8")
 
-[node name="Coin" type="Area2D" parent="Coin4"]
-position = Vector2(251, 3)
-script = ExtResource("3_4pfx8")
-
-[node name="Coin" type="Area2D" parent="Coin4/Coin"]
-position = Vector2(-1157, -81)
-script = ExtResource("3_4pfx8")
-
 [node name="BackButton" type="ColorRect" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
@@ -992,6 +1029,7 @@ script = ExtResource("5_pmmvp")
 [node name="Node2D" parent="." instance=ExtResource("4_sd4gr")]
 
 [node name="Collectible1" parent="." instance=ExtResource("6_s01lp")]
+position = Vector2(-22, -14)
 
 [node name="MultiplayerMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_eg2mq")
@@ -1012,7 +1050,7 @@ shape = SubResource("CapsuleShape2D_crlcr")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Collectible2"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Collectible2"]
-position = Vector2(165, 19)
+position = Vector2(163, 17)
 scale = Vector2(0.447183, 0.457746)
 sprite_frames = SubResource("SpriteFrames_togwt")
 animation = &"5secspeedboost"
@@ -1025,6 +1063,9 @@ script = ExtResource("10_x10xs")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DieBox4"]
 position = Vector2(400.5, 589.5)
 shape = SubResource("RectangleShape2D_0j4qw")
+
+[node name="Collectible3" parent="." instance=ExtResource("18_mwqg8")]
+position = Vector2(227, -7)
 
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HBoxContainer/Connect" to="." method="_on_join_pressed"]

@@ -1,26 +1,116 @@
-[gd_scene load_steps=7 format=3 uid="uid://cux5nlw6mqti"]
+[gd_scene load_steps=18 format=3 uid="uid://cux5nlw6mqti"]
 
 [ext_resource type="Script" path="res://root/multiplayer/Collectible1.gd" id="1_lbi1h"]
 [ext_resource type="Script" path="res://root/multiplayer/SpeedBoostArea2D.gd" id="2_vlrft"]
-[ext_resource type="Texture2D" uid="uid://b3w1b8jmab3no" path="res://root/assets/sprites/misc/new_five_second_speed_up_sprite.png" id="3_i4doy"]
+[ext_resource type="Texture2D" uid="uid://dwcelh1npjnkf" path="res://root/assets/sprites/misc/speed_up_sprite_frame_1.png" id="3_ng178"]
+[ext_resource type="Texture2D" uid="uid://bw60vpoxj00ci" path="res://root/assets/sprites/misc/speed_up_sprite_frame_2.png" id="4_lpgde"]
+[ext_resource type="Texture2D" uid="uid://btujuy2qmh3ny" path="res://root/assets/sprites/misc/speed_up_sprite_frame_3.png" id="5_cti7i"]
+[ext_resource type="Texture2D" uid="uid://bshkjqmk88csj" path="res://root/assets/sprites/misc/speed_up_sprite_frame_4.png" id="6_jxx0k"]
+[ext_resource type="Texture2D" uid="uid://y24wjpjdh4ik" path="res://root/assets/sprites/misc/speed_up_sprite_frame_5.png" id="7_h3mjg"]
+[ext_resource type="Texture2D" uid="uid://b6vnoivin1hp3" path="res://root/assets/sprites/misc/speed_up_sprite_frame_6.png" id="8_i3ggf"]
+[ext_resource type="Texture2D" uid="uid://0h5jvvmrvf6s" path="res://root/assets/sprites/misc/speed_up_sprite_frame_7.png" id="9_5dcsp"]
+[ext_resource type="Texture2D" uid="uid://pvgjnyk0lv4i" path="res://root/assets/sprites/misc/speed_up_sprite_frame_8.png" id="10_klwua"]
+[ext_resource type="Texture2D" uid="uid://cd7vjmcp6yagd" path="res://root/assets/sprites/misc/speed_up_sprite_frame_9.png" id="11_1fipp"]
+[ext_resource type="Script" path="res://root/scenes/AnimatedSprite2D.gd" id="12_qkgcl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_crlcr"]
 radius = 33.0
 height = 82.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qgn2d"]
-atlas = ExtResource("3_i4doy")
-region = Rect2(284, 0, 142, 213)
+[sub_resource type="Animation" id="Animation_040ny"]
+resource_name = "5secanimation"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"5secspeedboost"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 12]
+}
+
+[sub_resource type="Animation" id="Animation_5b2ai"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dkehq"]
+_data = {
+"5secanimation": SubResource("Animation_040ny"),
+"RESET": SubResource("Animation_5b2ai")
+}
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_togwt"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qgn2d")
+"texture": ExtResource("3_ng178")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ng178")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ng178")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ng178")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ng178")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_lpgde")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_cti7i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_jxx0k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_h3mjg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_i3ggf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_5dcsp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_klwua")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_1fipp")
 }],
 "loop": true,
 "name": &"5secspeedboost",
-"speed": 5.0
+"speed": 11.0
 }]
 
 [node name="Collectible1" type="Node2D"]
@@ -34,6 +124,9 @@ position = Vector2(158, 10)
 shape = SubResource("CapsuleShape2D_crlcr")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dkehq")
+}
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(165, 19)
@@ -41,6 +134,7 @@ scale = Vector2(0.447183, 0.457746)
 sprite_frames = SubResource("SpriteFrames_togwt")
 animation = &"5secspeedboost"
 autoplay = "5secspeedboost"
-frame_progress = 0.206805
+frame = 1
+script = ExtResource("12_qkgcl")
 
 [connection signal="body_entered" from="SpeedBoostArea1" to="SpeedBoostArea1" method="_on_body_entered"]
