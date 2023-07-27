@@ -251,6 +251,7 @@ func generatePlayer():
 	player.get_node("Camera2D").limit_right = gameWidth-tileSize
 	player.get_node("Camera2D").limit_top = 0
 	player.get_node("Camera2D").limit_bottom = gameHeight-tileSize
+	player.get_node("Camera2D").zoom = Vector2(2,2)
 	
 	Global.updated_respawn(Vector2(start[0]*tileSize,start[1]*tileSize))
 	player.update_spawn(Vector2(start[0]*tileSize,start[1]*tileSize))
@@ -325,7 +326,5 @@ func _ready():
 func _process(delta):
 	var dist = 1-distanceFromGoal()
 	marker.set_progress(dist)
-#	if(dist>0.98 and dist<=1):
-#		goalTouched()
 
 
