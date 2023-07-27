@@ -18,6 +18,10 @@ config/features=PackedStringArray("4.1", "Forward Plus")
 
 Global="*res://root/scenes/demo_scene/Global.gd"
 
+[display]
+
+window/stretch/mode="viewport"
+
 [dotnet]
 
 project/assembly_name="2DSideRacer"
