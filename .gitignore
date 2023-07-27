@@ -21,3 +21,4 @@ build
 
 # macOS attrib files
 .DS_Store
+root/ui/title_screen/title_screen.tscn

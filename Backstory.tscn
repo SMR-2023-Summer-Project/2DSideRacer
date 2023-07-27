@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://bd3k26arbg27i"]
+
+[ext_resource type="Script" path="res://Label.gd" id="1_fvq5n"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 1140.0
+offset_bottom = 656.0
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 24.0
+offset_right = 1124.0
+offset_bottom = 466.0
+text = "Throughout all of the natural events that have challenged humanity in its history, many pale in comparison to the remerging of the continents. In the distant future, an event that was thought to happen multiple millennia after the current time shook the world with its sudden arrival. The new supercontinent changed quite a bit for humanity. Although the actual merge wasn’t as catastrophic as one might assume, the aftermath took a severe toll on both humanity and the creatures that inhabit the planet as well. Although many perished with the formation of new mountains, adapting to new areas and climate wasn’t always easy. Some groups of people were surrounded by people they never knew before, people they didn’t agree with. Although war was a constant threat to humanity and tensions between nations were severe, eventually, a sort of harmony was achieved, however, humanity will never get back the thousands of things they lost as a result. To some, this was for the better. After all, the supercontinent could never support the capacity of people the continents could.
+
+	In addition to those who dwell on land, many sea creatures lost their lives for a multitude of reasons. Adapting to new areas was as hard for those in water as it was for those on land. In an effort to preserve some of the wildlife, as well as to further science and provide new entertainment and enjoyment to people, scientists started to gather sea creatures. Some creatures were used for experiments. From here, the scientists started to genetically modify and engineer sea animals. These sea creatures were made to breathe air, understand human speech, and were given a wider range of emotions. Some became pets, some were used for entertainment. Eventually, aiding the unfortunate was an excuse to use sea creatures for the gain of humanity. These creatures were used for humanity to cope with the amount of loss and grief it had struggled with since the supercontinent formed. However, there were only so many experiments and so much mistreatment that the animals would take before they got fed up. They all resolved to run away from civilization and humans in general to reach [the place].
+"
+autowrap_mode = 2
+script = ExtResource("1_fvq5n")

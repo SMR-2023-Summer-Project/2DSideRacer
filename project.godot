@@ -13,6 +13,7 @@ config_version=5
 config/name="2DSideRacer"
 run/main_scene="res://root/ui/title_screen/title_screen.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
+run/stretch/mode="disabled"
 
 [autoload]
 
