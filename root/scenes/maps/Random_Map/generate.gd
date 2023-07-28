@@ -239,7 +239,7 @@ func generateBoard():
 	addCoins()
 	addJumpBoosts()
 	addSpeedBoosts()
-	addHUD()
+	#addHUD()
 
 #Generates player
 func generatePlayer():
@@ -319,12 +319,13 @@ func goalTouched(body):
 
 func _ready():
 	generateBoard()
-	generatePlayer()
+	#generatePlayer()
 	drawMap()
 
 
 func _process(delta):
-	var dist = 1-distanceFromGoal()
-	marker.set_progress(dist)
+#	var dist = 1-distanceFromGoal()
+#	marker.set_progress(dist)
+	pass
 
 
