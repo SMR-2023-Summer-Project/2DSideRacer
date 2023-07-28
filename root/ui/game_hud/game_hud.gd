@@ -53,9 +53,12 @@ func hide_finished ():
 	finished.visible = false
 
 func _debug ():
+	$MapSelect.visible = true
+	while !Global.mapChosen:
+		await get_tree().create_timer(0.1).timeout
 	if Global.mapChosen:
 		var marker = create_player_marker("You")
-		
+		$MapSelect.visible = false
 		marker.set_inactive()
 		
 		var max_time = 10

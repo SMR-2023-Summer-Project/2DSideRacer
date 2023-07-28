@@ -29,17 +29,29 @@ const Player = preload(\"res://root/entities/player/player.tscn\")
 #const ui = preload(\"res://root/scenes/demo_scene/ui.tscn\")
 var peer = ENetMultiplayerPeer.new()
 var mapChosen = false
-const select = preload('res://root/scenes/Select Map/Map Selector.tscn')
+var select = load('res://root/scenes/Select Map/Map Selector.tscn')
+const mapText = [\"res://root/scenes/demo_scene_2/demo_scene_2.tscn\",\"res://root/scenes/maps/Random_Map/random_map.tscn\"]
+const maps = [preload(mapText[0]),preload(mapText[1])] 
 var map = null
 var players = 0
 func _ready():
+	
+		
+	$DemoScene.queue_free()
 	$BackButton.previousScene = 'res://root/ui/title_screen/title_screen.tscn'
 	$BackButton.position += Vector2(-700,-600) 
 	mapChosen = Global.mapChosen
-	Global.updated_respawn_distance(200)
+	#Global.updated_respawn_distance(200)
 	Global.updated_respawn(Vector2(-200,0))
-	if mapChosen:
-		_on_host_pressed()
+	#var m =  load('res://root/scenes/demo_scene_2/demo_scene_2.tscn')
+	#var mp = m.instantiate()
+	#mp.position.x += -500 
+	#add_child(mp)		
+	while !mapChosen:
+		mapChosen = Global.mapChosen
+		await get_tree().create_timer(0.1).timeout
+	#print('Loop ended')
+	startMap()
 func _on_join_pressed(): 
 	$CanvasLayer.hide()
 	var txt : String = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HBoxContainer/Address.text
@@ -49,42 +61,47 @@ func _on_join_pressed():
 	
 	peer.create_client(txt, PORT)
 	multiplayer.multiplayer_peer = peer
-	if players > 1:
-			$Lobby.queue_free()
-			$Node2D.show()
+	
+	#		$Lobby.queue_free()
+	#		$Node2D.show()
 	
 func _on_host_pressed():
 	# Start as server.
 	$CanvasLayer.hide()
 	
-	if !mapChosen:	
-		var s = select.instantiate()
-		s.position = Vector2(-750,-600)
-		add_child(s)
-	else:
-		$BackButton.queue_free()
-		
-		peer.create_server(PORT)
-		multiplayer.multiplayer_peer = peer
-		
-		multiplayer.peer_connected.connect(add_player)
-		multiplayer.peer_disconnected.connect(remove_player)
-		
-		add_player(multiplayer.get_unique_id())
-		$BackButton.queue_free()
+	
+	peer.create_server(PORT)
+	multiplayer.multiplayer_peer = peer
+	
+	multiplayer.peer_connected.connect(add_player)
+	multiplayer.peer_disconnected.connect(remove_player)
+	
+	add_player(multiplayer.get_unique_id())
+	$BackButton.queue_free()
 		
 	
 
-	if players > 1:
-		$Lobby.queue_free()
-		$Node2D.show()
-
-
+func startMap():
+	var y = 0
+	for x in mapText:
+		print(maps[0])
+		print(Global.map)
+		print(x)
+		if x == Global.map:
+			print(y)
+			print('random thing worked')
+			var map = maps[y].instantiate()
+			#var m =  load('res://root/scenes/demo_scene_2/demo_scene_2.tscn')
+			#var mp = m.instantiate()
+			
+			map.position = Vector2(0,0) 
+			add_child(map)		
+			
+		y += 1
+	$Lobby.queue_free()
 
 func add_player(peer_id):
 	var player = Player.instantiate()
-	Global.updated_respawn(Vector2(254,644))
-	Global.updated_respawn_distance(750)
 	player.name = str(peer_id)
 	#var UI = ui.instantiate()
 	add_child(player)
@@ -1026,7 +1043,8 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("5_pmmvp")
 
-[node name="Node2D" parent="." instance=ExtResource("4_sd4gr")]
+[node name="DemoScene" parent="." instance=ExtResource("4_sd4gr")]
+position = Vector2(-305, -192)
 
 [node name="Collectible1" parent="." instance=ExtResource("6_s01lp")]
 position = Vector2(109, -269)

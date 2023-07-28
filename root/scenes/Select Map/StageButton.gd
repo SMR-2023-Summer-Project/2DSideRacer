@@ -4,9 +4,10 @@ var image : TextureRect
 
 var button : TextureButton
 #var bgOffset = position - Vector2(-159,-79) 
-var imgFile = ''
+@export var imgFile = ''
 var butOffset = Vector2(-36,-20) 
-var Scene = ''
+@export var Scene = ''
+#export(String) var Scene
 func _ready():
 	color = 'black'
 	button = TextureButton.new()
@@ -40,7 +41,8 @@ func _process(delta):
 
 func _on_stage_button_pressed():
 	Global.change_mapChose(true, Scene)
-	get_tree().change_scene_to_file(Scene)
+	#get_tree().change_scene_to_file(Scene)
+	get_parent().queue_free()
 	print('Stage Selected')
 
 

@@ -38,11 +38,12 @@ var numCoinsOnMap = 5
 var prevDirection = 0
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-
+var flag = false
 # Wall jump variables
 var wallJumpTimer = 0.0
 
 func _ready():
+	z_index = 2
 	changeRD()
 	force_respawn()
 	#ui = preload("res://root/scenes/demo_scene/ui.tscn")
@@ -68,6 +69,11 @@ func _physics_process(delta):
 			velocity.y = JUMP_VELOCITY * 0.75
 			canDJ = false
 	wall_jump()
+	if Global.mapChosen and !flag:
+		await get_tree().create_timer(0.1).timeout
+		update_spawn(Global.spawn_point)
+		force_respawn()
+		flag = true
 	# Handle Jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor() and not Input.is_action_pressed("flip"):
 		# Reset double jump condition
@@ -227,6 +233,7 @@ func respawn():
 		print(position)
 		
 func force_respawn():
+	print('Forced respawn ', spawn_point)
 	position = spawn_point
 	$PlayerSounds/HurtSfx.play()
 func _enter_tree():

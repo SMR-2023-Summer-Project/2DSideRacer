@@ -15,6 +15,7 @@ func updated_respawn_distance(y):#Makes a function to change the spawnpoint
 func change_mapChose(chosen, chosenMap):
 	mapChosen = chosen
 	map = chosenMap
+
 func is_server() -> bool:
 	# returns true if the calling instance is the
 	# current host of a server
