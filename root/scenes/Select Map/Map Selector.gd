@@ -8,9 +8,12 @@ var stage_Selection = []
 
 
 func _ready():
+	self.scale *= 1.6
+	self.position.y -= 300
 	stage_Selection.append( StageButton.new())
 	stage_Selection[0] = StageButton.new()
 	back_button = BackButton.new()
+	back_button.closeScene = true
 	back_button.previousScene = "res://root/multiplayer/multiplayer.tscn"
 	stage_Selection[0].imgFile = 'res://root/assets/sprites/Selection Icons/Industrial Image.png'
 	stage_Selection[0].Scene = 'res://root/multiplayer/multiplayer.tscn'

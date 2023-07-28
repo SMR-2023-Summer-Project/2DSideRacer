@@ -3,7 +3,7 @@ extends ColorRect
 class_name BackButton
 # Called when the node enters the scene tree for the first time.
 var image : TextureRect
-
+var closeScene = false
 var button : TextureButton
 var previousScene = ""
 #var bgOffset = position - Vector2(-159,-79) 
@@ -37,8 +37,10 @@ func _process(delta):
 
 
 func _on_back_button_pressed():
-	get_tree().change_scene_to_file(previousScene)
-
+	if !closeScene:
+		get_tree().change_scene_to_file(previousScene)
+	else:
+		get_parent().queue_free()
 
 func _on_back_button_mouse_entered():
 	self.color = 'white'
