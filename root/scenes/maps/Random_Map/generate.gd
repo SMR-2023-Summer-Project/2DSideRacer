@@ -12,16 +12,11 @@ const coinLoad = preload("res://root/multiplayer/coin.gd")
 const speedLoad = preload("res://root/multiplayer/SpeedBoost.tscn")
 const jumpLoad = preload("res://root/multiplayer/JumpBoost.tscn")
 
-#Change number of entities
-const numCoins = 50
-const numSpeedBoosts = 4
-const numJumpBoosts = 4
-
 #Game parameters
 #Change to null if you want random gameWidth and gameHeight for variation
-const gameWidth = 9600
-const gameHeight = 2400
 const tileSize = 48
+var gameWidth = tileSize*randi_range(100,250)
+var gameHeight = tileSize * randi_range(50,250)
 
 #Cave generation parameters
 const chanceToStartAlive = 0.4
@@ -31,20 +26,21 @@ const birthLimit = 4
 const simulationNum = 30
 
 #Board parameters
-const boardWidth = int(gameWidth / tileSize)
-const boardHeight = int(gameHeight / tileSize)
+var boardWidth = int(gameWidth / tileSize)
+var boardHeight = int(gameHeight / tileSize)
 var board = zeros(boardWidth, boardHeight)
 
-func generateRandomGameSize():
-	if gameWidth == null and gameHeight == null:
-		pass
+#Change number of entities
+var numCoins = boardWidth*boardHeight*0.005
+var numSpeedBoosts = boardWidth*boardHeight*0.001
+var numJumpBoosts = boardWidth*boardHeight*0.001
 
 #starting and ending generation
 var start = [randi_range(2,boardWidth*0.1)]
 var end = [randi_range(boardWidth*0.9,boardWidth-3)]
 func generateStartAndEnd():
 	#generating starting y
-	for startXLevel in range(1,boardWidth): #fail safe incase the col is all wall
+	for startXLevel in range(start[0],boardWidth): #fail safe incase the col is all wall
 		var generated = false
 		for startYLevel in range(boardHeight-4,0,-1):
 			if (board[startXLevel][startYLevel]!=1 and board[startXLevel][startYLevel+1]==1):
@@ -328,6 +324,7 @@ func _ready():
 	player[0].get_node("Camera2D").limit_top = 0
 	player[0].get_node("Camera2D").limit_bottom = gameHeight-tileSize
 	player[0].get_node("Camera2D").zoom = Vector2(2,2)
+	
 	#generatePlayer()
 	
 
