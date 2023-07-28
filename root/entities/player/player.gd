@@ -72,7 +72,7 @@ func _physics_process(delta):
 	if Global.mapChosen and !flag:
 		await get_tree().create_timer(0.1).timeout
 		update_spawn(Global.spawn_point)
-		force_respawn()
+		#force_respawn()
 		flag = true
 	# Handle Jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor() and not Input.is_action_pressed("flip"):

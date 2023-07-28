@@ -319,8 +319,17 @@ func goalTouched(body):
 
 func _ready():
 	generateBoard()
-	#generatePlayer()
 	drawMap()
+	var player = get_tree().get_nodes_in_group("Player")
+	print(player[0].global_position)
+	player[0].position = Vector2(start[0],start[1])*tileSize
+	player[0].get_node("Camera2D").limit_left = 0
+	player[0].get_node("Camera2D").limit_right = gameWidth-tileSize
+	player[0].get_node("Camera2D").limit_top = 0
+	player[0].get_node("Camera2D").limit_bottom = gameHeight-tileSize
+	player[0].get_node("Camera2D").zoom = Vector2(2,2)
+	#generatePlayer()
+	
 
 
 func _process(delta):
