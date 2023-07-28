@@ -45,8 +45,10 @@ func _on_back_button_pressed():
 func _on_back_button_mouse_entered():
 	self.color = 'white'
 	self.scale = Vector2(1,1)
+	z_index +=2
 
 
 func _on_back_button_mouse_exited():
 	self.color = 'black'
 	self.scale = Vector2(.75,.75)
+	z_index -=2

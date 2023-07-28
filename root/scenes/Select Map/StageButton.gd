@@ -4,10 +4,10 @@ var image : TextureRect
 
 var button : TextureButton
 #var bgOffset = position - Vector2(-159,-79) 
-var imgFile = ''
+@export var imgFile = ''
 var butOffset = Vector2(-36,-20) 
-var Scene = ''
-
+@export var Scene = ''
+#export(String) var Scene
 func _ready():
 	color = 'black'
 	button = TextureButton.new()
