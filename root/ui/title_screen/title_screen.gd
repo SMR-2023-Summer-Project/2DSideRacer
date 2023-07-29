@@ -11,3 +11,7 @@ func _on_quit_pressed():
 #When player presses "Play" the screen changes to the main screen where the game is
 func _on_play_pressed():
 	get_tree().change_scene_to_file("res://Backstory.tscn")
+
+
+func _on_credits_pressed():
+	get_tree().change_scene_to_file("res://root/scenes/Credits/credits_1.tscn")

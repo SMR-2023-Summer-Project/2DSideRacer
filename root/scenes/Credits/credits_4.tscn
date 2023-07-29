@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=3 uid="uid://cqptochgqmvke"]
+
+[ext_resource type="Script" path="res://root/scenes/Credits/fourthcredit.gd" id="1_ibiky"]
+[ext_resource type="Texture2D" uid="uid://dvh6xew4tna7t" path="res://root/scenes/Credits/credits_4.png" id="1_spdsq"]
+[ext_resource type="FontFile" uid="uid://cfoy0mfvuitmy" path="res://root/assets/fonts/Sniglet-Regular.ttf" id="2_6vwhd"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2eaos"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_spdsq")
+}],
+"loop": false,
+"name": &"credits_animation",
+"speed": 1.0
+}]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_ibiky")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(580, 314)
+sprite_frames = SubResource("SpriteFrames_2eaos")
+animation = &"credits_animation"
+
+[node name="NextButton" type="Button" parent="."]
+top_level = true
+offset_left = 977.0
+offset_top = 28.0
+offset_right = 1112.0
+offset_bottom = 104.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.447059, 0.447059, 0.447059, 0.447059)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_6vwhd")
+theme_override_font_sizes/font_size = 50
+text = "Next >"
+flat = true
+
+[node name="PreviousButton" type="Button" parent="."]
+top_level = true
+offset_left = 46.0
+offset_top = 30.0
+offset_right = 270.0
+offset_bottom = 106.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.447059, 0.447059, 0.447059, 0.447059)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_6vwhd")
+theme_override_font_sizes/font_size = 50
+text = "< Previous"
+flat = true
+
+[node name="BackButton" type="Button" parent="."]
+top_level = true
+offset_left = 24.0
+offset_top = 551.0
+offset_right = 166.0
+offset_bottom = 627.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.447059, 0.447059, 0.447059, 0.447059)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_6vwhd")
+theme_override_font_sizes/font_size = 50
+text = "< Back"
+flat = true
+
+[connection signal="pressed" from="NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="PreviousButton" to="." method="_on_previous_button_pressed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
