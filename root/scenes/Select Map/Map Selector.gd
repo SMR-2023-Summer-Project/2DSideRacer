@@ -8,6 +8,9 @@ var stage_Selection = []
 
 
 func _ready():
+	$ColorRect/StageButton.Scene="res://SkyCity.tscn"
+	$ColorRect/StageButton.imgFile="res://root/assets/sprites/backgrounds/Sky City/Capture.PNG"
+	$ColorRect/StageButton.position= Vector2(500,200)
 	self.scale *= 1.6
 	self.position.y -= 300
 	stage_Selection.append( StageButton.new())

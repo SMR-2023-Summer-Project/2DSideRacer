@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bc374c2losgfj"]
+[gd_scene load_steps=3 format=3 uid="uid://bc374c2losgfj"]
 
 [ext_resource type="Script" path="res://root/scenes/Select Map/Map Selector.gd" id="1_o8m4b"]
+[ext_resource type="Script" path="res://root/scenes/Select Map/StageButton.gd" id="2_rl1my"]
 
 [node name="Map Selector" type="Node2D"]
 script = ExtResource("1_o8m4b")
@@ -9,3 +10,12 @@ script = ExtResource("1_o8m4b")
 offset_right = 1148.0
 offset_bottom = 649.0
 color = Color(0.266667, 0.741176, 1, 1)
+
+[node name="StageButton" type="ColorRect" parent="ColorRect"]
+layout_mode = 0
+offset_left = 926.0
+offset_top = 560.0
+offset_right = 966.0
+offset_bottom = 600.0
+script = ExtResource("2_rl1my")
+imgFile = "res://root/assets/sprites/backgrounds/Sky City/Capture.jpg"
