@@ -33,7 +33,8 @@ var select = load('res://root/scenes/Select Map/Map Selector.tscn')
 const mapText = [\"res://root/scenes/demo_scene_2/demo_scene_2.tscn\",\"res://root/scenes/maps/Random_Map/random_map.tscn\"]
 const maps = [preload(mapText[0]),preload(mapText[1])] 
 var map = null
-var players = 0
+
+
 func _ready():
 	
 		
@@ -102,10 +103,11 @@ func startMap():
 
 func add_player(peer_id):
 	var player = Player.instantiate()
+	print(peer_id)
 	player.name = str(peer_id)
 	#var UI = ui.instantiate()
 	add_child(player)
-	players +=1
+	Global.players +=1
 	print('Joined')
 
 	
@@ -115,7 +117,7 @@ func remove_player(peer_id):
 	var player = get_node_or_null(str(peer_id))
 	if player:
 		player.queue_free()
-		players -=1
+		Global.players -=1
 "
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_spn0y"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bm3dbb2721rlv"]
+[gd_scene load_steps=16 format=3 uid="uid://bm3dbb2721rlv"]
 
 [ext_resource type="FontFile" uid="uid://d262w60e08lx0" path="res://root/assets/fonts/gotham_bold.otf" id="1_inb2t"]
 [ext_resource type="Script" path="res://root/ui/game_hud/game_hud.gd" id="1_ov5s7"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://b348et2kjhfos" path="res://root/assets/sprites/misc/coin.png" id="8_ow8wv"]
 [ext_resource type="Script" path="res://root/ui/game_hud/MapSelect.gd" id="10_28ygc"]
 [ext_resource type="Texture2D" uid="uid://iorrbb47d0go" path="res://root/assets/sprites/Menus/mapicon.png" id="11_u8xso"]
+[ext_resource type="Script" path="res://root/ui/game_hud/Message.gd" id="12_0qo0e"]
 
 [sub_resource type="Theme" id="Theme_s4hqi"]
 default_font = ExtResource("1_inb2t")
@@ -183,3 +184,11 @@ offset_right = 1080.0
 offset_bottom = 514.0
 scale = Vector2(0.1, 0.1)
 texture_normal = ExtResource("11_u8xso")
+
+[node name="Message" type="Label" parent="."]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 510.0
+offset_right = 65.0
+offset_bottom = 533.0
+script = ExtResource("12_0qo0e")

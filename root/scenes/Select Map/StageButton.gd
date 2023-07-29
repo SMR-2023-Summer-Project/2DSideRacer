@@ -40,10 +40,14 @@ func _process(delta):
 
 
 func _on_stage_button_pressed():
-	Global.change_mapChose(true, Scene)
+	if Global.players > 1:
+		Global.change_mapChose(true, Scene)
+		print('Stage Selected')
+	else:
+		Global.display_player_message('Not enough players to start, this requires 2 or more.')
 	#get_tree().change_scene_to_file(Scene)
 	get_parent().queue_free()
-	print('Stage Selected')
+	
 
 
 func _on_stage_button_mouse_entered():

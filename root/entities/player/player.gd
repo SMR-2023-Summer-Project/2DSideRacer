@@ -41,7 +41,7 @@ var numCoinsOnMap = 5
 var prevDirection = 0
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-var flag = false
+
 # Wall jump variables
 var wallJumpTimer = 0.0
 var canMove = true
@@ -66,7 +66,7 @@ func _physics_process(delta):
 	
 	if not is_multiplayer_authority(): return
 	
-	if Global.mapChosen and !flag:
+	if Global.mapChosen and !Global.flag:
 		print('MP')
 		await get_tree().create_timer(0.2).timeout
 		update_spawn(Global.spawn_point)
@@ -75,7 +75,7 @@ func _physics_process(delta):
 		powerup_timer = 0
 		jumpup = 0
 		speedup = 0
-		flag = true
+		Global.flag = true
 		canMove = false
 		await get_tree().create_timer(3).timeout
 		canMove = true
