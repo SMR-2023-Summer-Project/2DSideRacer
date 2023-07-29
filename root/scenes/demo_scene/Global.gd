@@ -10,6 +10,7 @@ var map = ''
 var flag = false
 var players = 0
 var message = ''
+#var player = ''
 func updated_respawn(new_point):#Makes a function to change the spawnpoint
 	spawn_point = new_point
 	print('Spawn Changed to', new_point)
