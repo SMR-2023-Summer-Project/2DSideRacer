@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqyiuaf22iytn"]
+
+[sub_resource type="FontFile" id="FontFile_vwfdk"]
+face_index = null
+embolden = null
+transform = null
+cache/0/30/0/ascent = 0.0
+cache/0/30/0/descent = 0.0
+cache/0/30/0/underline_position = 0.0
+cache/0/30/0/underline_thickness = 0.0
+cache/0/30/0/scale = 1.0
+cache/0/30/0/glyphs/0/advance = Vector2(0, 0)
+cache/0/30/0/glyphs/0/offset = Vector2(0, 0)
+cache/0/30/0/glyphs/0/size = Vector2(0, 0)
+cache/0/30/0/glyphs/0/uv_rect = Rect2(0, 0, 0, 0)
+cache/0/30/0/glyphs/0/texture_idx = -1
+cache/0/30/0/kerning_overrides/30/0 = Vector2(0, 0)
+cache/0/30/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/30/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7pd6g"]
+font = SubResource("FontFile_vwfdk")
+font_size = 30
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_right = 1154.0
+offset_bottom = 651.0
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 640.0
+text = "																																CREDITS
+
+"
+label_settings = SubResource("LabelSettings_7pd6g")
