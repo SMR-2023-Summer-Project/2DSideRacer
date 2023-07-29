@@ -275,7 +275,7 @@ terrain_set_0/terrain_1/name = "MechanicalPipes"
 terrain_set_0/terrain_1/color = Color(0.5, 0.4375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_6x3bl")
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D2" type="Node2D"]
 script = ExtResource("1_42sr8")
 
 [node name="TextureRect" type="TextureRect" parent="."]

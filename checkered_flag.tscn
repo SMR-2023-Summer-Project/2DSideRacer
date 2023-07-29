@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://db2eacei23gdj"]
 
 [ext_resource type="Script" path="res://checkered_flag.gd" id="1_caajc"]
-[ext_resource type="Texture2D" uid="uid://cy45cfirrpiu6" path="res://root/assets/sprites/misc/checkered_flag.png" id="1_l1o3b"]
+[ext_resource type="Texture2D" uid="uid://bds8icdjjo77a" path="res://root/assets/sprites/misc/checkered_flag.png" id="1_l1o3b"]
 
 [node name="CheckeredFlag" type="Control"]
 layout_mode = 3
@@ -9,6 +9,7 @@ anchors_preset = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 z_index = -10
+layout_mode = 0
 offset_right = 1230.0
 theme_override_constants/separation = 410
 script = ExtResource("1_caajc")

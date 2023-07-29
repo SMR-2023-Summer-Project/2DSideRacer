@@ -100,11 +100,15 @@ func _debug ():
 #		await hide_finished()
 	else:
 		print('Not in a level')
-
+func _process(delta):
+	#if Global.player != '1':
+		#$MapSelect.hide()
+		pass
 func _ready():
 	time_remaining.hide()
 	player_progress.hide()
 	countdown.hide()
 	finished.hide()
+	
 	
 	await _debug()

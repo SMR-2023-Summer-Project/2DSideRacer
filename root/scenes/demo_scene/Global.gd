@@ -7,6 +7,10 @@ var spawn_point = Vector2(-496,32)#makes a global spawnpoint
 var spawnY = 200
 var mapChosen = false
 var map = ''
+var flag = false
+var players = 0
+var message = ''
+#var player = ''
 func updated_respawn(new_point):#Makes a function to change the spawnpoint
 	spawn_point = new_point
 	print('Spawn Changed to', new_point)
@@ -41,3 +45,8 @@ func wait(seconds: float) -> void:
 	timer.timeout.connect(func(): remove_child(timer))
 	
 	await timer.timeout
+
+func display_player_message(new_message):
+	message = new_message
+	await get_tree().create_timer(5).timeout
+	message = ''
