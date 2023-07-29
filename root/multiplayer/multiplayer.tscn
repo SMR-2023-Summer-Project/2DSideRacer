@@ -1,21 +1,21 @@
 [gd_scene load_steps=26 format=3 uid="uid://cl80pd1y8hj2j"]
 
-[ext_resource type="Texture2D" uid="uid://bg51xako66r4v" path="res://root/assets/sprites/backgrounds/Dystopian Background/Layer 1.png" id="1_jwgxo"]
-[ext_resource type="Texture2D" uid="uid://bqt4x7qa0lp40" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
-[ext_resource type="Texture2D" uid="uid://xycxot7v85c7" path="res://root/assets/sprites/backgrounds/Dystopian Background/Layer 2.png" id="2_3qq48"]
+[ext_resource type="Texture2D" uid="uid://c83p8y1xahk4y" path="res://root/assets/sprites/backgrounds/Dystopian Background/Layer 1.png" id="1_jwgxo"]
+[ext_resource type="Texture2D" uid="uid://dn3eej05ykrmm" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_pod0c"]
+[ext_resource type="Texture2D" uid="uid://cwrird3p1h3t4" path="res://root/assets/sprites/backgrounds/Dystopian Background/Layer 2.png" id="2_3qq48"]
 [ext_resource type="Script" path="res://root/scenes/demo_scene/Checkpoint.gd" id="2_6kt0a"]
 [ext_resource type="Script" path="res://root/multiplayer/coin.gd" id="3_4pfx8"]
-[ext_resource type="Texture2D" uid="uid://clgo45qdvmvfe" path="res://root/assets/sprites/backgrounds/Dystopian Background/Layer 3.png" id="3_uwaa1"]
-[ext_resource type="Texture2D" uid="uid://db5x4n0qbpqd1" path="res://root/assets/sprites/backgrounds/Dystopian Background/Layer 4.png" id="4_a8eit"]
+[ext_resource type="Texture2D" uid="uid://b472xkvlcalww" path="res://root/assets/sprites/backgrounds/Dystopian Background/Layer 3.png" id="3_uwaa1"]
+[ext_resource type="Texture2D" uid="uid://ervh6foo6t3f" path="res://root/assets/sprites/backgrounds/Dystopian Background/Layer 4.png" id="4_a8eit"]
 [ext_resource type="PackedScene" uid="uid://bm70c7wsn6m54" path="res://root/scenes/demo_scene_2/demo_scene_2.tscn" id="4_sd4gr"]
 [ext_resource type="Script" path="res://root/scenes/Select Map/Animation_Selection.gd" id="5_pmmvp"]
-[ext_resource type="Texture2D" uid="uid://ciwhxg7x3n7po" path="res://root/assets/sprites/backgrounds/Dystopian Background/Layer 5.png" id="5_skorc"]
+[ext_resource type="Texture2D" uid="uid://b0q3jyhaqgeaf" path="res://root/assets/sprites/backgrounds/Dystopian Background/Layer 5.png" id="5_skorc"]
 [ext_resource type="Script" path="res://root/multiplayer/Collectible1.gd" id="6_5vr5w"]
 [ext_resource type="PackedScene" uid="uid://cux5nlw6mqti" path="res://root/scenes/collectible_1.tscn" id="6_s01lp"]
-[ext_resource type="Texture2D" uid="uid://cv0x27youcquf" path="res://root/assets/sprites/backgrounds/Dystopian Background/Layer 62.png" id="6_wpynx"]
+[ext_resource type="Texture2D" uid="uid://b31d1bgiqmsg0" path="res://root/assets/sprites/backgrounds/Dystopian Background/Layer 62.png" id="6_wpynx"]
 [ext_resource type="Script" path="res://root/multiplayer/SpeedBoostArea2D.gd" id="7_a6kl4"]
-[ext_resource type="Texture2D" uid="uid://dcebt6jlcpba3" path="res://root/assets/sprites/misc/new_five_second_speed_up_sprite.png" id="8_f0xg3"]
-[ext_resource type="AudioStream" uid="uid://b7wdguemqjn2x" path="res://root/assets/audio/music/Background Track 1.mp3" id="10_eg2mq"]
+[ext_resource type="Texture2D" uid="uid://chtu1fyogduqx" path="res://root/assets/sprites/misc/new_five_second_speed_up_sprite.png" id="8_f0xg3"]
+[ext_resource type="AudioStream" uid="uid://vr086agjlyvb" path="res://root/assets/audio/music/Background Track 1.mp3" id="10_eg2mq"]
 [ext_resource type="Script" path="res://root/multiplayer/DieBox.gd" id="10_x10xs"]
 [ext_resource type="PackedScene" uid="uid://bii10xaq1r4ki" path="res://root/scenes/collectible_2.tscn" id="18_mwqg8"]
 
@@ -53,7 +53,7 @@ func _ready():
 		mapChosen = Global.mapChosen
 		await get_tree().create_timer(0.1).timeout
 	#print('Loop ended')
-	startMap()
+	rpc(\"startMap\",Global.map)
 func _on_join_pressed(): 
 	$CanvasLayer.hide()
 	var txt : String = $CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HBoxContainer/Address.text
@@ -84,14 +84,14 @@ func _on_host_pressed():
 	$BackButton.queue_free()
 		
 	
-
-func startMap():
+@rpc(\"call_local\")
+func startMap(z):
 	var y = 0
 	for x in mapText:
 		print(maps[0])
 		print(Global.map)
 		print(x)
-		if x == Global.map:
+		if x == z:
 			print(y)
 			print('random thing worked')
 			var map = maps[y].instantiate()

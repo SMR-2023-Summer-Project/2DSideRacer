@@ -109,6 +109,7 @@ func _ready():
 	player_progress.hide()
 	countdown.hide()
 	finished.hide()
-	
+	if not multiplayer.get_unique_id() == 1:
+		$MapSelect/MapButton.hide()
 	
 	await _debug()
