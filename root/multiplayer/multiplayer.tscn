@@ -31,10 +31,9 @@ var peer = ENetMultiplayerPeer.new()
 var mapChosen = false
 var select = load('res://root/scenes/Select Map/Map Selector.tscn')
 const mapText = [\"res://root/scenes/demo_scene_2/demo_scene_2.tscn\",\"res://root/scenes/maps/Random_Map/random_map.tscn\", \"res://SkyCity.tscn\"]
-
+var playerArr = []
 const maps = [preload(mapText[0]),preload(mapText[1]), preload(mapText[2])] 
 var map = null
-var playerArr = []
 var p_total = 0
 
 
@@ -107,20 +106,22 @@ func startMap(z):
 	$Lobby.queue_free()
 
 func add_player(peer_id):
-	playerArr.append(Player.instantiate())
-	
 	print(peer_id)
-	playerArr[p_total].name = str(peer_id)
-	#var UI = ui.instantiate()
-	add_child(playerArr[p_total])
-	Global.players +=1
-	#Global.player = str(peer_id)
-	print('Joined')
-	Global.display_player_message(str(peer_id) + ' joined.')
-	p_total += 1
-
 	
-	
+	var newPlayer = Player.instantiate()
+	if newPlayer:
+		print('peer id: ' + peer_id)
+		playerArr.append(Player.instantiate())
+		playerArr[p_total].name = str(peer_id)
+		#var UI = ui.instantiate()
+		add_child(playerArr[p_total])
+		Global.players +=1
+		#Global.player = str(peer_id)
+		print('Joined')
+		Global.display_player_message(str(peer_id) + ' joined.')
+		p_total += 1
+	else:
+		print('Failed to instantiate Player scene.')
 	
 func remove_player(peer_id):
 	var player = get_node_or_null(str(peer_id))
