@@ -8,10 +8,6 @@ class_name GameHUD
 @onready var player_progress = $PlayerProgress
 @onready var finished = $Finished
 @onready var coin_count = $CoinCount
-@onready var power1 = $PowerIcon1
-@onready var power2 = $PowerIcon2
-
-var active_powerups = 0
 
 func set_remaining_time (duration_seconds: int) -> void:
 	# sets the amount of time that is visible
@@ -55,41 +51,6 @@ func hide_finished ():
 	await finished.disappear()
 	
 	finished.visible = false
-
-func set_powerups (type, time):
-	active_powerups += 1
-	if(active_powerups == 1):
-		if(type == 'jumpboost'):
-			power1.texture = load('res://root/assets/sprites/misc/new_five_second_jump_boost_sprite copy.png')
-		elif(type == 'speedboost'):
-			power1.texture = load("res://root/assets/sprites/misc/new_five_second_speed_up_sprite copy.png")
-		power1.visible = true
-		var tween1 = create_tween()
-		tween1.tween_property($PowerIcon1/PowerBG1, 'scale', Vector2(1,.01), time)
-		hide_powerups(time,1)
-	
-	elif(active_powerups == 2):
-		if(type == 'jumpboost'):
-			power2.texture = load('res://root/assets/sprites/misc/new_five_second_jump_boost_sprite copy.png')
-		elif(type == 'speedboost'):
-			power2.texture = load("res://root/assets/sprites/misc/new_five_second_speed_up_sprite copy.png")
-		power2.visible = true
-		var tween2 = create_tween()
-		tween2.tween_property($PowerIcon2/PowerBG2, 'scale', Vector2(1,.01), time)
-		hide_powerups(time,2)
-	
-	
-func hide_powerups(time,element):
-	await get_tree().create_timer(time).timeout
-	if(element == 1):
-		power1.visible = false
-		var tween1 = create_tween()
-		tween1.tween_property($PowerIcon1/PowerBG1, 'scale', Vector2(1,1), .1)
-	elif(element == 2):
-		power2.visible = false
-		var tween1 = create_tween()
-		tween1.tween_property($PowerIcon2/PowerBG2, 'scale', Vector2(1,1), .1)
-	active_powerups -= 1
 
 func _debug ():
 	$MapSelect.visible = true
@@ -148,8 +109,6 @@ func _ready():
 	player_progress.hide()
 	countdown.hide()
 	finished.hide()
-	power1.hide()
-	power2.hide()
 	if not multiplayer.get_unique_id() == 1:
 		$MapSelect/MapButton.hide()
 	
