@@ -23,9 +23,9 @@
 script/source = "# author Cesar
 
 extends Node2D
-
-const PORT = 4433
 const Player = preload(\"res://root/entities/player/player.tscn\")
+const PORT = 4433
+
 #const ui = preload(\"res://root/scenes/demo_scene/ui.tscn\")
 var peer = ENetMultiplayerPeer.new()
 var mapChosen = false
@@ -106,12 +106,13 @@ func startMap(z):
 	$Lobby.queue_free()
 
 func add_player(peer_id):
-	print(peer_id)
+	print('peer id: ' + str(peer_id))
 	
 	var newPlayer = Player.instantiate()
+	print(newPlayer)
 	if newPlayer:
-		print('peer id: ' + peer_id)
-		playerArr.append(Player.instantiate())
+		
+		playerArr.append(newPlayer)
 		playerArr[p_total].name = str(peer_id)
 		#var UI = ui.instantiate()
 		add_child(playerArr[p_total])
