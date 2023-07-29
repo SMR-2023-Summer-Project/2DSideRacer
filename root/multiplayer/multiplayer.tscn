@@ -36,9 +36,9 @@ const maps = [preload(mapText[0]),preload(mapText[1]), preload(mapText[2])]
 var map = null
 var playerArr = []
 var p_total = 0
+
+
 func _ready():
-	
-		
 	$DemoScene.queue_free()
 	$BackButton.previousScene = 'res://root/ui/title_screen/title_screen.tscn'
 	$BackButton.position += Vector2(-700,-600) 
@@ -1048,7 +1048,7 @@ position = Vector2(419, -585)
 script = ExtResource("3_4pfx8")
 
 [node name="Coin4" type="Area2D" parent="."]
-position = Vector2(111, -257)
+position = Vector2(75, -253)
 script = ExtResource("3_4pfx8")
 
 [node name="BackButton" type="ColorRect" parent="."]
@@ -1061,7 +1061,7 @@ visible = false
 position = Vector2(-305, -192)
 
 [node name="Collectible1" parent="." instance=ExtResource("6_s01lp")]
-position = Vector2(109, -269)
+position = Vector2(224, -234)
 
 [node name="MultiplayerMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_eg2mq")
@@ -1073,7 +1073,7 @@ position = Vector2(-210, 0)
 script = ExtResource("6_5vr5w")
 
 [node name="SpeedBoostArea1" type="Area2D" parent="Collectible2"]
-position = Vector2(-5, -9)
+position = Vector2(261, -85)
 script = ExtResource("7_a6kl4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collectible2/SpeedBoostArea1"]
@@ -1099,7 +1099,7 @@ position = Vector2(400.5, 589.5)
 shape = SubResource("RectangleShape2D_0j4qw")
 
 [node name="Collectible3" parent="." instance=ExtResource("18_mwqg8")]
-position = Vector2(227, -7)
+position = Vector2(310, -65)
 
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HBoxContainer/Connect" to="." method="_on_join_pressed"]

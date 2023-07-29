@@ -26,7 +26,7 @@ func _ready():
 	
 	#map 1
 	stage_Selection.append( StageButton.new())
-	stage_Selection[0].imgFile = 'res://root/assets/sprites/Selection Icons/Industrial Image.png'
+	stage_Selection[0].imgFile = 'res://root/assets/sprites/Selection Icons/lobby.png'
 	stage_Selection[0].Scene = 'res://root/scenes/demo_scene_2/demo_scene_2.tscn'
 	stage_Selection[0].position = Vector2(250,200)
 	stage_Selection[0].scale = Vector2(0.9, 0.9)
@@ -42,7 +42,7 @@ func _ready():
 	
 	#map 3
 	stage_Selection.append( StageButton.new())
-	stage_Selection[2].imgFile="res://root/assets/sprites/backgrounds/Sky City/Capture.jpg"
+	stage_Selection[2].imgFile="res://root/assets/sprites/Selection Icons/sky city.jpg"
 	stage_Selection[2].Scene="res://SkyCity.tscn"
 	stage_Selection[2].position= Vector2(750,200)
 	stage_Selection[2].scale = Vector2(0.9, 0.9)
