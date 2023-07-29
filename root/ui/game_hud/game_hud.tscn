@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bm3dbb2721rlv"]
+[gd_scene load_steps=22 format=3 uid="uid://bm3dbb2721rlv"]
 
 [ext_resource type="FontFile" uid="uid://d262w60e08lx0" path="res://root/assets/fonts/gotham_bold.otf" id="1_inb2t"]
 [ext_resource type="Script" path="res://root/ui/game_hud/game_hud.gd" id="1_ov5s7"]
@@ -14,6 +14,10 @@
 [ext_resource type="Script" path="res://root/ui/game_hud/Message.gd" id="12_0qo0e"]
 [ext_resource type="Texture2D" uid="uid://ppf2ymkva7v8" path="res://root/assets/sprites/misc/new_five_second_speed_up_sprite copy.png" id="13_hapmh"]
 [ext_resource type="Texture2D" uid="uid://x48f3rof65yd" path="res://root/assets/sprites/misc/new_five_second_jump_boost_sprite copy.png" id="15_2nblh"]
+[ext_resource type="Texture2D" uid="uid://daw1tv4xcvie0" path="res://root/assets/sprites/Menus/Pause.png" id="15_gco0a"]
+[ext_resource type="Script" path="res://root/ui/game_hud/Options.gd" id="15_wpgv8"]
+[ext_resource type="Texture2D" uid="uid://btlau7o84m53t" path="res://root/assets/sprites/Menus/Options.png" id="17_uir3a"]
+[ext_resource type="Script" path="res://root/ui/game_hud/Play options.gd" id="18_1je4e"]
 
 [sub_resource type="Theme" id="Theme_s4hqi"]
 default_font = ExtResource("1_inb2t")
@@ -230,3 +234,35 @@ offset_top = 142.0
 offset_right = 252.0
 offset_bottom = 281.0
 rotation = 3.14159
+
+[node name="Options" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 986.0
+offset_top = -18.0
+offset_right = 2082.0
+offset_bottom = 474.0
+scale = Vector2(0.25, 0.25)
+texture_normal = ExtResource("15_gco0a")
+script = ExtResource("15_wpgv8")
+
+[node name="Play options" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 70.0
+offset_right = 1105.0
+offset_bottom = 562.0
+texture = ExtResource("17_uir3a")
+script = ExtResource("18_1je4e")
+
+[node name="Button" type="Button" parent="Play options"]
+layout_mode = 0
+offset_left = 358.0
+offset_top = 150.0
+offset_right = 789.0
+offset_bottom = 266.0
+
+[node name="Button2" type="Button" parent="Play options"]
+offset_left = 358.0
+offset_top = 281.0
+offset_right = 789.0
+offset_bottom = 397.0

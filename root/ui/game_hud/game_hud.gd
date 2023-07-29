@@ -92,6 +92,7 @@ func hide_powerups(time,element):
 
 func _debug ():
 	$MapSelect.visible = true
+	$Options.visible = true
 	while !Global.mapChosen:
 		await get_tree().create_timer(0.1).timeout
 	if Global.mapChosen:
@@ -149,6 +150,7 @@ func _ready():
 	finished.hide()
 	power1.hide()
 	power2.hide()
+	$"Play options".hide()
 	if not multiplayer.get_unique_id() == 1:
 		$MapSelect/MapButton.hide()
 	
