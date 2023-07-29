@@ -237,7 +237,7 @@ func swing(delta):
 
 	if global_position.distance_to(hookPos) > currentRopeLength:
 		global_position = hookPos + radius.normalized() * currentRopeLength
-	#$PlayerSounds/SwingSfx.play()
+	$PlayerSounds/SwingSfx.play()
 	velocity += (hookPos - global_position).normalized() * 15000 * delta
 
 # sets the player back to the most current spawnpoint
