@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bd3k26arbg27i"]
+[gd_scene load_steps=4 format=3 uid="uid://bd3k26arbg27i"]
 
 [ext_resource type="Script" path="res://Label.gd" id="1_fvq5n"]
 [ext_resource type="Script" path="res://Backstory.gd" id="1_mtiqi"]
+[ext_resource type="AudioStream" uid="uid://2hjqf7tyyl1h" path="res://root/assets/audio/music/Background Track 3.mp3" id="3_joelj"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_mtiqi")
@@ -22,3 +23,8 @@ text = "Throughout all of the natural events that have challenged humanity in it
 "
 autowrap_mode = 2
 script = ExtResource("1_fvq5n")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_joelj")
+volume_db = -10.0
+autoplay = true
