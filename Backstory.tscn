@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Label.gd" id="1_fvq5n"]
 [ext_resource type="Script" path="res://Backstory.gd" id="1_mtiqi"]
 [ext_resource type="Script" path="res://Flash.gd" id="3_3eix0"]
-[ext_resource type="AudioStream" uid="uid://cm0e71vodeatn" path="res://root/assets/audio/music/Background Track 3.mp3" id="3_joelj"]
+[ext_resource type="AudioStream" uid="uid://drydrqbc5w62j" path="res://root/assets/audio/music/Background Track 3.mp3" id="3_joelj"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_mtiqi")
