@@ -1,20 +1,19 @@
-[gd_scene load_steps=19 format=3 uid="uid://bm3dbb2721rlv"]
+[gd_scene load_steps=18 format=3 uid="uid://bm3dbb2721rlv"]
 
-[ext_resource type="FontFile" uid="uid://dw1hls670hidd" path="res://root/assets/fonts/gotham_bold.otf" id="1_inb2t"]
+[ext_resource type="FontFile" uid="uid://d262w60e08lx0" path="res://root/assets/fonts/gotham_bold.otf" id="1_inb2t"]
 [ext_resource type="Script" path="res://root/ui/game_hud/game_hud.gd" id="1_ov5s7"]
-[ext_resource type="FontFile" uid="uid://b4lbm00gfexbj" path="res://root/assets/fonts/Sniglet-ExtraBold.ttf" id="3_p3aoh"]
+[ext_resource type="FontFile" uid="uid://s4wa5l130xca" path="res://root/assets/fonts/Sniglet-ExtraBold.ttf" id="3_p3aoh"]
 [ext_resource type="Script" path="res://root/ui/game_hud/countdown.gd" id="4_3mafe"]
 [ext_resource type="PackedScene" uid="uid://b2xsysstc4op4" path="res://root/ui/game_hud/player_progress.tscn" id="5_htog8"]
 [ext_resource type="Script" path="res://root/ui/game_hud/finished.gd" id="7_8n76h"]
 [ext_resource type="PackedScene" uid="uid://boahtv6xc4gls" path="res://root/ui/game_hud/checkered_flag.tscn" id="7_fun4c"]
 [ext_resource type="Script" path="res://root/ui/game_hud/CoinCount.gd" id="8_nesx2"]
-[ext_resource type="Texture2D" uid="uid://d04am5hheixgi" path="res://root/assets/sprites/misc/coin.png" id="8_ow8wv"]
+[ext_resource type="Texture2D" uid="uid://b348et2kjhfos" path="res://root/assets/sprites/misc/coin.png" id="8_ow8wv"]
 [ext_resource type="Script" path="res://root/ui/game_hud/MapSelect.gd" id="10_28ygc"]
-[ext_resource type="Texture2D" uid="uid://bvrnw5aachbfs" path="res://root/assets/sprites/Menus/mapicon.png" id="11_u8xso"]
+[ext_resource type="Texture2D" uid="uid://iorrbb47d0go" path="res://root/assets/sprites/Menus/mapicon.png" id="11_u8xso"]
 [ext_resource type="Script" path="res://root/ui/game_hud/Message.gd" id="12_0qo0e"]
-[ext_resource type="Texture2D" uid="uid://bukrp5cr3c2lp" path="res://root/assets/sprites/misc/new_five_second_speed_up_sprite copy.png" id="13_hapmh"]
-[ext_resource type="Texture2D" uid="uid://c07ukfjkdip7c" path="res://root/assets/sprites/misc/white_bg.png" id="14_yq0r6"]
-[ext_resource type="Texture2D" uid="uid://b0540cgiv1nd0" path="res://root/assets/sprites/misc/new_five_second_jump_boost_sprite copy.png" id="15_2nblh"]
+[ext_resource type="Texture2D" uid="uid://ppf2ymkva7v8" path="res://root/assets/sprites/misc/new_five_second_speed_up_sprite copy.png" id="13_hapmh"]
+[ext_resource type="Texture2D" uid="uid://x48f3rof65yd" path="res://root/assets/sprites/misc/new_five_second_jump_boost_sprite copy.png" id="15_2nblh"]
 
 [sub_resource type="Theme" id="Theme_s4hqi"]
 default_font = ExtResource("1_inb2t")
@@ -214,7 +213,6 @@ offset_top = 138.0
 offset_right = 250.0
 offset_bottom = 277.0
 rotation = 3.14159
-texture = ExtResource("14_yq0r6")
 
 [node name="PowerIcon2" type="TextureRect" parent="."]
 layout_mode = 0
@@ -232,4 +230,3 @@ offset_top = 142.0
 offset_right = 252.0
 offset_bottom = 281.0
 rotation = 3.14159
-texture = ExtResource("14_yq0r6")
