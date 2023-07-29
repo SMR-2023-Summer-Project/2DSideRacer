@@ -290,6 +290,7 @@ func fiveSecondSpeedUp():
 	powerup_timer = 5
 	powerup_type = 'speedboost'
 	speedup += 1 
+	$UI/GameHUD.set_powerups(powerup_type, powerup_timer)
 	$PlayerSounds/PowerUpSfx.play()
 	print("The player has collected a five second speed boost.")
 	if speedup == 1:
@@ -302,6 +303,7 @@ func fiveSecondJumpBoost():
 	powerup_timer = 5
 	powerup_type = 'jumpboost'
 	jumpup += 1 
+	$UI/GameHUD.set_powerups(powerup_type, powerup_timer)
 	$PlayerSounds/PowerUpSfx.play()
 	print("The player has collected a five second jump boost.")
 	if jumpup == 1:
