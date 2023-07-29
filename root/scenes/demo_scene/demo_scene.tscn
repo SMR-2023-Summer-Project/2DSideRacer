@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://ceu3uvog7xnsw"]
 
-[ext_resource type="Texture2D" uid="uid://bgjk53dnwmbms" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_ligxv"]
+[ext_resource type="Texture2D" uid="uid://bqt4x7qa0lp40" path="res://root/assets/sprites/tilesets/stone_grassy_tileset.png" id="1_ligxv"]
 [ext_resource type="PackedScene" uid="uid://3iwpe0n7knwo" path="res://root/entities/player/player.tscn" id="2_w3iof"]
 [ext_resource type="Script" path="res://root/scenes/demo_scene/Global.gd" id="4_tikj2"]
 [ext_resource type="Script" path="res://root/scenes/demo_scene/Checkpoint.gd" id="4_vtdh2"]
