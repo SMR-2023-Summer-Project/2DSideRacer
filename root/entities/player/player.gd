@@ -11,6 +11,9 @@ const DASH_DURATION = 0.2
 const DASH_COOLDOWN = 0.35
 const CLIMB_SPEED = 100  # Adjust climbing speed as needed
 const WALL_JUMP_DELAY = 0.2  # The time window for wall jump after leaving the ground
+const DEFAULT_JUMP_VELOCITY = -400
+const DEFAULT_SPEED = 300
+
 
 var speedup = 0
 var jumpup = 0
@@ -41,6 +44,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var flag = false
 # Wall jump variables
 var wallJumpTimer = 0.0
+var canMove = true
 
 func _ready():
 	z_index = 2
@@ -61,134 +65,145 @@ func _physics_process(delta):
 	#respawn()
 	
 	if not is_multiplayer_authority(): return
-	$Grapple.clear_points()
-	# Add the gravity & Handle double jump
-	if not is_on_floor():
-		velocity.y += gravity * delta
-		if Input.is_action_just_pressed("jump") and canDJ:
-			velocity.y = JUMP_VELOCITY * 0.75
-			canDJ = false
-	wall_jump()
+	
 	if Global.mapChosen and !flag:
-		await get_tree().create_timer(0.1).timeout
+		print('MP')
+		await get_tree().create_timer(0.2).timeout
 		update_spawn(Global.spawn_point)
 		force_respawn()
+		powerup_active = false
+		powerup_timer = 0
+		jumpup = 0
+		speedup = 0
 		flag = true
-	# Handle Jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor() and not Input.is_action_pressed("flip"):
-		# Reset double jump condition
-		canDJ = true
-		velocity.y = JUMP_VELOCITY
-	# Handle Jump Power.
-	elif !is_on_floor() and Input.is_action_pressed("jump") and velocity.y < 0 and velocity.y > MAX_JUMP_VELOCITY:
-		velocity.y -= JUMP_POWER_MODIFIER
-	var newDirection = get_direction()
-	if newDirection != prevDirection:
-		prevDirection = newDirection
+		canMove = false
+		await get_tree().create_timer(3).timeout
+		canMove = true
+	if canMove:
+		$Grapple.clear_points()
+		# Add the gravity & Handle double jump
+		if not is_on_floor():
+			velocity.y += gravity * delta
+			if Input.is_action_just_pressed("jump") and canDJ:
+				velocity.y = JUMP_VELOCITY * 0.75
+				canDJ = false
+		wall_jump()
+		
+		# Handle Jump.
+		if Input.is_action_just_pressed("jump") and is_on_floor() and not Input.is_action_pressed("flip"):
+			# Reset double jump condition
+			canDJ = true
+			velocity.y = JUMP_VELOCITY
+		# Handle Jump Power.
+		elif !is_on_floor() and Input.is_action_pressed("jump") and velocity.y < 0 and velocity.y > MAX_JUMP_VELOCITY:
+			velocity.y -= JUMP_POWER_MODIFIER
+		var newDirection = get_direction()
+		if newDirection != prevDirection:
+			prevDirection = newDirection
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction = Input.get_axis("ui_left", "ui_right")
-	if direction:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		# Get the input direction and handle the movement/deceleration.
+		# As good practice, you should replace UI actions with custom gameplay actions.
+		var direction = Input.get_axis("ui_left", "ui_right")
+		if direction:
+			velocity.x = direction * SPEED
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
 
-	# Handle Dash.
-	if canDash and dashTimer <= 0.0 and direction != 0:
-		if Input.is_action_just_pressed("dash"):
-			dashTimer = DASH_DURATION
-			canDash = false
+		# Handle Dash.
+		if canDash and dashTimer <= 0.0 and direction != 0:
+			if Input.is_action_just_pressed("dash"):
+				dashTimer = DASH_DURATION
+				canDash = false
+				velocity.x = direction * DASH_SPEED
+
+		elif dashTimer > 0.0:
+			dashTimer -= delta
 			velocity.x = direction * DASH_SPEED
 
-	elif dashTimer > 0.0:
-		dashTimer -= delta
-		velocity.x = direction * DASH_SPEED
+		# Check if dash cooldown is complete.
+		if not canDash:
+			dash_cool += delta
+			dashTimer -= delta
+			if dashTimer <= 0.0 and dash_cool >= DASH_COOLDOWN && is_on_floor():
+				canDash = true
+				dash_cool = 0
 
-	# Check if dash cooldown is complete.
-	if not canDash:
-		dash_cool += delta
-		dashTimer -= delta
-		if dashTimer <= 0.0 and dash_cool >= DASH_COOLDOWN && is_on_floor():
-			canDash = true
-			dash_cool = 0
-
-	# Climbing
-	if isClimbing:
-		if is_on_floor() or not is_on_wall():
-			isClimbing = false
+		# Climbing
+		if isClimbing:
+			if is_on_floor() or not is_on_wall():
+				isClimbing = false
+			else:
+				if Input.is_action_pressed("ui_up"):
+					velocity.y = -CLIMB_SPEED
+					$PlayerSounds/ClimbSfx.play()
+				elif Input.is_action_pressed("ui_down"):
+					velocity.y = CLIMB_SPEED
+					$PlayerSounds/ClimbSfx.play()
+				else:
+					velocity.y = 0
 		else:
-			if Input.is_action_pressed("ui_up"):
+			# Check for climbable walls
+			if is_on_wall() and Input.is_action_just_pressed("climb"):
+				isClimbing = true
 				velocity.y = -CLIMB_SPEED
 				$PlayerSounds/ClimbSfx.play()
-			elif Input.is_action_pressed("ui_down"):
-				velocity.y = CLIMB_SPEED
-				$PlayerSounds/ClimbSfx.play()
-			else:
-				velocity.y = 0
-	else:
-		# Check for climbable walls
-		if is_on_wall() and Input.is_action_just_pressed("climb"):
-			isClimbing = true
-			velocity.y = -CLIMB_SPEED
-			$PlayerSounds/ClimbSfx.play()
 
-	# Handle Grapple
-	hook()
+		# Handle Grapple
+		hook()
 
-	if not Input.is_action_pressed("swing"):
-		if not Input.is_action_pressed("flip"):
+		if not Input.is_action_pressed("swing"):
+			if not Input.is_action_pressed("flip"):
+				global_rotation_degrees = 0
+			hooked = false
+		if hooked:
+			global_rotation_degrees = 10 * sin($RayCast2D.global_rotation_degrees)
+			swing(delta)
+			# Swing speed manipulator
+			velocity *= 0.975
+			$Grapple.add_point(Vector2(0, 0))
+			$Grapple.add_point(to_local(hookPos))
+
+		# Handle grapple cooldown
+		if hookCooldownTimer > 0.0:
+			hookCooldownTimer -= delta  # Decrease the cooldown timer during each frame
+
+		# Handle Flips
+		if Input.is_action_pressed("flip") and not Input.is_action_pressed("swing") and not is_on_floor():
+			rotating = true
+			global_rotation_degrees = $RayCast2D.global_rotation_degrees
+		elif Input.is_action_pressed("flip") and is_on_floor() and rotating:
 			global_rotation_degrees = 0
-		hooked = false
-	if hooked:
-		global_rotation_degrees = 10 * sin($RayCast2D.global_rotation_degrees)
-		swing(delta)
-		# Swing speed manipulator
-		velocity *= 0.975
-		$Grapple.add_point(Vector2(0, 0))
-		$Grapple.add_point(to_local(hookPos))
+			velocity.y = 10000
+			rotating = false
+		elif not Input.is_action_pressed("swing"):
+			global_rotation_degrees = 0
 
-	# Handle grapple cooldown
-	if hookCooldownTimer > 0.0:
-		hookCooldownTimer -= delta  # Decrease the cooldown timer during each frame
+		# Wall jump logic
+		if wallJumpTimer > 0:
+			wallJumpTimer -= delta
 
-	# Handle Flips
-	if Input.is_action_pressed("flip") and not Input.is_action_pressed("swing") and not is_on_floor():
-		rotating = true
-		global_rotation_degrees = $RayCast2D.global_rotation_degrees
-	elif Input.is_action_pressed("flip") and is_on_floor() and rotating:
-		global_rotation_degrees = 0
-		velocity.y = 10000
-		rotating = false
-	elif not Input.is_action_pressed("swing"):
-		global_rotation_degrees = 0
+		# Powerup timing
+		if powerup_active:
+			if powerup_timer > 0:
+				powerup_timer -= delta
+			else:
+				if speedup == 1:
+					SPEED = 300
+					powerup_active = false
+					speedup -= 1
+					print('Speed Boost Ended')
+				elif speedup > 1:
+					speedup -= 1
+				if jumpup == 1:
+					JUMP_VELOCITY = -400.0
+					JUMP_POWER_MODIFIER = 4
+					powerup_active = false
+					jumpup -= 1
+					print('Jump Boost Ended')
+				elif jumpup > 1:
+					jumpup -= 1
 
-	# Wall jump logic
-	if wallJumpTimer > 0:
-		wallJumpTimer -= delta
-
-	# Powerup timing
-	if powerup_active:
-		if powerup_timer > 0:
-			powerup_timer -= delta
-		else:
-			if speedup == 1:
-				SPEED = 300
-				powerup_active = false
-				speedup -= 1
-				print('Speed Boost Ended')
-			elif speedup > 1:
-				speedup -= 1
-			if jumpup == 1:
-				JUMP_VELOCITY = -400.0
-				JUMP_POWER_MODIFIER = 4
-				powerup_active = false
-				jumpup -= 1
-				print('Jump Boost Ended')
-			elif jumpup > 1:
-				jumpup -= 1
-
-	move_and_slide()
+		move_and_slide()
 	
 
 	

@@ -349,19 +349,15 @@ animations = [{
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/sync = true
-properties/0/watch = false
 properties/1/path = NodePath("Animations:animation")
 properties/1/spawn = true
 properties/1/sync = true
-properties/1/watch = false
 properties/2/path = NodePath(".:rotation")
 properties/2/spawn = true
 properties/2/sync = true
-properties/2/watch = false
 properties/3/path = NodePath("Grapple:points")
 properties/3/spawn = true
 properties/3/sync = true
-properties/3/watch = false
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(1, 0)

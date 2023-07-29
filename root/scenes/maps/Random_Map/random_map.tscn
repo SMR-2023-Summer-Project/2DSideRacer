@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" path="res://root/scenes/maps/Random_Map/generate.gd" id="1_3qucg"]
 [ext_resource type="PackedScene" uid="uid://c2j2qklr3oc5d" path="res://root/scenes/maps/Random_Map/Assets/Tile.tscn" id="2_pxrvf"]
-[ext_resource type="AudioStream" uid="uid://bw0cr2uh4j8ap" path="res://root/assets/audio/music/Background Track 3 (Loop).mp3" id="3_1jdwc"]
-[ext_resource type="Texture2D" uid="uid://ddto5n7e5cnr1" path="res://root/assets/sprites/backgrounds/Dystopian Background/Layer 1.png" id="4_c63nh"]
-[ext_resource type="Texture2D" uid="uid://bl1yrxaww70r6" path="res://root/assets/sprites/backgrounds/Dystopian Background/Layer 2.png" id="5_qg87r"]
-[ext_resource type="Texture2D" uid="uid://bvqovxh4ebw2m" path="res://root/assets/sprites/backgrounds/Dystopian Background/Layer 3.png" id="6_e0bio"]
-[ext_resource type="Texture2D" uid="uid://dvhyqcqe5w15x" path="res://root/assets/sprites/backgrounds/Dystopian Background/Layer 4.png" id="7_yumuq"]
-[ext_resource type="Texture2D" uid="uid://hg3ecbcccecm" path="res://root/assets/sprites/backgrounds/Dystopian Background/Layer 5.png" id="8_6rorh"]
-[ext_resource type="Texture2D" uid="uid://bnkgmud81o6if" path="res://root/assets/sprites/backgrounds/Dystopian Background/Layer 62.png" id="9_dyjrx"]
+[ext_resource type="AudioStream" uid="uid://bfsgdtji3afm4" path="res://root/assets/audio/music/Background Track 3 (Loop).mp3" id="3_1jdwc"]
+[ext_resource type="Texture2D" uid="uid://bg51xako66r4v" path="res://root/assets/sprites/backgrounds/Dystopian Background/Layer 1.png" id="4_c63nh"]
+[ext_resource type="Texture2D" uid="uid://xycxot7v85c7" path="res://root/assets/sprites/backgrounds/Dystopian Background/Layer 2.png" id="5_qg87r"]
+[ext_resource type="Texture2D" uid="uid://clgo45qdvmvfe" path="res://root/assets/sprites/backgrounds/Dystopian Background/Layer 3.png" id="6_e0bio"]
+[ext_resource type="Texture2D" uid="uid://db5x4n0qbpqd1" path="res://root/assets/sprites/backgrounds/Dystopian Background/Layer 4.png" id="7_yumuq"]
+[ext_resource type="Texture2D" uid="uid://ciwhxg7x3n7po" path="res://root/assets/sprites/backgrounds/Dystopian Background/Layer 5.png" id="8_6rorh"]
+[ext_resource type="Texture2D" uid="uid://cv0x27youcquf" path="res://root/assets/sprites/backgrounds/Dystopian Background/Layer 62.png" id="9_dyjrx"]
 
 [node name="random_map" type="Node2D"]
 script = ExtResource("1_3qucg")

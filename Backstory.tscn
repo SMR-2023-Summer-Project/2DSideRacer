@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bd3k26arbg27i"]
+[gd_scene load_steps=5 format=3 uid="uid://bd3k26arbg27i"]
 
 [ext_resource type="Script" path="res://Label.gd" id="1_fvq5n"]
 [ext_resource type="Script" path="res://Backstory.gd" id="1_mtiqi"]
-[ext_resource type="AudioStream" uid="uid://2hjqf7tyyl1h" path="res://root/assets/audio/music/Background Track 3.mp3" id="3_joelj"]
+[ext_resource type="Script" path="res://Flash.gd" id="3_3eix0"]
+[ext_resource type="AudioStream" uid="uid://cm0e71vodeatn" path="res://root/assets/audio/music/Background Track 3.mp3" id="3_joelj"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_mtiqi")
@@ -28,3 +29,11 @@ script = ExtResource("1_fvq5n")
 stream = ExtResource("3_joelj")
 volume_db = -10.0
 autoplay = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 17.0
+offset_top = 608.0
+offset_right = 203.0
+offset_bottom = 634.0
+text = "Press Space to Continue"
+script = ExtResource("3_3eix0")
