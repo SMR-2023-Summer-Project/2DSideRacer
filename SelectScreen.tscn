@@ -12,7 +12,6 @@ offset_right = 3.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_eqq64")
-dir_path = "res://Levels"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0

@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://bwl3sy6i8ij83"]
 
-[ext_resource type="Texture2D" uid="uid://c2yp7vwlmxolq" path="res://root/scenes/Credits/credits_1.png" id="1_uyyla"]
-[ext_resource type="Texture2D" uid="uid://bn6v1u2ycybsm" path="res://root/scenes/Credits/credits_2.png" id="2_e1fun"]
-[ext_resource type="Texture2D" uid="uid://co62splxecigl" path="res://root/scenes/Credits/credits_3.png" id="3_6entk"]
-[ext_resource type="Texture2D" uid="uid://dvh6xew4tna7t" path="res://root/scenes/Credits/credits_4.png" id="4_2enob"]
-[ext_resource type="Texture2D" uid="uid://bdeyq6bmww77y" path="res://root/scenes/Credits/credits_5.png" id="5_unodu"]
+[ext_resource type="Texture2D" uid="uid://cw6dcnhrlxlya" path="res://root/scenes/Credits/credits_1.png" id="1_uyyla"]
+[ext_resource type="Texture2D" uid="uid://dv57qbrhyyw0q" path="res://root/scenes/Credits/credits_2.png" id="2_e1fun"]
+[ext_resource type="Texture2D" uid="uid://con06jrsmjtsn" path="res://root/scenes/Credits/credits_3.png" id="3_6entk"]
+[ext_resource type="Texture2D" uid="uid://bpaqyy0x0kqis" path="res://root/scenes/Credits/credits_4.png" id="4_2enob"]
+[ext_resource type="Texture2D" uid="uid://dqjfo4q0l5mul" path="res://root/scenes/Credits/credits_5.png" id="5_unodu"]
 [ext_resource type="Script" path="res://root/scenes/Credits.gd" id="6_o7i6x"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2eaos"]
@@ -66,6 +66,33 @@ animations = [{
 "speed": 1.0
 }]
 
+[sub_resource type="Animation" id="Animation_2diso"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"credits_animation"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="Animation" id="Animation_a1r01"]
 resource_name = "credits_animation"
 length = 16.0
@@ -92,33 +119,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15]
-}
-
-[sub_resource type="Animation" id="Animation_2diso"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"credits_animation"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_duo8n"]
