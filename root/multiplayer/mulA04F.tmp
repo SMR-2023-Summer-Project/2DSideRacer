@@ -39,18 +39,20 @@ var p_total = 0
 
 
 func _ready():
-	#pause audio signal
-	pauseaudio.pause_audio.connect(_on_pause_audio)
-	unpauseaudio.unpause_audio.connect(_on_unpause_audio)
-	
 	$DemoScene.queue_free()
 	$BackButton.previousScene = 'res://root/ui/title_screen/title_screen.tscn'
 	$BackButton.position += Vector2(-700,-600) 
 	mapChosen = Global.mapChosen
+	#Global.updated_respawn_distance(200)
 	Global.updated_respawn(Vector2(-200,0))
+	#var m =  load('res://root/scenes/demo_scene_2/demo_scene_2.tscn')
+	#var mp = m.instantiate()
+	#mp.position.x += -500 
+	#add_child(mp)		
 	while !mapChosen:
 		mapChosen = Global.mapChosen
 		await get_tree().create_timer(0.1).timeout
+	#print('Loop ended')
 	rpc(\"startMap\",Global.map)
 	
 func _on_join_pressed(): 
@@ -132,13 +134,6 @@ func remove_player(peer_id):
 		player.queue_free()
 		Global.players -=1
 
-func _on_pause_audio():
-	get_node(\"MultiplayerMusic\").stop()
-	print(\"paused\")
-
-func _on_unpause_audio():
-	get_node(\"MultiplayerMusic\").play()
-	print(\"unpaused\")
 "
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_spn0y"]

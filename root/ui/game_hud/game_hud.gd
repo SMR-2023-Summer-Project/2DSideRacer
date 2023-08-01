@@ -11,6 +11,7 @@ class_name GameHUD
 @onready var power1 = $PowerIcon1
 @onready var power2 = $PowerIcon2
 
+var audio_status = 'on'
 var active_powerups = 0
 
 func set_remaining_time (duration_seconds: int) -> void:
@@ -155,3 +156,13 @@ func _ready():
 		$MapSelect/MapButton.hide()
 	
 	await _debug()
+
+func _on_button_pressed():
+	if audio_status == 'on':
+		pauseaudio.emit_signal("pause_audio")
+		get_node("Button/Sprite2D").set_texture(preload("res://root/assets/sprites/misc/audio_off.png"))
+		audio_status = 'off'
+	if audio_status == 'off':
+		unpauseaudio.emit_signal("unpause_audio")
+		get_node("Button/Sprite2D").set_texture(preload("res://root/assets/sprites/misc/audio_on.png"))
+		audio_status = 'on'

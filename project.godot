@@ -18,6 +18,8 @@ run/stretch/mode="disabled"
 [autoload]
 
 Global="*res://root/scenes/demo_scene/Global.gd"
+pauseaudio="*res://pause_audio.gd"
+unpauseaudio="*res://unpause_audio.gd"
 
 [display]
 

@@ -1,24 +1,25 @@
-[gd_scene load_steps=23 format=3 uid="uid://bm3dbb2721rlv"]
+[gd_scene load_steps=24 format=3 uid="uid://bm3dbb2721rlv"]
 
-[ext_resource type="FontFile" uid="uid://dw1hls670hidd" path="res://root/assets/fonts/gotham_bold.otf" id="1_inb2t"]
+[ext_resource type="FontFile" uid="uid://c131o75dy5vmw" path="res://root/assets/fonts/gotham_bold.otf" id="1_inb2t"]
 [ext_resource type="Script" path="res://root/ui/game_hud/game_hud.gd" id="1_ov5s7"]
-[ext_resource type="FontFile" uid="uid://b4lbm00gfexbj" path="res://root/assets/fonts/Sniglet-ExtraBold.ttf" id="3_p3aoh"]
+[ext_resource type="FontFile" uid="uid://cu8bostpy6w51" path="res://root/assets/fonts/Sniglet-ExtraBold.ttf" id="3_p3aoh"]
 [ext_resource type="Script" path="res://root/ui/game_hud/countdown.gd" id="4_3mafe"]
 [ext_resource type="PackedScene" uid="uid://b2xsysstc4op4" path="res://root/ui/game_hud/player_progress.tscn" id="5_htog8"]
 [ext_resource type="Script" path="res://root/ui/game_hud/finished.gd" id="7_8n76h"]
 [ext_resource type="PackedScene" uid="uid://boahtv6xc4gls" path="res://root/ui/game_hud/checkered_flag.tscn" id="7_fun4c"]
 [ext_resource type="Script" path="res://root/ui/game_hud/CoinCount.gd" id="8_nesx2"]
-[ext_resource type="Texture2D" uid="uid://d04am5hheixgi" path="res://root/assets/sprites/misc/coin.png" id="8_ow8wv"]
+[ext_resource type="Texture2D" uid="uid://bfdi2ge4k3fen" path="res://root/assets/sprites/misc/coin.png" id="8_ow8wv"]
 [ext_resource type="Script" path="res://root/ui/game_hud/MapSelect.gd" id="10_28ygc"]
-[ext_resource type="Texture2D" uid="uid://bvrnw5aachbfs" path="res://root/assets/sprites/Menus/mapicon.png" id="11_u8xso"]
+[ext_resource type="Texture2D" uid="uid://cat7n0rlcx7k2" path="res://root/assets/sprites/Menus/mapicon.png" id="11_u8xso"]
 [ext_resource type="Script" path="res://root/ui/game_hud/Message.gd" id="12_0qo0e"]
-[ext_resource type="Texture2D" uid="uid://bukrp5cr3c2lp" path="res://root/assets/sprites/misc/new_five_second_speed_up_sprite copy.png" id="13_hapmh"]
-[ext_resource type="Texture2D" path="res://root/assets/sprites/misc/white_bg.png" id="14_drto3"]
-[ext_resource type="Texture2D" uid="uid://b0540cgiv1nd0" path="res://root/assets/sprites/misc/new_five_second_jump_boost_sprite copy.png" id="15_2nblh"]
-[ext_resource type="Texture2D" uid="uid://cqq35t51ax8as" path="res://root/assets/sprites/Menus/Pause.png" id="15_gco0a"]
+[ext_resource type="Texture2D" uid="uid://b7434vuofrsru" path="res://root/assets/sprites/misc/new_five_second_speed_up_sprite copy.png" id="13_hapmh"]
+[ext_resource type="Texture2D" uid="uid://dr70afhkwm7lh" path="res://root/assets/sprites/misc/white_bg.png" id="14_drto3"]
+[ext_resource type="Texture2D" uid="uid://cyqkxi86g24uv" path="res://root/assets/sprites/misc/new_five_second_jump_boost_sprite copy.png" id="15_2nblh"]
+[ext_resource type="Texture2D" uid="uid://d38dosjyn1st" path="res://root/assets/sprites/Menus/Pause.png" id="15_gco0a"]
 [ext_resource type="Script" path="res://root/ui/game_hud/Options.gd" id="15_wpgv8"]
-[ext_resource type="Texture2D" uid="uid://b62ideob00b0s" path="res://root/assets/sprites/Menus/Options.png" id="17_uir3a"]
+[ext_resource type="Texture2D" uid="uid://dm61w3gs2sqga" path="res://root/assets/sprites/Menus/Options.png" id="17_uir3a"]
 [ext_resource type="Script" path="res://root/ui/game_hud/Play options.gd" id="18_1je4e"]
+[ext_resource type="Texture2D" uid="uid://c6dk5kwwcn8po" path="res://root/assets/sprites/misc/audio_on.png" id="20_l20dl"]
 
 [sub_resource type="Theme" id="Theme_s4hqi"]
 default_font = ExtResource("1_inb2t")
@@ -270,3 +271,17 @@ offset_left = 358.0
 offset_top = 281.0
 offset_right = 789.0
 offset_bottom = 397.0
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1122.0
+offset_top = 617.0
+offset_right = 1144.0
+offset_bottom = 639.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Button"]
+position = Vector2(11, 10.875)
+scale = Vector2(0.0366057, 0.0395455)
+texture = ExtResource("20_l20dl")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
