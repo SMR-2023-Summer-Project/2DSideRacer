@@ -24,7 +24,7 @@ Welcome to our platform-based racing game! This project, created with the Godot 
 
 2. Navigate to the `pub/win` directory.
 
-3. Run `demo.exe` to start the game.
+3. Run `GilRunners_Demo.exe` to start the game.
 
 ### Controls
 
