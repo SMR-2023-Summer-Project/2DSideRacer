@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://nbgnp66djv07"]
 
-[ext_resource type="Texture2D" uid="uid://c2yp7vwlmxolq" path="res://root/scenes/Credits/credits_1.png" id="1_4lk86"]
+[ext_resource type="Texture2D" uid="uid://0kcrskytjgb0" path="res://root/scenes/Credits/credits_1.png" id="1_4lk86"]
 [ext_resource type="Script" path="res://root/scenes/Credits/firstcredit.gd" id="1_nawy4"]
-[ext_resource type="FontFile" uid="uid://cfoy0mfvuitmy" path="res://root/assets/fonts/Sniglet-Regular.ttf" id="3_rug4k"]
+[ext_resource type="FontFile" uid="uid://bmp4ounyu851e" path="res://root/assets/fonts/Sniglet-Regular.ttf" id="3_rug4k"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2eaos"]
 animations = [{

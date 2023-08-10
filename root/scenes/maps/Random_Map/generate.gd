@@ -42,6 +42,7 @@ func generateRandomGameSize():
 #starting and ending generation
 var start = [randi_range(2,boardWidth*0.1)]
 var end = [randi_range(boardWidth*0.9,boardWidth-3)]
+var spawn = Vector2(0,0)
 func generateStartAndEnd():
 	#generating starting y
 	for startXLevel in range(1,boardWidth): #fail safe incase the col is all wall
@@ -316,12 +317,14 @@ func goalTouched(body):
 	if body.is_in_group("player"):
 		await hud.show_finished()
 		hud.hide_finished()
-
+@rpc("call_local")
 func _ready():
+	#spawn = Vector2(start[0]*tileSize,start[1]*tileSize)
 	generateBoard()
 	#generatePlayer()
 	drawMap()
-
+	Global.updated_respawn(Vector2(start[0]*tileSize,start[1]*tileSize))
+	
 
 func _process(delta):
 #	var dist = 1-distanceFromGoal()

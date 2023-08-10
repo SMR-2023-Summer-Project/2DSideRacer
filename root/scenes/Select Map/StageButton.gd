@@ -40,7 +40,7 @@ func _process(delta):
 
 
 func _on_stage_button_pressed():
-	if Global.players > 1:
+	if Global.players > 0:
 		Global.change_mapChose(true, Scene)
 		print('Stage Selected')
 	else:
